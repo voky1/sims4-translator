@@ -1,0 +1,673 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ts language="ru_RU" name="Русский (Russian)" version="1.2">
+  <context name="EditWindow">
+    <string>
+      <source>Search and Edit</source>
+      <translation>Поиск и редактирование</translation>
+    </string>
+    <string>
+      <source>Original text</source>
+      <translation>Оригинальный текст</translation>
+    </string>
+    <string>
+      <source>Different original</source>
+      <translation>Отличающийся оригинальный текст</translation>
+    </string>
+    <string>
+      <source>Current translation</source>
+      <translation>Текущий перевод</translation>
+    </string>
+    <string>
+      <source>Different translation</source>
+      <translation>Отличающийся перевод</translation>
+    </string>
+    <string>
+      <source>Cancel</source>
+      <translation>Отмена</translation>
+    </string>
+    <string>
+      <source>Translate</source>
+      <translation>Перевести</translation>
+    </string>
+    <string>
+      <source>Use this translation</source>
+      <translation>Использовать этот перевод</translation>
+    </string>
+    <string>
+      <source>OK (Ctrl+Enter)</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Loading...</source>
+      <translation>Загрузка...</translation>
+    </string>
+    <string>
+      <source>Comment...</source>
+      <translation>Комментарий...</translation>
+    </string>
+  </context>
+  <context name="ExportDialog">
+    <string>
+      <source>Export translate</source>
+      <translation>Экспорт перевода</translation>
+    </string>
+    <string>
+      <source>Export</source>
+      <translation>Экспортировать</translation>
+    </string>
+    <string>
+      <source>Everything</source>
+      <translation>Все</translation>
+    </string>
+    <string>
+      <source>Everything but untranslated strings</source>
+      <translation>Все, кроме непереведенного</translation>
+    </string>
+    <string>
+      <source>Only selected instance</source>
+      <translation>Только выбранный инстанс</translation>
+    </string>
+    <string>
+      <source>Each instance as a separate file</source>
+      <translation>Каждый инстанс в отдельный файл</translation>
+    </string>
+    <string>
+      <source>Exported records</source>
+      <translation>Экспортировать строки</translation>
+    </string>
+    <string>
+      <source>Cancel</source>
+      <translation>Отмена</translation>
+    </string>
+  </context>
+  <context name="MainTableView">
+    <string>
+      <source>Original</source>
+      <translation>Оригинал</translation>
+    </string>
+    <string>
+      <source>Translated</source>
+      <translation>Перевод</translation>
+    </string>
+    <string>
+      <source>LD</source>
+      <translation> </translation>
+    </string>
+    <string>
+      <source>Instance</source>
+      <translation>Инстанс</translation>
+    </string>
+    <string>
+      <source>Group</source>
+      <translation>Группа</translation>
+    </string>
+    <string>
+      <source>Comment</source>
+      <translation>Комментарий</translation>
+    </string>
+  </context>
+  <context name="MainWindow">
+    <string>
+      <source>File</source>
+      <translation>Файл</translation>
+    </string>
+    <string>
+      <source>Export translation</source>
+      <translation>Экспортировать перевод</translation>
+    </string>
+    <string>
+      <source>Translation</source>
+      <translation>Перевод</translation>
+    </string>
+    <string>
+      <source>Options</source>
+      <translation>Параметры</translation>
+    </string>
+    <string>
+      <source>Help</source>
+      <translation>Помощь</translation>
+    </string>
+    <string>
+      <source>Save as...</source>
+      <translation>Сохранить как...</translation>
+    </string>
+    <string>
+      <source>Close</source>
+      <translation>Закрыть</translation>
+    </string>
+    <string>
+      <source>Save</source>
+      <translation>Сохранить</translation>
+    </string>
+    <string>
+      <source>Save dictionary</source>
+      <translation>Сохранить словарь</translation>
+    </string>
+    <string>
+      <source>Search and replace...</source>
+      <translation>Поиск и замена...</translation>
+    </string>
+    <string>
+      <source>Validate all translations</source>
+      <translation>Отметить все строки как переведенные</translation>
+    </string>
+    <string>
+      <source>Reset all translations</source>
+      <translation>Сбросить перевод у всех строк</translation>
+    </string>
+    <string>
+      <source>Exit</source>
+      <translation>Выход</translation>
+    </string>
+    <string>
+      <source>Undo</source>
+      <translation>Отмена</translation>
+    </string>
+    <string>
+      <source>About Qt...</source>
+      <translation>Версия Qt...</translation>
+    </string>
+    <string>
+      <source>Options...</source>
+      <translation>Настройки...</translation>
+    </string>
+    <string>
+      <source>Finalize package</source>
+      <translation>Финализировать</translation>
+    </string>
+    <string>
+      <source>Finalize package as...</source>
+      <translation>Финализировать как...</translation>
+    </string>
+    <string>
+      <source>Edit String</source>
+      <translation>Редактировать</translation>
+    </string>
+    <string>
+      <source>Validate as [translated]</source>
+      <translation>Отметить как переведенное</translation>
+    </string>
+    <string>
+      <source>Validate as [work in progress]</source>
+      <translation>Отметить как частично переведенное</translation>
+    </string>
+    <string>
+      <source>Cancel translation</source>
+      <translation>Отменить перевод</translation>
+    </string>
+    <string>
+      <source>Copy</source>
+      <translation>Копировать</translation>
+    </string>
+    <string>
+      <source>Paste</source>
+      <translation>Вставить</translation>
+    </string>
+    <string>
+      <source>View</source>
+      <translation>Вид</translation>
+    </string>
+    <string>
+      <source>Group</source>
+      <translation>Группа</translation>
+    </string>
+    <string>
+      <source>To XML...</source>
+      <translation>XML-файл...</translation>
+    </string>
+    <string>
+      <source>Translate from dictionaries</source>
+      <translation>Перевести с использованием других словарей</translation>
+    </string>
+    <string>
+      <source>To XML (Deaderpool's STBL editor)...</source>
+      <translation>XML-файл (Deaderpool's STBL editor)...</translation>
+    </string>
+    <string>
+      <source>Use original group</source>
+      <translation>Использовать оригинальное значение</translation>
+    </string>
+    <string>
+      <source>Use high-bit</source>
+      <translation>Использовать старший бит</translation>
+    </string>
+    <string>
+      <source>To STBL...</source>
+      <translation>STBL-файл...</translation>
+    </string>
+    <string>
+      <source>Use low-bit</source>
+      <translation>Использовать младший бит</translation>
+    </string>
+    <string>
+      <source>Insert new record</source>
+      <translation>Вставить новую запись</translation>
+    </string>
+    <string>
+      <source>Load file...</source>
+      <translation>Загрузить файл...</translation>
+    </string>
+    <string>
+      <source>Add file...</source>
+      <translation>Добавить файл...</translation>
+    </string>
+    <string>
+      <source>Import translation...</source>
+      <translation>Импортировать перевод...</translation>
+    </string>
+    <string>
+      <source>Remove record</source>
+      <translation>Удалить запись</translation>
+    </string>
+    <string>
+      <source>Save bundle...</source>
+      <translation>Сохранить список файлов...</translation>
+    </string>
+    <string>
+      <source>Load bundle...</source>
+      <translation>Загрузить список файлов...</translation>
+    </string>
+    <string>
+      <source>Numeration</source>
+      <translation>Нумерация</translation>
+    </string>
+    <string>
+      <source>Standart</source>
+      <translation>Обычная</translation>
+    </string>
+    <string>
+      <source>From the source file</source>
+      <translation>Из исходного файла</translation>
+    </string>
+    <string>
+      <source>XML format</source>
+      <translation>XML-формат</translation>
+    </string>
+    <string>
+      <source>XML format (Deaderpool's STBL editor)</source>
+      <translation>XML-формат (Deaderpool's STBL editor)</translation>
+    </string>
+    <string>
+      <source>Batch translate...</source>
+      <translation>Пакетный перевод...</translation>
+    </string>
+    <string>
+      <source>Translate</source>
+      <translation>Перевести</translation>
+    </string>
+  </context>
+  <context name="Messages">
+    <string>
+      <source>Save dictionary for modified packages?</source>
+      <translation>Сохранить словари у измененных пакетов?</translation>
+    </string>
+    <string>
+      <source>Are you sure you want to delete the selected records?</source>
+      <translation>Вы уверены, что хотите удалить выбранные записи?</translation>
+    </string>
+    <string>
+      <source>Not found text records in this file!</source>
+      <translation>В выбранном файле не найдены текстовые строки!</translation>
+    </string>
+    <string>
+      <source>Not found text records in this files!</source>
+      <translation>В выбранных файлах не найдены текстовые строки!</translation>
+    </string>
+  </context>
+  <context name="Errors">
+    <string>
+      <source>Language code not found!</source>
+      <translation>Не найден языковой код для перевода!</translation>
+    </string>
+    <string>
+      <source>Translation failed with error code: {}</source>
+      <translation>Ошибка при обращении к API: {}</translation>
+    </string>
+    <string>
+      <source>Invalid API key.</source>
+      <translation>Неправильный ключ API.</translation>
+    </string>
+    <string>
+      <source>Your quota has exceeded!</source>
+      <translation>Ваш лимит исчерпан!</translation>
+    </string>
+    <string>
+      <source>There was a temporary problem with the DeepL Service.</source>
+      <translation>Возникла временная проблема с сервисом DeepL.</translation>
+    </string>
+  </context>
+  <context name="OptionsDialog">
+    <string>
+      <source>Options and dictionaries</source>
+      <translation>Настройки и словари</translation>
+    </string>
+    <string>
+      <source>Build dictionaries</source>
+      <translation>Создать словари</translation>
+    </string>
+    <string>
+      <source>Languages</source>
+      <translation>Языки</translation>
+    </string>
+    <string>
+      <source>Source</source>
+      <translation>Язык оригинала</translation>
+    </string>
+    <string>
+      <source>Destination</source>
+      <translation>Язык перевода</translation>
+    </string>
+    <string>
+      <source>Game path</source>
+      <translation>Путь до The Sims 4</translation>
+    </string>
+    <string>
+      <source>Create backup package before finalization</source>
+      <translation>Создавать резервную копию пакета перед финализацией</translation>
+    </string>
+    <string>
+      <source>Saving translation without conflicts (experemental)</source>
+      <translation>Сохранять файл перевода без конфликтов с оригиналом (экспериментально)</translation>
+    </string>
+    <string>
+      <source>Interface</source>
+      <translation>Интерфейс</translation>
+    </string>
+    <string>
+      <source>Do not use automatic translation from other dictionaries</source>
+      <translation>Не использовать автоматический перевод из других словарей</translation>
+    </string>
+    <string>
+      <source>NOT FOUND</source>
+      <translation>НЕ НАЙДЕНО</translation>
+    </string>
+    <string>
+      <source>FOUND</source>
+      <translation>НАЙДЕНО</translation>
+    </string>
+    <string>
+      <source>BASE GAME</source>
+      <translation>БАЗОВАЯ ИГРА</translation>
+    </string>
+    <string>
+      <source>Expansion packs</source>
+      <translation>Дополнения</translation>
+    </string>
+    <string>
+      <source>Game packs</source>
+      <translation>Игровые наборы</translation>
+    </string>
+    <string>
+      <source>Stuff packs</source>
+      <translation>Каталоги</translation>
+    </string>
+    <string>
+      <source>{} not exist</source>
+      <translation>{} не найдено</translation>
+    </string>
+    <string>
+      <source>General</source>
+      <translation>Основное</translation>
+    </string>
+    <string>
+      <source>Dictionaries</source>
+      <translation>Словари</translation>
+    </string>
+    <string>
+      <source>DeepL API key</source>
+      <translation>Ключ для DeepL API</translation>
+    </string>
+  </context>
+  <context name="ReplaceDialog">
+    <string>
+      <source>Search and replace</source>
+      <translation>Поиск и замена</translation>
+    </string>
+    <string>
+      <source>Case sensitive</source>
+      <translation>С учетом регистра</translation>
+    </string>
+    <string>
+      <source>Search</source>
+      <translation>Что:</translation>
+    </string>
+    <string>
+      <source>Replace</source>
+      <translation>Чем:</translation>
+    </string>
+    <string>
+      <source>Cancel</source>
+      <translation>Отмена</translation>
+    </string>
+    <string>
+      <source>All strings</source>
+      <translation>Во всех строках</translation>
+    </string>
+    <string>
+      <source>Not validated strings</source>
+      <translation>В непереведенных строках</translation>
+    </string>
+    <string>
+      <source>Search and replace in:</source>
+      <translation>Искать и заменять:</translation>
+    </string>
+    <string>
+      <source>OK</source>
+      <translation/>
+    </string>
+  </context>
+  <context name="System">
+    <string>
+      <source>Build dictionaries...</source>
+      <translation>Создание словарей...</translation>
+    </string>
+    <string>
+      <source>Saving package {}...</source>
+      <translation>Сохранение пакета {}...</translation>
+    </string>
+    <string>
+      <source>Loading dictionaries...</source>
+      <translation>Загрузка словарей...</translation>
+    </string>
+    <string>
+      <source>Exporting translate...</source>
+      <translation>Экспорт перевода...</translation>
+    </string>
+    <string>
+      <source>All files</source>
+      <translation>Все файлы</translation>
+    </string>
+    <string>
+      <source>Packages</source>
+      <translation>Пакеты</translation>
+    </string>
+    <string>
+      <source>STBL files</source>
+      <translation>STBL-файлы</translation>
+    </string>
+    <string>
+      <source>XML files</source>
+      <translation>XML-файлы</translation>
+    </string>
+    <string>
+      <source>TXT files</source>
+      <translation>TXT-файлы</translation>
+    </string>
+    <string>
+      <source>Opening file {}...</source>
+      <translation>Открытие файла {}...</translation>
+    </string>
+    <string>
+      <source>Opening files...</source>
+      <translation>Открытие файлов...</translation>
+    </string>
+    <string>
+      <source>Opening file...</source>
+      <translation>Открытие файла...</translation>
+    </string>
+    <string>
+      <source>Translating...</source>
+      <translation>Производится перевод...</translation>
+    </string>
+    <string>
+      <source>Stopping translate, waiting for the finish of the threads...</source>
+      <translation>Остановка перевода, ожидание завершения потоков...</translation>
+    </string>
+  </context>
+  <context name="ToolBar">
+    <string>
+      <source>Search in translation</source>
+      <translation>Искать в переводе</translation>
+    </string>
+    <string>
+      <source>Search in ID</source>
+      <translation>Искать в ID</translation>
+    </string>
+    <string>
+      <source>Search in original</source>
+      <translation>Искать в оригинале</translation>
+    </string>
+    <string>
+      <source>Translated</source>
+      <translation>Переведенное из словаря</translation>
+    </string>
+    <string>
+      <source>Not translated</source>
+      <translation>Не переведенное</translation>
+    </string>
+    <string>
+      <source>Validated translation</source>
+      <translation>Переведенное</translation>
+    </string>
+    <string>
+      <source>Partial translation</source>
+      <translation>Частично переведенное</translation>
+    </string>
+    <string>
+      <source>Different strings</source>
+      <translation>Строки, имеющие разницу в тексте</translation>
+    </string>
+    <string>
+      <source>-- All files --</source>
+      <translation>-- Все файлы --</translation>
+    </string>
+    <string>
+      <source>-- All instances --</source>
+      <translation>-- Все инстансы --</translation>
+    </string>
+    <string>
+      <source>Search...</source>
+      <translation>Поиск...</translation>
+    </string>
+  </context>
+  <context name="ImportDialog">
+    <string>
+      <source>Import translate</source>
+      <translation>Импорт перевода</translation>
+    </string>
+    <string>
+      <source>Overwrite</source>
+      <translation>Перезаписать</translation>
+    </string>
+    <string>
+      <source>Everything</source>
+      <translation>Все</translation>
+    </string>
+    <string>
+      <source>Everything but already validated strings</source>
+      <translation>Все, кроме переведенного</translation>
+    </string>
+    <string>
+      <source>Everything but already validated and partial strings</source>
+      <translation>Все, кроме переведенного и частично переведенного</translation>
+    </string>
+    <string>
+      <source>Partial strings</source>
+      <translation>Только частично переведенное</translation>
+    </string>
+    <string>
+      <source>Selection only</source>
+      <translation>Только выбранные строки</translation>
+    </string>
+    <string>
+      <source>Replace existing translation</source>
+      <translation>Перезаписать уже переведенные строки</translation>
+    </string>
+    <string>
+      <source>Import</source>
+      <translation>Импортировать</translation>
+    </string>
+    <string>
+      <source>Cancel</source>
+      <translation>Отмена</translation>
+    </string>
+  </context>
+  <context name="TranslateDialog">
+    <string>
+      <source>Translate</source>
+      <translation>Перевести</translation>
+    </string>
+    <string>
+      <source>Cancel</source>
+      <translation>Отмена</translation>
+    </string>
+    <string>
+      <source>Batch translate</source>
+      <translation>Пакетный перевод</translation>
+    </string>
+    <string>
+      <source>Log</source>
+      <translation>Лог</translation>
+    </string>
+    <string>
+      <source>Line-by-line translation</source>
+      <translation>Построчный перевод</translation>
+    </string>
+    <string>
+      <source>Multiline translation</source>
+      <translation>Многострочный перевод</translation>
+    </string>
+    <string>
+      <source>Slow but more accurate translation.</source>
+      <translation>Медленный, но более точный перевод.</translation>
+    </string>
+    <string>
+      <source>A faster, but perhaps less accurate translation. It is recommended to use it together with DeepL, because when using Google, some strings may not be translated.</source>
+      <translation>Более быстрый, но, возможно, менее точный перевод. Рекомендуется использовать вместе с DeepL, поскольку при использовании Google некоторые строки могут быть не переведены.</translation>
+    </string>
+    <string>
+      <source>Some lines could not be translated.</source>
+      <translation>Некоторые строки не удалось перевести.</translation>
+    </string>
+    <string>
+      <source>Stop translate</source>
+      <translation>Остановить</translation>
+    </string>
+  </context>
+  <context name="TextEditor">
+    <string>
+      <source>Undo</source>
+      <translation>Отменить</translation>
+    </string>
+    <string>
+      <source>Redo</source>
+      <translation>Повторить</translation>
+    </string>
+    <string>
+      <source>Cut</source>
+      <translation>Вырезать</translation>
+    </string>
+    <string>
+      <source>Copy</source>
+      <translation>Копировать</translation>
+    </string>
+    <string>
+      <source>Paste</source>
+      <translation>Вставить</translation>
+    </string>
+    <string>
+      <source>Select All</source>
+      <translation>Выделить все</translation>
+    </string>
+  </context>
+</ts>

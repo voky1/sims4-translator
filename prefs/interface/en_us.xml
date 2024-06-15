@@ -1,0 +1,673 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ts language="en_US" name="English" version="1.2">
+  <context name="EditWindow">
+    <string>
+      <source>Search and Edit</source>
+      <translation/>
+    </string>
+    <string>
+      <source>OK (Ctrl+Enter)</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Original text</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Different original</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Current translation</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Different translation</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Cancel</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Translate</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Use this translation</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Loading...</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Comment...</source>
+      <translation/>
+    </string>
+  </context>
+  <context name="ExportDialog">
+    <string>
+      <source>Export translate</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Export</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Everything</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Everything but untranslated strings</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Only selected instance</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Each instance as a separate file</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Exported records</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Cancel</source>
+      <translation/>
+    </string>
+  </context>
+  <context name="MainTableView">
+    <string>
+      <source>Original</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Translated</source>
+      <translation/>
+    </string>
+    <string>
+      <source>LD</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Instance</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Group</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Comment</source>
+      <translation/>
+    </string>
+  </context>
+  <context name="MainWindow">
+    <string>
+      <source>File</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Export translation</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Translation</source>
+      <translation/>
+    </string>
+    <string>
+      <source>View</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Options</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Group</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Help</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Save as...</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Close</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Save</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Save dictionary</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Search and replace...</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Validate all translations</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Reset all translations</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Exit</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Undo</source>
+      <translation/>
+    </string>
+    <string>
+      <source>About Qt...</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Options...</source>
+      <translation/>
+    </string>
+    <string>
+      <source>To XML...</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Translate from dictionaries</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Finalize package</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Finalize package as...</source>
+      <translation/>
+    </string>
+    <string>
+      <source>To XML (Deaderpool's STBL editor)...</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Use original group</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Use high-bit</source>
+      <translation/>
+    </string>
+    <string>
+      <source>To STBL...</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Use low-bit</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Edit String</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Validate as [translated]</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Validate as [work in progress]</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Cancel translation</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Insert new record</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Copy</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Paste</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Load file...</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Add file...</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Import translation...</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Remove record</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Save bundle...</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Load bundle...</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Numeration</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Standart</source>
+      <translation/>
+    </string>
+    <string>
+      <source>From the source file</source>
+      <translation/>
+    </string>
+    <string>
+      <source>XML format</source>
+      <translation/>
+    </string>
+    <string>
+      <source>XML format (Deaderpool's STBL editor)</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Batch translate...</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Translate</source>
+      <translation/>
+    </string>
+  </context>
+  <context name="Messages">
+    <string>
+      <source>Save dictionary for modified packages?</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Are you sure you want to delete the selected records?</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Not found text records in this file!</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Not found text records in this files!</source>
+      <translation/>
+    </string>
+  </context>
+  <context name="Errors">
+    <string>
+      <source>Language code not found!</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Translation failed with error code: {}</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Invalid API key.</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Your quota has exceeded!</source>
+      <translation/>
+    </string>
+    <string>
+      <source>There was a temporary problem with the DeepL Service.</source>
+      <translation/>
+    </string>
+  </context>
+  <context name="OptionsDialog">
+    <string>
+      <source>NOT FOUND</source>
+      <translation/>
+    </string>
+    <string>
+      <source>{} not exist</source>
+      <translation/>
+    </string>
+    <string>
+      <source>FOUND</source>
+      <translation/>
+    </string>
+    <string>
+      <source>BASE GAME</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Expansion packs</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Game packs</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Stuff packs</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Options and dictionaries</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Build dictionaries</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Languages</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Source</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Destination</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Game path</source>
+      <translation/>
+    </string>
+    <string>
+      <source>...</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Create backup package before finalization</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Saving translation without conflicts (experemental)</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Interface</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Do not use automatic translation from other dictionaries</source>
+      <translation/>
+    </string>
+    <string>
+      <source>General</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Dictionaries</source>
+      <translation/>
+    </string>
+    <string>
+      <source>DeepL API key</source>
+      <translation/>
+    </string>
+  </context>
+  <context name="ReplaceDialog">
+    <string>
+      <source>Search and replace</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Case sensitive</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Search</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Replace</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Search and replace in:</source>
+      <translation/>
+    </string>
+    <string>
+      <source>All strings</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Not validated strings</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Cancel</source>
+      <translation/>
+    </string>
+    <string>
+      <source>OK</source>
+      <translation/>
+    </string>
+  </context>
+  <context name="System">
+    <string>
+      <source>Saving package {}...</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Loading dictionaries...</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Build dictionaries...</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Exporting translate...</source>
+      <translation/>
+    </string>
+    <string>
+      <source>All files</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Packages</source>
+      <translation/>
+    </string>
+    <string>
+      <source>STBL files</source>
+      <translation/>
+    </string>
+    <string>
+      <source>XML files</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Opening file {}...</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Opening files...</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Opening file...</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Translating...</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Stopping translate, waiting for the finish of the threads...</source>
+      <translation/>
+    </string>
+  </context>
+  <context name="ToolBar">
+    <string>
+      <source>-- All files --</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Search in translation</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Search in ID</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Search in original</source>
+      <translation/>
+    </string>
+    <string>
+      <source>-- All instances --</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Translated</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Not translated</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Validated translation</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Partial translation</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Different strings</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Search...</source>
+      <translation/>
+    </string>
+  </context>
+  <context name="ImportDialog">
+    <string>
+      <source>Import translate</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Overwrite</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Everything</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Everything but already validated strings</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Everything but already validated and partial strings</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Partial strings</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Selection only</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Replace existing translation</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Import</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Cancel</source>
+      <translation/>
+    </string>
+  </context>
+  <context name="TranslateDialog">
+    <string>
+      <source>Translate</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Cancel</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Batch translate</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Log</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Line-by-line translation</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Multiline translation</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Slow but more accurate translation.</source>
+      <translation/>
+    </string>
+    <string>
+      <source>A faster, but perhaps less accurate translation. It is recommended to use it together with DeepL, because when using Google, some strings may not be translated.</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Some lines could not be translated.</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Stop translate</source>
+      <translation/>
+    </string>
+  </context>
+  <context name="TextEditor">
+    <string>
+      <source>Undo</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Redo</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Cut</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Copy</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Paste</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Select All</source>
+      <translation/>
+    </string>
+  </context>
+</ts>

@@ -1,0 +1,30 @@
+<RCC>
+  <qresource>
+    <file>images/translate.png</file>
+    <file>images/setting.png</file>
+    <file>images/export_xml.png</file>
+    <file>images/api.png</file>
+    <file>images/search_dest.png</file>
+    <file>images/search_id.png</file>
+    <file>images/search_source.png</file>
+    <file>images/add.png</file>
+    <file>images/close.png</file>
+    <file>images/copy.png</file>
+    <file>images/dict.png</file>
+    <file>images/edit.png</file>
+    <file>images/export.png</file>
+    <file>images/import.png</file>
+    <file>images/lang.png</file>
+    <file>images/load.png</file>
+    <file>images/logo.png</file>
+    <file>images/options.png</file>
+    <file>images/paste.png</file>
+    <file>images/replace.png</file>
+    <file>images/undo.png</file>
+    <file>images/validate_0.png</file>
+    <file>images/validate_1.png</file>
+    <file>images/validate_2.png</file>
+    <file>images/validate_3.png</file>
+    <file>images/validate_4.png</file>
+  </qresource>
+</RCC>
