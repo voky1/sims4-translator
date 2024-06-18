@@ -19,6 +19,14 @@ This is a simple program for easy translation of mods for The Sims 4.
 - Save the translation in a separate package or save the translation immediately in an open mod (finalization).
 - Profit.
 
+## Languages
+
+Starting from version 1.2, the translation of the interface has been made into separate files. They are available in the folder:
+
+`<app path>/prefs/interface/`
+
+To add a new translation, you need to place the XML file with the new translation in this folder.
+
 ## Additional Credits
 
 The idea is taken from the app [xTranslator](https://www.nexusmods.com/skyrimspecialedition/mods/134).

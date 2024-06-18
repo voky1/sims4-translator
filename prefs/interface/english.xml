@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ts language="en_US" name="English" version="1.2">
+<ts language="en_US" name="English" version="1.2" authors="">
   <context name="EditWindow">
     <string>
       <source>Search and Edit</source>
@@ -233,10 +233,6 @@
     </string>
     <string>
       <source>Cancel translation</source>
-      <translation/>
-    </string>
-    <string>
-      <source>Insert new record</source>
       <translation/>
     </string>
     <string>
