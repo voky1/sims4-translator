@@ -23,7 +23,7 @@ from storages.dictionaries import DictionariesStorage
 from singletons.config import config
 from singletons.interface import interface
 from singletons.translator import translator
-from utils.signals import progress_signals, undo_signals
+from utils.signals import progress_signals, undo_signals, color_signals
 from utils.functions import icon, open_supported, open_xml, save_package, save_xml
 from utils.undo import Undo
 from utils.constants import *
@@ -108,6 +108,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.action_translate.triggered.connect(self.batch_translate)
         self.action_undo.triggered.connect(self.undo_restore)
 
+        self.action_colorbar.triggered.connect(self.colorbar_toggle)
+        self.action_colorbar.setChecked(config.value('view', 'colorbar'))
+
         self.action_options.triggered.connect(self.options)
         self.action_group_original.triggered.connect(self.group_original)
         self.action_group_highbit.triggered.connect(self.group_highbit)
@@ -130,8 +133,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.toolbar.filter_validate_3.triggered.connect(self.filter_timer_trigger)
         self.toolbar.filter_validate_4.triggered.connect(self.filter_timer_trigger)
         self.toolbar.edt_search.textChanged.connect(self.search_timer_trigger)
-        self.toolbar.cb_files.currentTextChanged.connect(self.change_file)
-        self.toolbar.cb_instances.currentTextChanged.connect(self.change_instance)
+        self.toolbar.cb_files.currentIndexChanged.connect(self.change_file)
+        self.toolbar.cb_instances.currentIndexChanged.connect(self.change_instance)
 
         self.__search_flag = SEARCH_IN_SOURCE
 
@@ -213,6 +216,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.action_num_source.setText(interface.text('MainWindow', 'From the source file'))
         self.action_num_xml.setText(interface.text('MainWindow', 'XML format'))
         self.action_num_xml_dp.setText(interface.text('MainWindow', 'XML format (Deaderpool\'s STBL editor)'))
+        self.action_colorbar.setText(interface.text('MainWindow', 'Color visualization'))
         self.menu_file.setTitle(interface.text('MainWindow', 'File'))
         self.menu_export_translation.setTitle(interface.text('MainWindow', 'Export translation'))
         self.menu_translation.setTitle(interface.text('MainWindow', 'Translation'))
@@ -305,15 +309,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.filter_timer_trigger()
 
     def change_file(self):
+        self.toolbar.cb_instances.blockSignals(True)
         self.toolbar.cb_instances.clear()
         self.toolbar.cb_instances.addItem(interface.text('ToolBar', '-- All instances --'))
         package = self.packages_storage.package
-        if package is not None:
+        if package:
             self.toolbar.cb_instances.addItems(package.instances)
-        self.set_state_menu()
+        self.toolbar.cb_instances.blockSignals(False)
+        color_signals.update.emit()
         self.filter_timer_trigger()
 
     def change_instance(self):
+        color_signals.update.emit()
         self.filter_timer_trigger()
 
     def search_timer_trigger(self):
@@ -362,12 +369,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.action_translate.setEnabled(state)
 
         package = self.packages_storage.package
-        self.action_finalize.setEnabled(state and package is not None and package.is_package)
-        self.action_finalize_as.setEnabled(state and package is not None and package.is_package)
+        self.action_finalize.setEnabled(state and package and package.is_package)
+        self.action_finalize_as.setEnabled(state and package and package.is_package)
+
+        color_signals.update.emit()
+        self.colorbar.setVisible(config.value('view', 'colorbar') and state)
 
     def check_modified(self, multi: bool = False):
         package = self.packages_storage.package
-        if multi and self.packages_storage.modified or not multi and package is not None and package.modified:
+        if multi and self.packages_storage.modified or not multi and package and package.modified:
             flags = QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No | QMessageBox.StandardButton.Cancel
 
             response = QMessageBox.question(self,
@@ -437,6 +447,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     item.translate = translated[0]
                     item.flag = FLAG_PROGRESS if len(translated) > 1 else FLAG_TRANSLATED
 
+        color_signals.update.emit()
+
         self.tableview.refresh()
         self.undo.commit()
 
@@ -452,6 +464,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.undo.wrap(item)
                 item.translate = response.text
                 item.flag = FLAG_VALIDATED
+                color_signals.update.emit()
                 self.tableview.refresh()
                 self.undo.commit()
                 self.__finished_progress()
@@ -461,7 +474,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def save(self):
         package = self.packages_storage.package
-        if package is not None:
+        if package:
             package.save()
         else:
             self.save_as()
@@ -469,19 +482,19 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def save_as(self):
         package = self.packages_storage.package
         filename = save_package(
-            package.filename if package is not None else 'translate_merged_' + config.value('translation',
-                                                                                            'destination'))
+            package.filename if package else 'translate_merged_' + config.value('translation',
+                                                                                'destination'))
         if filename:
             self.packages_storage.save(filename)
 
     def finalize(self):
         package = self.packages_storage.package
-        if package is not None:
+        if package:
             package.finalize()
 
     def finalize_as(self):
         package = self.packages_storage.package
-        if package is not None:
+        if package:
             filename = save_package(package.name)
             if filename:
                 package.finalize(filename)
@@ -514,6 +527,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             item.translate_old = None
             if flag == FLAG_UNVALIDATED:
                 item.translate = item.source
+
+        color_signals.update.emit()
+
         self.tableview.refresh()
         self.undo.commit()
 
@@ -527,6 +543,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             item.translate_old = None
             if flag == FLAG_UNVALIDATED:
                 item.translate = item.source
+
+        color_signals.update.emit()
 
         self.tableview.refresh()
         self.undo.commit()
@@ -562,6 +580,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             item.translate_old = None
             item.flag = FLAG_VALIDATED
 
+        color_signals.update.emit()
+
         self.tableview.refresh()
         self.undo.commit()
 
@@ -578,6 +598,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def options(self):
         dlg = OptionsDialog(self)
         dlg.exec()
+
+    def colorbar_toggle(self):
+        config.set_value('view', 'colorbar', self.action_colorbar.isChecked())
+        self.set_state_menu()
 
     def group_change(self):
         self.action_group_original.setChecked(config.value('group', 'original'))

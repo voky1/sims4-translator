@@ -7,6 +7,8 @@ from windows.mainwindow import MainWindow
 
 
 def main():
+    sys.argv += ['-platform', 'windows:darkmode=0']
+
     app = QApplication(sys.argv)
 
     window = MainWindow()

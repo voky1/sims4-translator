@@ -47,6 +47,7 @@ class ConfigManager(metaclass=Singleton):
             'group': False,
             'source': True,
             'comment': False,
+            'colorbar': True,
             'numeration': NUMERATION_STANDART
         },
         'temporary': {

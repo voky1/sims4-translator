@@ -4,6 +4,8 @@ import os
 import re
 import hashlib
 import platform
+import tempfile
+import shutil
 from PySide6.QtWidgets import QFileDialog
 from PySide6.QtGui import QIcon, QFont
 from xml.etree import ElementTree
@@ -48,12 +50,12 @@ def openfile(f, many=False):
     return None
 
 
-def savefile(f, suffix, filename=''):
+def savefile(f, suffix, filename='') -> str:
     dialog = QFileDialog(directory=filename)
     dialog.setDefaultSuffix(suffix)
     dialog.setAcceptMode(QFileDialog.AcceptSave)
     dialog.setNameFilters([f])
-    return dialog.selectedFiles()[0] if dialog.exec_() == QFileDialog.Accepted else None
+    return dialog.selectedFiles()[0] if dialog.exec() == QFileDialog.Accepted else None
 
 
 def open_supported(many=False):
@@ -73,16 +75,23 @@ def open_xml():
     return openfile(';;'.join(formats))
 
 
-def save_xml(filename=''):
+def save_xml(filename: str = '') -> str:
     return savefile(interface.text('System', 'XML files') + ' (*.xml)', 'xml', filename)
 
 
-def save_stbl(filename=''):
+def save_stbl(filename: str = '') -> str:
     return savefile(interface.text('System', 'STBL files') + ' (*.stbl)', 'STBL', filename)
 
 
-def save_package(filename=''):
+def save_package(filename: str = '') -> str:
     return savefile(interface.text('System', 'Packages') + ' (*.package)', 'package', filename)
+
+
+def create_temporary_copy(path: str) -> str:
+    temp_dir = tempfile.gettempdir()
+    temp_path = os.path.join(temp_dir, os.path.basename(path))
+    shutil.copy2(path, temp_path)
+    return temp_path
 
 
 def text_to_table(text):

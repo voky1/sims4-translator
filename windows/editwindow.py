@@ -9,8 +9,8 @@ from .ui.editwindow import Ui_EditWindow
 from singletons.config import config
 from singletons.interface import interface
 from singletons.translator import translator
-from utils.signals import dictionary_signals
 from utils.functions import text_to_edit, text_to_stbl, icon
+from utils.signals import color_signals
 from utils.constants import *
 
 
@@ -129,7 +129,9 @@ class EditWindow(QMainWindow, Ui_EditWindow):
 
         self.item.translate_old = None
 
-        dictionary_signals.update.emit(self.item)
+        self.main_window.dictionaries_storage.update(self.item)
+
+        color_signals.update.emit()
 
         self.close()
 
@@ -139,7 +141,7 @@ class EditWindow(QMainWindow, Ui_EditWindow):
         QApplication.processEvents()
         response = translator.translate(self.cb_api.currentText(), self.item.source)
         if response.status_code == 200:
-            self.txt_translate.setPlainText(response.text)
+            self.txt_translate.setPlainText(text_to_edit(response.text))
             self.lbl_status.setText('')
         else:
             self.lbl_status.setStyleSheet('color: red;')

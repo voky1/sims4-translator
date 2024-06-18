@@ -4,6 +4,7 @@ from PySide6.QtCore import QMetaObject, Qt
 from PySide6.QtGui import QAction
 from PySide6.QtWidgets import QLabel, QMenu, QMenuBar, QProgressBar, QVBoxLayout, QWidget
 
+from widgets.colorbar import QColorBar
 from widgets.tableview import QMainTableView
 from widgets.toolbar import QToolBar
 from utils.functions import icon
@@ -126,6 +127,9 @@ class Ui_MainWindow(object):
 
         self.action_insert = QAction(MainWindow)
 
+        self.action_colorbar = QAction(MainWindow)
+        self.action_colorbar.setCheckable(True)
+
         centralwidget = QWidget(MainWindow)
         MainWindow.setCentralWidget(centralwidget)
 
@@ -183,6 +187,8 @@ class Ui_MainWindow(object):
         self.menu_translation.addSeparator()
         self.menu_translation.addAction(self.action_undo)
         self.menu_view.addAction(self.action_insert)
+        self.menu_view.addAction(self.action_colorbar)
+        self.menu_view.addSeparator()
         self.menu_view.addAction(self.menu_numeration.menuAction())
         self.menu_numeration.addAction(self.action_num_standart)
         self.menu_numeration.addAction(self.action_num_source)
@@ -195,13 +201,17 @@ class Ui_MainWindow(object):
         self.menu_group.addAction(self.action_group_lowbit)
         self.menu_help.addAction(self.action_about_qt)
 
-        self.toolbar = QToolBar(self)
+        self.toolbar = QToolBar(MainWindow)
         self.tableview = QMainTableView(centralwidget)
+        self.colorbar = QColorBar(MainWindow)
+
+        self.colorbar.setVisible(False)
 
         MainWindow.setMenuBar(self.menubar)
         MainWindow.addToolBar(Qt.TopToolBarArea, self.toolbar)
 
         layout = QVBoxLayout(centralwidget)
+        layout.addWidget(self.colorbar)
         layout.addWidget(self.tableview)
 
         self.progress_widget = QWidget(centralwidget)

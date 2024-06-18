@@ -20,13 +20,14 @@ class AbstractTableView(QTableView):
 
         self.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.setShowGrid(False)
+        self.setAlternatingRowColors(False)
         self.setGridStyle(Qt.NoPen)
         self.setSortingEnabled(True)
         self.setWordWrap(False)
 
         header = self.verticalHeader()
         header.setSectionResizeMode(QHeaderView.Fixed)
-        header.setDefaultSectionSize(12)
+        header.setDefaultSectionSize(26)
         header.setVisible(False)
 
         header = self.horizontalHeader()

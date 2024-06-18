@@ -167,7 +167,7 @@ class ProxyModel(QSortFilterProxyModel):
     def filterAcceptsRow(self, row, parent):
         model = self.__model
 
-        if not model or row < 0 or row >= model.rowCount():
+        if not model or not (0 <= row < model.rowCount()):
             return False
 
         item = model.items[row]
@@ -181,16 +181,20 @@ class ProxyModel(QSortFilterProxyModel):
         if self.__flags and item.flag in self.__flags:
             return False
 
-        if self.__different and not item[RECORD_MAIN_TRANSLATE_OLD] and not item[RECORD_MAIN_SOURCE_OLD]:
-            return False
+        if self.__different:
+            record_main_translate_old = item[RECORD_MAIN_TRANSLATE_OLD]
+            record_main_source_old = item[RECORD_MAIN_SOURCE_OLD]
+            if not record_main_translate_old and not record_main_source_old:
+                return False
 
         if self.__text:
-            if self.__text_mode == SEARCH_IN_SOURCE and self.__text in item.source.lower():
-                return True
-            elif self.__text_mode == SEARCH_IN_DESTINATION and self.__text in item.translate.lower():
-                return True
-            elif self.__text_mode == SEARCH_IN_ID and self.__text == item.id:
-                return True
+            text_lower = self.__text.lower()
+            if self.__text_mode == SEARCH_IN_SOURCE:
+                return text_lower in item.source.lower()
+            elif self.__text_mode == SEARCH_IN_DESTINATION:
+                return text_lower in item.translate.lower()
+            elif self.__text_mode == SEARCH_IN_ID:
+                return self.__text == item.id
             else:
                 return False
 
@@ -220,13 +224,17 @@ class MainModel(AbstractModel):
     def items(self, key: str = None, instance: int = 0) -> List[MainRecord]:
         items = self.model.items
 
+        package = self.main_window.packages_storage.package
+        package_instance = package.instance if package else 0
+
         if instance > 0:
             items = [i for i in items if i.instance == instance]
 
-        else:
-            package = self.main_window.packages_storage.package
-            if package is not None or key is not None:
-                key = key if key is not None else package.key
-                items = [i for i in items if i.package == key]
+        elif package_instance > 0:
+            items = [i for i in items if i.instance == package_instance]
+
+        elif package or key:
+            key = key if key else package.key
+            items = [i for i in items if i.package == key]
 
         return items

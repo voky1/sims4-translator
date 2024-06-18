@@ -8,6 +8,7 @@ from typing import TYPE_CHECKING
 from .ui.replacedialog import Ui_ReplaceDialog
 
 from singletons.interface import interface
+from utils.signals import color_signals
 from utils.constants import *
 
 
@@ -71,6 +72,8 @@ class ReplaceDialog(QDialog, Ui_ReplaceDialog):
                     item.flag = FLAG_PROGRESS
 
             undo.commit()
+
+            color_signals.update.emit()
 
             self.save_values()
 

@@ -26,11 +26,13 @@ class Ui_ExportDialog(object):
 
         layout.addWidget(self.gb_rec)
 
-        self.cb_current = QCheckBox(ExportDialog)
-        self.cb_separate = QCheckBox(ExportDialog)
+        self.cb_current_instance = QCheckBox(ExportDialog)
+        self.cb_separate_instances = QCheckBox(ExportDialog)
+        self.cb_separate_packages = QCheckBox(ExportDialog)
 
-        layout.addWidget(self.cb_current)
-        layout.addWidget(self.cb_separate)
+        layout.addWidget(self.cb_current_instance)
+        layout.addWidget(self.cb_separate_instances)
+        layout.addWidget(self.cb_separate_packages)
         layout.addStretch()
 
         layout_buttons = QHBoxLayout()

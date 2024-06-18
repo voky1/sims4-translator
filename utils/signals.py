@@ -27,10 +27,10 @@ class UndoSignals(QObject, metaclass=Singleton):
     clean_by_key = Signal(str)
 
 
-class DictionarySignals(QObject, metaclass=Singleton):
-    update = Signal(object)
+class ColorSignals(QObject, metaclass=Singleton):
+    update = Signal()
 
 
 progress_signals = ProgressSignals()
 undo_signals = UndoSignals()
-dictionary_signals = DictionarySignals()
+color_signals = ColorSignals()

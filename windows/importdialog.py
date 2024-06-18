@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 
 from PySide6.QtCore import Qt
-from PySide6.QtWidgets import QApplication, QDialog
+from PySide6.QtWidgets import QDialog
 from typing import TYPE_CHECKING
 
 from .ui.importdialog import Ui_ImportDialog
 
 from singletons.interface import interface
 from utils.functions import compare, text_to_stbl
+from utils.signals import progress_signals, color_signals
 from utils.constants import *
 
 
@@ -84,13 +85,13 @@ class ImportDialog(QDialog, Ui_ImportDialog):
 
         undo = self.main_window.undo
 
+        progress_signals.initiate.emit(interface.text('System', 'Importing translate...'), len(items) / 100)
+
         for i, item in enumerate(items):
             if i % 100 == 0:
-                QApplication.processEvents()
+                progress_signals.increment.emit()
 
-            flag = item.flag
-
-            if self.rb_all.isChecked() or self.rb_selection.isChecked() or flag in flags:
+            if self.rb_all.isChecked() or self.rb_selection.isChecked() or item.flag in flags:
                 sid = item.id
                 if sid in table:
                     source = item.source
@@ -99,18 +100,21 @@ class ImportDialog(QDialog, Ui_ImportDialog):
                     if not compare(dest, translate) and not compare(source, translate):
                         undo.wrap(item)
                         if self.cb_replace.isChecked():
-                            if flag != FLAG_UNVALIDATED:
+                            if item.flag != FLAG_UNVALIDATED:
                                 item.translate_old = item.translate
                             item.translate = text_to_stbl(translate)
                             item.flag = FLAG_VALIDATED
                         else:
-                            if flag == FLAG_UNVALIDATED:
+                            if item.flag == FLAG_UNVALIDATED:
                                 item.translate = text_to_stbl(translate)
                                 item.flag = FLAG_VALIDATED
                             else:
                                 item.translate_old = text_to_stbl(translate)
 
         undo.commit()
+
+        color_signals.update.emit()
+        progress_signals.finished.emit()
 
     def import_click(self):
         self.translate()

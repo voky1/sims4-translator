@@ -115,26 +115,3 @@ class MainRecord(AbstractContainer):
 
     def compare(self) -> bool:
         return compare(self[RECORD_MAIN_SOURCE], self[RECORD_MAIN_TRANSLATE])
-
-
-class DictionaryRecord3(AbstractContainer):
-
-    @property
-    def package(self) -> str:
-        return self[RECORD_DICTIONARY_PACKAGE]
-
-    @property
-    def source(self) -> str:
-        return self[RECORD_DICTIONARY_SOURCE]
-
-    @property
-    def translate(self) -> str:
-        return self[RECORD_DICTIONARY_TRANSLATE]
-
-    @translate.setter
-    def translate(self, value: str) -> None:
-        self[RECORD_DICTIONARY_TRANSLATE] = value
-
-    @property
-    def length(self) -> int:
-        return self[RECORD_DICTIONARY_LENGTH]

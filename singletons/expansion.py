@@ -82,15 +82,17 @@ class Expansion(metaclass=Singleton):
 
     @property
     def items(self) -> List[Union[str, Exp]]:
-        rows = [Exp('BASE GAME', 'Data/Client')]
+        baseexp = Exp('BASE GAME', 'Data/Client')
+
+        rows = [baseexp]
+
+        exp = ['', 'Expansion packs']
+        game = ['', 'Game packs']
+        stuff = ['', 'Stuff packs']
 
         packs = self._parse_expansion_packs()
 
         if packs:
-            exp = ['', 'Expansion packs']
-            game = ['', 'Game packs']
-            stuff = ['', 'Stuff packs']
-
             for key, items in packs.items():
                 if key.upper().startswith('EP'):
                     exp.append(Exp(items, key))
@@ -99,12 +101,21 @@ class Expansion(metaclass=Singleton):
                 elif key.upper().startswith('SP'):
                     stuff.append(Exp(items, key))
 
-            if len(exp) > 2:
-                rows.extend(exp)
-            if len(game) > 2:
-                rows.extend(game)
-            if len(stuff) > 2:
-                rows.extend(stuff)
+        elif baseexp.exists_source:
+            for dirname in os.listdir(config.value('dictionaries', 'gamepath')):
+                if dirname.upper().startswith('EP'):
+                    exp.append(Exp(dirname, dirname))
+                elif dirname.upper().startswith('GP'):
+                    game.append(Exp(dirname, dirname))
+                elif dirname.upper().startswith('SP'):
+                    stuff.append(Exp(dirname, dirname))
+
+        if len(exp) > 2:
+            rows.extend(exp)
+        if len(game) > 2:
+            rows.extend(game)
+        if len(stuff) > 2:
+            rows.extend(stuff)
 
         return rows
 
@@ -122,11 +133,14 @@ class Expansion(metaclass=Singleton):
     def _parse_expansion_packs(self) -> Dict[str, Dict[str, str]]:
         if self.__packs is not None:
             return self.__packs
-        
+
         self.__packs = {}
 
-        with open('./prefs/dlc.ini', 'r', encoding='utf-8') as fp:
-            content = fp.read()
+        try:
+            with open('./prefs/dlc.ini', 'r', encoding='utf-8') as fp:
+                content = fp.read()
+        except FileNotFoundError:
+            return {}
 
         current_pack = None
 

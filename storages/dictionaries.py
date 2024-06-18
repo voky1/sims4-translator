@@ -4,14 +4,14 @@ import os
 import zlib
 import json
 import glob
-from PySide6.QtCore import Qt, QThreadPool, QRunnable, Slot
+from PySide6.QtCore import Qt, QThreadPool, QRunnable
 from typing import TYPE_CHECKING
 
 from packer import Packer
 
 from singletons.config import config
 from singletons.interface import interface
-from utils.signals import progress_signals, dictionary_signals
+from utils.signals import progress_signals
 from utils.functions import text_to_stbl
 from utils.constants import *
 
@@ -40,7 +40,6 @@ class UpdaterWorker(QRunnable):
         for model_item in self.storage.dictionary_model.model.items:
             if model_item[RECORD_DICTIONARY_SOURCE] == source and model_item[RECORD_DICTIONARY_PACKAGE] == '-':
                 model_item[RECORD_DICTIONARY_TRANSLATE] = translate
-                model_item[RECORD_DICTIONARY_LENGTH] = 0
                 return True
         return False
 
@@ -54,7 +53,7 @@ class DictionariesStorage:
 
         self.directory = config.value('dictionaries', 'dictpath')
         if not self.directory:
-            self.directory = os.path.abspath('./dictionaries')
+            self.directory = os.path.abspath('./dictionary')
 
         self.__loaded = False
 
@@ -63,8 +62,6 @@ class DictionariesStorage:
         self.__hash = {}
 
         self.__pool = QThreadPool()
-
-        dictionary_signals.update.connect(self.update)
 
     @property
     def loaded(self) -> bool:
@@ -139,7 +136,6 @@ class DictionariesStorage:
         if k not in self.__hash:
             self.__hash[k] = [name, item[1], item[2], len(item[1])]
 
-    @Slot(object)
     def update(self, item):
         if not item.compare():
             worker = UpdaterWorker(item, self)

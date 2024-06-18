@@ -2,8 +2,8 @@
 
 import os
 import operator
+import pathlib
 import xml.etree.ElementTree as ElementTree
-from PySide6.QtCore import QThreadPool
 from PySide6.QtWidgets import QMessageBox, QApplication
 from typing import TYPE_CHECKING, Union, Dict
 from pathlib import Path
@@ -18,7 +18,7 @@ from .records import MainRecord
 from singletons.config import config
 from singletons.interface import interface
 from utils.signals import progress_signals, undo_signals
-from utils.functions import text_to_stbl, compare, fnv64, prettify
+from utils.functions import text_to_stbl, compare, fnv64, prettify, create_temporary_copy
 from utils.constants import *
 
 
@@ -34,16 +34,13 @@ class PackagesStorage:
 
         self.packages = []
 
-        self.__pool = QThreadPool()
-        self.__pool.setMaxThreadCount(1)
-
-    def find(self, key) -> Union[Container, None]:
+    def find(self, key: str) -> Union[Container, None]:
         for package in self.packages:
             if package.key == key:
                 return package
         return None
 
-    def exists(self, key) -> bool:
+    def exists(self, key: str) -> bool:
         package = self.find(key)
         return package is not None
 
@@ -81,7 +78,7 @@ class PackagesStorage:
         for package in self.packages:
             package.modify(state)
 
-    def load(self, files: Union[list, str], added: bool = False):
+    def load(self, files: Union[list, str], added: bool = False) -> None:
         if not isinstance(files, list):
             files = [files]
 
@@ -255,20 +252,19 @@ class PackagesStorage:
     def get_stbl(self, convert: bool = True) -> Dict[ResourceID, Stbl]:
         stbl = {}
 
-        items = sorted(self.main_model.items(), key=operator.itemgetter(RECORD_MAIN_INDEX), reverse=False)
+        items = sorted(self.main_model.model.items, key=operator.itemgetter(RECORD_MAIN_INDEX), reverse=False)
 
         experemental = config.value('save', 'experemental')
 
-        for i, item in enumerate(items):
+        for item in items:
             rid = item.resource
 
-            if convert:
-                if experemental:
-                    if item.flag == FLAG_UNVALIDATED:
-                        continue
-                    rid = ResourceID(group=rid.group,
-                                     type=rid.type,
-                                     instance=fnv64('translator:' + os.path.abspath('.') + rid.str_instance))
+            if convert and experemental:
+                if item.flag == FLAG_UNVALIDATED:
+                    continue
+                rid = ResourceID(group=rid.group,
+                                 type=rid.type,
+                                 instance=fnv64('translator:' + os.path.abspath('.') + rid.str_instance))
 
             rid = rid.convert_instance()
             if rid not in stbl:
@@ -305,8 +301,13 @@ class PackagesStorage:
             magic = f.read(4)
 
         if magic == b'DBPF':
+            is_temp = False
+
             if config.value('save', 'backup') and fpath.lower() == tpath.lower():
                 fpath = self.package.backup(fpath)
+            else:
+                fpath = create_temporary_copy(fpath)
+                is_temp = True
 
             dbfile = DbpfPackage(fpath, mode='r')
             outpkg = DbpfPackage(tpath, mode='w')
@@ -319,7 +320,7 @@ class PackagesStorage:
 
             language_dest = config.value('translation', 'destination')
 
-            for i, rid in enumerate(instances):
+            for rid in instances:
                 if rid.language == language_dest:
                     for r, s in stbl.items():
                         if r.group == rid.group and r.instance == rid.instance:
@@ -334,6 +335,10 @@ class PackagesStorage:
                 progress_signals.increment.emit()
 
             dbfile.close()
+
+            if is_temp:
+                file_to_rem = pathlib.Path(fpath)
+                file_to_rem.unlink()
 
             for rid, s in stbl.items():
                 outpkg.put(rid, s.binary)

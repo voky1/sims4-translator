@@ -4,7 +4,7 @@ from collections import namedtuple
 
 from storages.records import MainRecord
 
-from utils.signals import undo_signals
+from utils.signals import undo_signals, color_signals
 
 
 class UndoRecord(namedtuple('UndoRecord', 'items modified')):
@@ -18,6 +18,7 @@ class UndoRecord(namedtuple('UndoRecord', 'items modified')):
             item[0].translate_old = item[2]
             item[0].comment = item[3]
             item[0].flag = item[4]
+
 
 class Undo:
 
@@ -62,6 +63,7 @@ class Undo:
                     undo.restore()
                     package.modify(undo.modified if package.modified else True)
             del self.__undo[-1]
+            color_signals.update.emit()
             undo_signals.refresh.emit()
 
     def clean(self, key: str = None) -> None:

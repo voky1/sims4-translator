@@ -72,6 +72,10 @@
       <translation>Каждый инстанс в отдельный файл</translation>
     </string>
     <string>
+      <source>Each package as a separate file</source>
+      <translation>Каждый пакет в отдельный файл</translation>
+    </string>
+    <string>
       <source>Exported records</source>
       <translation>Экспортировать строки</translation>
     </string>
@@ -295,6 +299,10 @@
       <source>Translate</source>
       <translation>Перевести</translation>
     </string>
+    <string>
+      <source>Color visualization</source>
+      <translation>Цветовая визуализация</translation>
+    </string>
   </context>
   <context name="Messages">
     <string>
@@ -474,6 +482,10 @@
       <translation>Экспорт перевода...</translation>
     </string>
     <string>
+      <source>Importing translate...</source>
+      <translation>Импорт перевода...</translation>
+    </string>
+    <string>
       <source>All files</source>
       <translation>Все файлы</translation>
     </string>
@@ -647,11 +659,11 @@
   <context name="TextEditor">
     <string>
       <source>Undo</source>
-      <translation>Отменить</translation>
+      <translation>Отменить действие</translation>
     </string>
     <string>
       <source>Redo</source>
-      <translation>Повторить</translation>
+      <translation>Повторить действие</translation>
     </string>
     <string>
       <source>Cut</source>

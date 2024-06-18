@@ -72,6 +72,10 @@
       <translation/>
     </string>
     <string>
+      <source>Each package as a separate file</source>
+      <translation/>
+    </string>
+    <string>
       <source>Exported records</source>
       <translation/>
     </string>
@@ -295,6 +299,10 @@
       <source>Translate</source>
       <translation/>
     </string>
+    <string>
+      <source>Color visualization</source>
+      <translation/>
+    </string>
   </context>
   <context name="Messages">
     <string>
@@ -475,6 +483,10 @@
     </string>
     <string>
       <source>Exporting translate...</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Importing translate...</source>
       <translation/>
     </string>
     <string>

@@ -2,6 +2,7 @@
 
 import re
 from collections import namedtuple
+from typing import Union
 
 from singletons.config import config
 from singletons.language import language
@@ -49,15 +50,15 @@ class ResourceID(namedtuple('ResourceID', 'group instance type')):
 
     DEFAULT_FMT = 's4pe'
 
-    def __str__(self):
+    def __str__(self) -> str:
         return FORMATTERS[self.DEFAULT_FMT].format(id=self)
 
     @property
-    def filename(self):
+    def filename(self) -> str:
         return str(self)
 
     @classmethod
-    def from_string(cls, string):
+    def from_string(cls, string: str):
         for parser in PARSERS.values():
             m = parser.match(string)
             if m:
@@ -72,23 +73,23 @@ class ResourceID(namedtuple('ResourceID', 'group instance type')):
                        type=0x220557DA)
 
     @property
-    def str_group(self):
+    def str_group(self) -> str:
         return '{group:08x}'.format(group=self.group)
 
     @property
-    def str_instance(self):
+    def str_instance(self) -> str:
         return '{instance:016x}'.format(instance=self.instance)
 
     @property
-    def hex_instance(self):
+    def hex_instance(self) -> str:
         return '0x{instance:016X}'.format(instance=self.instance)
 
     @property
-    def is_stbl(self):
+    def is_stbl(self) -> bool:
         return self.type == 0x220557DA
 
     @property
-    def language(self):
+    def language(self) -> Union[str, None]:
         if self.type == 0x220557DA:
             code = '0x{id:016X}'.format(id=self.instance)[:4]
             lang = language.by_code(code)
@@ -96,7 +97,7 @@ class ResourceID(namedtuple('ResourceID', 'group instance type')):
         return None
 
     @property
-    def language_code(self):
+    def language_code(self) -> Union[str, None]:
         if self.type == 0x220557DA:
             return '0x{id:016X}'.format(id=self.instance)[:4]
         return None
@@ -105,7 +106,7 @@ class ResourceID(namedtuple('ResourceID', 'group instance type')):
         group = ('8' if highbit else '0') + self.str_group[1:]
         return self._replace(group=int(group, 16))
 
-    def convert_instance(self, locale=None):
+    def convert_instance(self, locale: str = None):
         if not locale:
             locale = config.value('translation', 'destination')
         lang = language.by_locale(locale)

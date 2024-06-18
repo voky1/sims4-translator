@@ -12,7 +12,7 @@ from singletons.config import config
 from singletons.interface import interface
 from singletons.translator import translator
 from utils.functions import text_to_stbl, text_to_edit
-from utils.signals import progress_signals
+from utils.signals import progress_signals, color_signals
 from utils.constants import *
 
 
@@ -221,6 +221,7 @@ class TranslateDialog(QDialog, Ui_TranslateDialog):
             self.__progress = 0
             self.__translating = False
             self.btn_translate.setText(interface.text('TranslateDialog', 'Translate'))
+            color_signals.update.emit()
             progress_signals.finished.emit()
 
     @Slot(str)

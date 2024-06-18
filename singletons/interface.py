@@ -46,7 +46,7 @@ class Interface(metaclass=Singleton):
             code = root.get('language')
             name = root.get('name')
 
-            if code and name and root.findall('context'):
+            if code and name:
                 lang_items = {}
 
                 for context in root.findall('context'):
@@ -74,7 +74,8 @@ class Interface(metaclass=Singleton):
     
     @property
     def languages(self) -> List[Lang]:
-        return list(self.__languages.values())
+        languages = dict(sorted(self.__languages.items()))
+        return list(languages.values())
 
     @property
     def current_index(self) -> int:
