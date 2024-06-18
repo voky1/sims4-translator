@@ -64,6 +64,8 @@ class Interface(metaclass=Singleton):
 
                 self.__languages[code] = Lang(code, name, lang_items)
 
+        self.__languages = dict(sorted(self.__languages.items()))
+
         self.reload()
 
     def reload(self) -> None:
@@ -74,8 +76,7 @@ class Interface(metaclass=Singleton):
     
     @property
     def languages(self) -> List[Lang]:
-        languages = dict(sorted(self.__languages.items()))
-        return list(languages.values())
+        return list(self.__languages.values())
 
     @property
     def current_index(self) -> int:

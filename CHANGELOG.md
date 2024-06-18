@@ -1,6 +1,6 @@
 # Changelog
 
-## Version 1.2 - 2024-06-15
+## Version 1.2 - 2024-06-18
 
 - Added a visual indicator of translation progress
 - Fixed several bugs
