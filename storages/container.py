@@ -2,26 +2,20 @@
 
 import os
 import xml.etree.ElementTree as ElementTree
-from typing import TYPE_CHECKING, List
+from typing import List
 
 from packer.dbpf import DbpfPackage
 from packer.resource import ResourceID
 from packer.stbl import Stbl
 
 from singletons.config import config
+from singletons.state import app_state
 from utils.functions import md5, parsexml
-
-
-if TYPE_CHECKING:
-    from storages.packages import PackagesStorage
 
 
 class Container:
 
-    def __init__(self, storage: 'PackagesStorage', path: str) -> None:
-        self.storage = storage
-        self.main_window = storage.main_window
-
+    def __init__(self, path: str) -> None:
         self.path = path
         self.directory = os.path.dirname(path)
         self.fullname = os.path.basename(path)
@@ -45,16 +39,6 @@ class Container:
     @property
     def is_xml(self) -> bool:
         return self.fullname.lower().endswith('.xml')
-
-    @property
-    def instance(self) -> int:
-        instance = None
-        cb = self.main_window.toolbar.cb_instances
-        if cb.currentIndex() > 0:
-            instance = cb.currentText()
-        elif cb.count() == 2:
-            instance = cb.itemText(1)
-        return int(instance, 16) if instance is not None else 0
 
     @property
     def filename(self) -> str:
@@ -228,12 +212,12 @@ class Container:
     def save(self, path: str = None) -> None:
         if not path:
             path = os.path.join(self.directory, self.filename + '.package')
-        self.storage.save(path)
+        app_state.packages_storage.save(path)
 
     def finalize(self, path: str = None) -> None:
         if not path:
             path = os.path.join(self.directory, self.name + '.package')
-        self.storage.finalize(self.path, path)
+        app_state.packages_storage.finalize(self.path, path)
 
     def backup(self, path: str = None) -> str:
         backup = (path if path else self.path) + '.backup'

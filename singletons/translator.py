@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-import requests
 import re
+import requests
 import html.parser
 import urllib.request
 import urllib.parse
@@ -10,14 +10,13 @@ from typing import List
 
 from singletons.config import config
 from singletons.interface import interface
-from singletons.language import language
-from utils.singleton import Singleton
+from singletons.languages import languages
 
 
 Response = namedtuple('Response', 'status_code text')
 
 
-class Translator(metaclass=Singleton):
+class Translator:
 
     @property
     def engines(self) -> List[str]:
@@ -59,12 +58,12 @@ class Translator(metaclass=Singleton):
     def __google(text: str) -> Response:
         url = 'http://translate.google.com/m?sl=auto&tl=%s&q=%s'
 
-        lang = language.destination
+        language = languages.destination
 
         ua = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
 
-        if lang and lang.google:
-            link = url % (lang.google, urllib.parse.quote(text))
+        if language and language.google:
+            link = url % (language.google, urllib.parse.quote(text))
             request = urllib.request.Request(link, headers={'User-Agent': ua})
             data = urllib.request.urlopen(request).read()
 
@@ -82,14 +81,14 @@ class Translator(metaclass=Singleton):
         api_key = config.value('api', 'deepl_key')
         api_url = url_free if ":fx" in api_key else url
 
-        lang_source = language.source
-        lang_dest = language.destination
+        language_source = languages.source
+        language_dest = languages.destination
 
-        if lang_source and lang_source.deepl and lang_dest and lang_dest.deepl:
+        if language_source and language_source.deepl and language_dest and language_dest.deepl:
             payload = {
                 'text': text,
-                'source_lang': lang_source.deepl,
-                'target_lang': lang_dest.deepl,
+                'source_lang': language_source.deepl,
+                'target_lang': language_dest.deepl,
                 'split_sentences': 1,
                 'tag_handling': 'xml'
             }

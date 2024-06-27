@@ -5,7 +5,7 @@ from collections import namedtuple
 from typing import Union
 
 from singletons.config import config
-from singletons.language import language
+from singletons.languages import languages
 
 
 FORMATTERS = {
@@ -92,8 +92,8 @@ class ResourceID(namedtuple('ResourceID', 'group instance type')):
     def language(self) -> Union[str, None]:
         if self.type == 0x220557DA:
             code = '0x{id:016X}'.format(id=self.instance)[:4]
-            lang = language.by_code(code)
-            return lang.locale if lang else None
+            language = languages.by_code(code)
+            return language.locale if language else None
         return None
 
     @property
@@ -109,6 +109,6 @@ class ResourceID(namedtuple('ResourceID', 'group instance type')):
     def convert_instance(self, locale: str = None):
         if not locale:
             locale = config.value('translation', 'destination')
-        lang = language.by_locale(locale)
-        instance = int(lang.code + self.str_instance[2:], 16)
+        language = languages.by_locale(locale)
+        instance = int(language.code + self.str_instance[2:], 16)
         return self._replace(instance=instance)

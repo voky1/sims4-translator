@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ts language="en_US" name="English" version="1.2" authors="">
+<ts language="en_US" name="English" version="1.3" authors="">
   <context name="EditWindow">
     <string>
       <source>Search and Edit</source>
@@ -317,6 +317,10 @@
       <source>Not found text records in this files!</source>
       <translation/>
     </string>
+    <string>
+      <source>Not found text records in following files:</source>
+      <translation/>
+    </string>
   </context>
   <context name="Errors">
     <string>
@@ -423,6 +427,30 @@
     </string>
     <string>
       <source>DeepL API key</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Language</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Theme</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Light</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Dark</source>
+      <translation/>
+    </string>
+    <string>
+      <source>The application needs to be restarted</source>
+      <translation/>
+    </string>
+    <string>
+      <source>The translation version differs from the application version, so the interface may not be fully translated</source>
       <translation/>
     </string>
   </context>

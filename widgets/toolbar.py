@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 
-import platform
 from PySide6.QtCore import Qt, QSize
-from PySide6.QtWidgets import QToolBar as ToolBar, QLineEdit, QComboBox, QWidget, QSizePolicy
-from PySide6.QtGui import QAction, QFont
+from PySide6.QtWidgets import QToolBar as ToolBar, QComboBox, QWidget, QSizePolicy
+from PySide6.QtGui import QAction, QIcon
+
+from widgets.lineedit import QCleaningLineEdit
 
 from singletons.interface import interface
-from utils.functions import icon
 
 
 class QToolBar(ToolBar):
@@ -19,32 +19,34 @@ class QToolBar(ToolBar):
         self.setFloatable(False)
         self.setContextMenuPolicy(Qt.PreventContextMenu)
 
-        self.search_toggle = QAction(icon('search_source'), None)
+        self.search_toggle = QAction(QIcon(':/images/search_source'), None)
 
-        self.filter_validate_3 = QAction(icon('validate_3'), None)
+        self.filter_validate_3 = QAction(QIcon(':/images/validate_3'), None)
         self.filter_validate_3.setCheckable(True)
         self.filter_validate_3.setChecked(True)
 
-        self.filter_validate_0 = QAction(icon('validate_0'), None)
+        self.filter_validate_0 = QAction(QIcon(':/images/validate_0'), None)
         self.filter_validate_0.setCheckable(True)
         self.filter_validate_0.setChecked(True)
 
-        self.filter_validate_2 = QAction(icon('validate_2'), None)
+        self.filter_validate_2 = QAction(QIcon(':/images/validate_2'), None)
         self.filter_validate_2.setCheckable(True)
         self.filter_validate_2.setChecked(True)
 
-        self.filter_validate_1 = QAction(icon('validate_1'), None)
+        self.filter_validate_1 = QAction(QIcon(':/images/validate_1'), None)
         self.filter_validate_1.setCheckable(True)
         self.filter_validate_1.setChecked(True)
 
-        self.filter_validate_4 = QAction(icon('validate_4'), None)
+        self.filter_validate_4 = QAction(QIcon(':/images/validate_4'), None)
         self.filter_validate_4.setCheckable(True)
 
         self.edt_search = FixedLineEdit()
-        self.cb_instances = InstancesComboBox(self)
-        self.cb_files = FilesComboBox(self)
+        self.cb_files = FilesComboBox()
+        self.cb_instances = InstancesComboBox()
 
+        self.addSeparator()
         self.addWidget(self.edt_search)
+        self.addSeparator()
         self.addAction(self.search_toggle)
 
         self.addSeparator()
@@ -58,6 +60,8 @@ class QToolBar(ToolBar):
 
         self.addAction(self.filter_validate_4)
 
+        self.addSeparator()
+
         spacer = QWidget()
         spacer.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
@@ -66,6 +70,7 @@ class QToolBar(ToolBar):
         self.addWidget(self.cb_files)
         self.addSeparator()
         self.addWidget(self.cb_instances)
+        self.addSeparator()
 
         self.retranslate()
 
@@ -82,7 +87,7 @@ class QToolBar(ToolBar):
         self.cb_files.setItemText(0, interface.text('ToolBar', '-- All files --'))
 
 
-class FixedLineEdit(QLineEdit):
+class FixedLineEdit(QCleaningLineEdit):
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -93,17 +98,11 @@ class FixedLineEdit(QLineEdit):
         self.setSizePolicy(QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed))
         self.setContentsMargins(0, 0, 0, 0)
 
-        families = {'Windows': 'Consolas', 'Darwin': 'Menlo'}
-        fontname = families.get(platform.system(), 'Monospace')
-        font = QFont(fontname, 8)
-
-        self.setFont(font)
-
     def sizeHint(self):
         return self.minimumSizeHint()
 
     def minimumSizeHint(self):
-        return QSize(self.adjusted_size, 22)
+        return QSize(self.adjusted_size, 26)
 
     def keyReleaseEvent(self, event):
         if event.key() == Qt.Key_Escape:
@@ -126,7 +125,7 @@ class InstancesComboBox(QComboBox):
         return self.minimumSizeHint()
 
     def minimumSizeHint(self):
-        return QSize(self.adjusted_size, 22)
+        return QSize(self.adjusted_size, 26)
 
 
 class FilesComboBox(QComboBox):
@@ -147,4 +146,4 @@ class FilesComboBox(QComboBox):
         return self.minimumSizeHint()
 
     def minimumSizeHint(self):
-        return QSize(self.adjusted_size, 22)
+        return QSize(self.adjusted_size, 26)

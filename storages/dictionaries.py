@@ -4,40 +4,44 @@ import os
 import zlib
 import json
 import glob
-from PySide6.QtCore import Qt, QThreadPool, QRunnable
-from typing import TYPE_CHECKING
+from PySide6.QtCore import QObject, Signal, QThreadPool, QRunnable
 
 from packer import Packer
 
+from models.dictionary import Model, ProxyModel
+
 from singletons.config import config
 from singletons.interface import interface
-from utils.signals import progress_signals
+from singletons.signals import progress_signals, storage_signals
+from singletons.state import app_state
 from utils.functions import text_to_stbl
 from utils.constants import *
 
 
-if TYPE_CHECKING:
-    from windows.mainwindow import MainWindow
+class StorageSignals(QObject):
+    updated = Signal()
 
 
 class UpdaterWorker(QRunnable):
 
-    def __init__(self, item, storage):
+    def __init__(self, item):
         super().__init__()
 
-        self.storage = storage
         self.item = item
+
+        self.signals = StorageSignals()
 
     def run(self):
         source = text_to_stbl(self.item.source)
         translate = text_to_stbl(self.item.translate)
         found = self._update_or_append(source, translate)
         if not found:
-            self.storage.dictionary_model.append(['-', source, translate, len(source)])
-        self.storage.edit_window.tableview.resort()
+            app_state.dictionaries_storage.model.append(['-', source, translate, len(source)])
+        storage_signals.updated.emit()
 
-    def _update_or_append(self, source, translate):
-        for model_item in self.storage.dictionary_model.model.items:
+    @staticmethod
+    def _update_or_append(source, translate):
+        for model_item in app_state.dictionaries_storage.model.items:
             if model_item[RECORD_DICTIONARY_SOURCE] == source and model_item[RECORD_DICTIONARY_PACKAGE] == '-':
                 model_item[RECORD_DICTIONARY_TRANSLATE] = translate
                 return True
@@ -46,26 +50,24 @@ class UpdaterWorker(QRunnable):
 
 class DictionariesStorage:
 
-    def __init__(self, parent: 'MainWindow') -> None:
-        self.main_window = parent
-        self.edit_window = parent.edit_window
-        self.dictionary_model = parent.dictionary_model
+    def __init__(self) -> None:
+        self.model = Model()
+        self.proxy = ProxyModel()
+        self.proxy.setSourceModel(self.model)
 
         self.directory = config.value('dictionaries', 'dictpath')
         if not self.directory:
             self.directory = os.path.abspath('./dictionary')
 
-        self.__loaded = False
+        self.loaded = False
+
+        self.signals = StorageSignals()
 
         self.__sid = {}
         self.__sources = {}
         self.__hash = {}
 
         self.__pool = QThreadPool()
-
-    @property
-    def loaded(self) -> bool:
-        return self.__loaded
 
     def search(self, sid: int = None, source: str = None) -> list:
         if sid:
@@ -98,14 +100,14 @@ class DictionariesStorage:
 
                 progress_signals.increment.emit()
 
-            self.dictionary_model.append(list(self.__hash.values()))
-            self.edit_window.tableview.sortByColumn(COLUMN_DICTIONARIES_LENGTH, Qt.SortOrder.AscendingOrder)
+            self.model.append(list(self.__hash.values()))
+            self.signals.updated.emit()
 
             self.__hash = {}
 
             progress_signals.finished.emit()
 
-        self.__loaded = True
+        self.loaded = True
 
     def read_dictionary(self, dictionary_name: str, version: int, items: list) -> None:
         name = dictionary_name.lower()
@@ -138,21 +140,20 @@ class DictionariesStorage:
 
     def update(self, item):
         if not item.compare():
-            worker = UpdaterWorker(item, self)
+            worker = UpdaterWorker(item)
             worker.setAutoDelete(True)
             self.__pool.start(worker)
 
     def save(self, force: bool = False, multi: bool = False):
-        model = self.main_window.main_model
-        storage = self.main_window.packages_storage
-        package = storage.package
+        storage = app_state.packages_storage
+        package = storage.current_package
         if multi or package is None:
             for p in storage.packages:
                 if p.modified or force:
-                    self.save_standalone(p.name, model.items(key=p.key))
+                    self.save_standalone(p.name, storage.items(key=p.key))
                     p.modify(False)
         elif package is not None and (package.modified or force):
-            self.save_standalone(package.name, model.items(key=package.key))
+            self.save_standalone(package.name, storage.items(key=package.key))
             package.modify(False)
 
     def save_standalone(self, name, items):

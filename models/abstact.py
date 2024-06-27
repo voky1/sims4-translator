@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from PySide6.QtCore import QAbstractTableModel, QModelIndex
+from PySide6.QtCore import QAbstractTableModel
 from PySide6.QtGui import QColor
 
-from utils.functions import monospace_font
+import themes.dark as dark
+
+from singletons.config import config
 
 
 class AbstractTableModel(QAbstractTableModel):
@@ -12,25 +14,19 @@ class AbstractTableModel(QAbstractTableModel):
         super().__init__(parent)
 
         self.items = []
-        self.count = 0
+        self.filtered = []
 
         self.addition_sort = -1
 
-        self.color_null = QColor(114, 114, 213)
+        is_dark_theme = config.value('interface', 'theme') == 'dark'
 
-        self.monospace = monospace_font()
+        self.color_null = QColor(dark.TEXT_DISABLED) if is_dark_theme else QColor(114, 114, 213)
 
     def rowCount(self, parent=None):
-        return self.count
+        return len(self.filtered)
 
     def columnCount(self, parent=None):
         return 0
-
-    def replace(self, rows):
-        self.beginResetModel()
-        self.items = rows
-        self.count = len(self.items)
-        self.endResetModel()
 
     def append(self, rows):
         self.beginResetModel()
@@ -39,28 +35,14 @@ class AbstractTableModel(QAbstractTableModel):
                 self.items.extend(rows)
             else:
                 self.items.append(rows)
-            self.count = len(self.items)
         self.endResetModel()
 
-    def remove(self, index):
-        rc = self.count
-        self.beginRemoveRows(QModelIndex(), rc, rc)
-        del self.items[index]
-        self.count = rc - 1
-        self.endRemoveRows()
+    def replace(self, rows):
+        self.beginResetModel()
+        self.items = rows
+        self.endResetModel()
 
-
-class AbstractModel:
-
-    def __init__(self):
-        self.model = None
-        self.proxy = None
-
-    def replace(self, items):
-        self.model.replace(items)
-
-    def append(self, items):
-        self.model.append(items)
-
-    def remove(self, index):
-        self.model.remove(index)
+    def filter(self, rows):
+        self.beginResetModel()
+        self.filtered = rows
+        self.endResetModel()

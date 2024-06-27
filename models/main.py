@@ -2,20 +2,15 @@
 
 import operator
 from PySide6.QtCore import Qt, QSortFilterProxyModel
-from typing import TYPE_CHECKING, List
+from typing import Union, List
 
-from .abstact import AbstractModel, AbstractTableModel
-
-from storages.records import MainRecord
+from .abstact import AbstractTableModel
 
 from singletons.config import config
 from singletons.interface import interface
+from singletons.state import app_state
 from utils.functions import text_to_table
 from utils.constants import *
-
-
-if TYPE_CHECKING:
-    from windows.mainwindow import MainWindow
 
 
 class Model(AbstractTableModel):
@@ -25,30 +20,34 @@ class Model(AbstractTableModel):
 
         self.addition_sort = RECORD_MAIN_INDEX
 
-        self.main_window = None
+        self.index_mapping = {
+            COLUMN_MAIN_ID: RECORD_MAIN_ID,
+            COLUMN_MAIN_INSTANCE: RECORD_MAIN_INSTANCE,
+            COLUMN_MAIN_GROUP: RECORD_MAIN_GROUP,
+            COLUMN_MAIN_SOURCE: RECORD_MAIN_SOURCE,
+            COLUMN_MAIN_TRANSLATE: RECORD_MAIN_TRANSLATE,
+            COLUMN_MAIN_FLAG: RECORD_MAIN_FLAG,
+            COLUMN_MAIN_COMMENT: RECORD_MAIN_COMMENT
+        }
 
     def columnCount(self, parent=None):
-        return 0 if parent.isValid() else 9
+        return 9
 
-    def data(self, index, role=None):
+    def data(self, index, role=Qt.DisplayRole):
         if not index.isValid():
             return None
 
         row = index.row()
         column = index.column()
 
-        if row < 0 or row >= self.count:
+        if row < 0 or row >= len(self.filtered):
             return None
 
-        item = self.items[row]
+        item = self.filtered[row]
 
-        if role == Qt.TextAlignmentRole:
-            if column == COLUMN_MAIN_FLAG:
-                return int(Qt.AlignCenter)
-
-        elif role == Qt.FontRole:
-            if column in (COLUMN_MAIN_ID, COLUMN_MAIN_INSTANCE, COLUMN_MAIN_GROUP):
-                return self.monospace
+        if role == Qt.FontRole:
+            if column in (COLUMN_MAIN_INDEX, COLUMN_MAIN_ID, COLUMN_MAIN_GROUP, COLUMN_MAIN_INSTANCE):
+                return app_state.monospace.font()
 
         elif role == Qt.ForegroundRole:
             if column in (COLUMN_MAIN_SOURCE, COLUMN_MAIN_TRANSLATE):
@@ -65,10 +64,10 @@ class Model(AbstractTableModel):
                 if numeration == NUMERATION_SOURCE:
                     return item.idx_source
                 elif numeration == NUMERATION_XML_DP:
-                    instance = self.main_window.packages_storage.instance
+                    instance = app_state.current_instance
                     return item[RECORD_MAIN_INDEX_ALT][3] if instance > 0 else item[RECORD_MAIN_INDEX_ALT][2]
                 else:
-                    if self.main_window.toolbar.cb_files.currentIndex():
+                    if app_state.current_package:
                         return item[RECORD_MAIN_INDEX_ALT][0]
                     else:
                         return item.idx
@@ -99,86 +98,65 @@ class Model(AbstractTableModel):
     def sort(self, column, order=Qt.AscendingOrder):
         self.beginResetModel()
         reverse = order == Qt.DescendingOrder
-        index_mapping = {
-            COLUMN_MAIN_ID: RECORD_MAIN_ID,
-            COLUMN_MAIN_INSTANCE: RECORD_MAIN_INSTANCE,
-            COLUMN_MAIN_GROUP: RECORD_MAIN_GROUP,
-            COLUMN_MAIN_SOURCE: RECORD_MAIN_SOURCE,
-            COLUMN_MAIN_TRANSLATE: RECORD_MAIN_TRANSLATE,
-            COLUMN_MAIN_FLAG: RECORD_MAIN_FLAG,
-            COLUMN_MAIN_COMMENT: RECORD_MAIN_COMMENT
-        }
-        idx = index_mapping.get(column, RECORD_MAIN_INDEX)
-        key = operator.itemgetter(idx, self.addition_sort) if 0 <= self.addition_sort != idx else operator.itemgetter(idx)
-        self.items.sort(key=key, reverse=reverse)
+        idx = self.index_mapping.get(column, RECORD_MAIN_INDEX)
+        key = operator.itemgetter(idx,
+                                  self.addition_sort) if 0 <= self.addition_sort != idx else operator.itemgetter(idx)
+        self.filtered.sort(key=key, reverse=reverse)
         self.endResetModel()
 
 
 class ProxyModel(QSortFilterProxyModel):
 
-    _HEADER_DATA = {
-        COLUMN_MAIN_ID: interface.text('MainTableView', 'ID'),
-        COLUMN_MAIN_INSTANCE: interface.text('MainTableView', 'Instance'),
-        COLUMN_MAIN_GROUP: interface.text('MainTableView', 'Group'),
-        COLUMN_MAIN_SOURCE: interface.text('MainTableView', 'Original'),
-        COLUMN_MAIN_TRANSLATE: interface.text('MainTableView', 'Translated'),
-        COLUMN_MAIN_COMMENT: interface.text('MainTableView', 'Comment'),
-        COLUMN_MAIN_FLAG: interface.text('MainTableView', 'LD')
-    }
-
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        self.__text = None
-        self.__text_mode = SEARCH_IN_SOURCE
         self.__package = None
         self.__instance = None
-        self.__different = False
+        self.__text = None
+        self.__mode = SEARCH_IN_SOURCE
         self.__flags = []
+        self.__different = False
 
-        self.__model = None
+        self.__column = COLUMN_MAIN_INDEX
+        self.__order = Qt.AscendingOrder
 
-    def setSourceModel(self, model):
-        super().setSourceModel(model)
-        self.__model = model
-
-    def filter(self, text=None, textmode=SEARCH_IN_SOURCE, package=None, instance=None, different=False, flags=None):
-        self.__text = text.lower() if text else None
-        self.__text_mode = textmode
+    def filter(self, package: str, instance: Union[str, int], text: str, mode: int, flags: List[int], different: bool):
         self.__package = package
+        self.__mode = mode
+        self.__flags = flags if flags else []
+        self.__different = different
+
+        if text:
+            if mode == SEARCH_IN_ID:
+                try:
+                    self.__text = int(text, 16)
+                except ValueError:
+                    self.__text = -1
+            else:
+                self.__text = text.lower()
+        else:
+            self.__text = None
+
         if instance:
             try:
                 self.__instance = int(instance, 16) if isinstance(instance, str) else instance
-            except Exception:
+            except ValueError:
                 self.__instance = -1
         else:
             self.__instance = None
-        self.__different = different
-        self.__flags = flags if flags else []
 
-        if self.__text_mode == SEARCH_IN_ID and self.__text:
-            try:
-                self.__text = int(self.__text, 16)
-            except Exception:
-                self.__text = -1
+        self.process_filter()
 
-        self.invalidateFilter()
+    def process_filter(self):
+        model = self.sourceModel()
+        filtered_data = [i for i in model.items if self.check_filter(i)]
+        model.filter(filtered_data)
+        model.sort(self.__column, self.__order)
 
-    def filterAcceptsRow(self, row, parent):
-        model = self.__model
-
-        if not model or not (0 <= row < model.rowCount()):
-            return False
-
-        item = model.items[row]
-
-        if self.__package and item.package != self.__package:
-            return False
-
-        if self.__instance and item.instance != self.__instance:
-            return False
-
-        if self.__flags and item.flag in self.__flags:
+    def check_filter(self, item):
+        if (self.__package and item[RECORD_MAIN_PACKAGE] != self.__package) \
+                or (self.__instance and item[RECORD_MAIN_INSTANCE] != self.__instance) \
+                or (self.__flags and item[RECORD_MAIN_FLAG] in self.__flags):
             return False
 
         if self.__different:
@@ -188,13 +166,12 @@ class ProxyModel(QSortFilterProxyModel):
                 return False
 
         if self.__text:
-            text_lower = self.__text.lower()
-            if self.__text_mode == SEARCH_IN_SOURCE:
-                return text_lower in item.source.lower()
-            elif self.__text_mode == SEARCH_IN_DESTINATION:
-                return text_lower in item.translate.lower()
-            elif self.__text_mode == SEARCH_IN_ID:
-                return self.__text == item.id
+            if self.__mode == SEARCH_IN_ID:
+                return self.__text == item[RECORD_MAIN_ID]
+            elif self.__mode == SEARCH_IN_SOURCE:
+                return self.__text in item[RECORD_MAIN_SOURCE].lower()
+            elif self.__mode == SEARCH_IN_DESTINATION:
+                return self.__text in item[RECORD_MAIN_TRANSLATE].lower()
             else:
                 return False
 
@@ -202,39 +179,19 @@ class ProxyModel(QSortFilterProxyModel):
 
     def headerData(self, section, orientation, role=None):
         if role == Qt.DisplayRole and orientation == Qt.Horizontal:
-            return self._HEADER_DATA.get(section, '#')
+            header_mapping = {
+                COLUMN_MAIN_INDEX: '#',
+                COLUMN_MAIN_ID: interface.text('MainTableView', 'ID'),
+                COLUMN_MAIN_INSTANCE: interface.text('MainTableView', 'Instance'),
+                COLUMN_MAIN_GROUP: interface.text('MainTableView', 'Group'),
+                COLUMN_MAIN_SOURCE: interface.text('MainTableView', 'Original'),
+                COLUMN_MAIN_TRANSLATE: interface.text('MainTableView', 'Translated'),
+                COLUMN_MAIN_COMMENT: interface.text('MainTableView', 'Comment')
+            }
+            return header_mapping.get(section, '')
         return None
 
     def sort(self, column, order=Qt.AscendingOrder):
-        self.__model.sort(column, order)
-
-
-class MainModel(AbstractModel):
-
-    def __init__(self, parent: 'MainWindow') -> None:
-        super().__init__()
-
-        self.model = Model(parent)
-        self.proxy = ProxyModel()
-        self.proxy.setSourceModel(self.model)
-
-        self.main_window = parent
-        self.model.main_window = parent
-
-    def items(self, key: str = None, instance: int = 0) -> List[MainRecord]:
-        items = self.model.items
-
-        package = self.main_window.packages_storage.package
-        package_instance = package.instance if package else 0
-
-        if instance > 0:
-            items = [i for i in items if i.instance == instance]
-
-        elif package_instance > 0:
-            items = [i for i in items if i.instance == package_instance]
-
-        elif package or key:
-            key = key if key else package.key
-            items = [i for i in items if i.package == key]
-
-        return items
+        self.__column = column
+        self.__order = order
+        self.sourceModel().sort(column, order)

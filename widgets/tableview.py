@@ -3,9 +3,10 @@
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QTableView, QAbstractScrollArea, QAbstractItemView, QHeaderView
 
-from .delegate import MainDelegatePaint, DictionaryDelegatePaint
+from .delegate import MainDelegatePaint, DictionaryDelegatePaint, HeaderProxy
 
 from singletons.config import config
+from singletons.state import app_state
 from utils.constants import *
 
 
@@ -20,7 +21,6 @@ class AbstractTableView(QTableView):
 
         self.setSelectionBehavior(QAbstractItemView.SelectRows)
         self.setShowGrid(False)
-        self.setAlternatingRowColors(False)
         self.setGridStyle(Qt.NoPen)
         self.setSortingEnabled(True)
         self.setWordWrap(False)
@@ -34,16 +34,17 @@ class AbstractTableView(QTableView):
         header.setSectionResizeMode(QHeaderView.Interactive)
         header.setSortIndicator(0, Qt.AscendingOrder)
         header.setHighlightSections(False)
+        header.setStyle(HeaderProxy())
 
     def selected_item(self):
         model = self.model()
         sources = self.selectionModel().selectedRows()
-        return model.sourceModel().items[model.mapToSource(sources[0]).row()] if sources else None
+        return model.sourceModel().filtered[model.mapToSource(sources[0]).row()] if sources else None
 
     def selected_items(self):
         model = self.model()
         sources = self.selectionModel().selectedRows()
-        return [model.sourceModel().items[model.mapToSource(s).row()] for s in sources] if sources else []
+        return [model.sourceModel().filtered[model.mapToSource(s).row()] for s in sources] if sources else []
 
     def refresh(self):
         self.model().layoutChanged.emit()
@@ -62,9 +63,9 @@ class QMainTableView(AbstractTableView):
 
         self.sortByColumn(COLUMN_MAIN_INDEX, Qt.SortOrder.AscendingOrder)
 
-    def set_model(self, model):
-        self.setModel(model.proxy)
-        self.setItemDelegate(MainDelegatePaint(model=model))
+    def set_model(self):
+        self.setModel(app_state.packages_storage.proxy)
+        self.setItemDelegate(MainDelegatePaint())
         self.resize_columns()
         self.hide_columns()
 
@@ -97,8 +98,10 @@ class QDictionaryTableView(AbstractTableView):
         self.setSelectionMode(QAbstractItemView.SingleSelection)
         self.setEditTriggers(QAbstractItemView.SelectedClicked)
 
-    def set_model(self, model):
-        self.setModel(model.proxy)
+        self.sortByColumn(COLUMN_DICTIONARIES_LENGTH, Qt.SortOrder.AscendingOrder)
+
+    def set_model(self):
+        self.setModel(app_state.dictionaries_storage.proxy)
         self.setItemDelegate(DictionaryDelegatePaint())
         self.resize_columns()
 

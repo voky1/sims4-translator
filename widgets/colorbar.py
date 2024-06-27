@@ -1,15 +1,11 @@
 # -*- coding: utf-8 -*-
 
 from PySide6.QtCore import QObject, QThreadPool, QRunnable, Signal, Slot
-from PySide6.QtWidgets import QWidget, QFrame, QHBoxLayout
-from typing import TYPE_CHECKING
+from PySide6.QtWidgets import QFrame, QHBoxLayout
 
-from utils.signals import color_signals
+from singletons.state import app_state
+from singletons.signals import color_signals
 from utils.constants import *
-
-
-if TYPE_CHECKING:
-    from windows.mainwindow import MainWindow
 
 
 class UpdateSignals(QObject):
@@ -45,12 +41,26 @@ class UpdateWorker(QRunnable):
         self.signals.finished.emit(translated_count, validated_count, progess_count, unvalidated_count)
 
 
+class TranslatedWidget(QFrame):
+    pass
+
+
+class ValidatedWidget(QFrame):
+    pass
+
+
+class ProgressWidget(QFrame):
+    pass
+
+
+class UnvalidatedWidget(QFrame):
+    pass
+
+
 class QColorBar(QFrame):
 
-    def __init__(self, parent: 'MainWindow'):
+    def __init__(self, parent=None):
         super().__init__(parent)
-
-        self.main_window = parent
 
         self.setFrameShape(QFrame.Shape.StyledPanel)
         self.setFrameShadow(QFrame.Shadow.Plain)
@@ -61,15 +71,10 @@ class QColorBar(QFrame):
 
         self.setFixedHeight(10)
 
-        self.translated = QWidget(self)
-        self.validated = QWidget(self)
-        self.progress = QWidget(self)
-        self.unvalidated = QWidget(self)
-
-        self.translated.setStyleSheet('background: #fff;')
-        self.validated.setStyleSheet('background: #aaaadc;')
-        self.progress.setStyleSheet('background: #dcaadc;')
-        self.unvalidated.setStyleSheet('background: #eaaaaa;')
+        self.translated = TranslatedWidget(self)
+        self.validated = ValidatedWidget(self)
+        self.progress = ProgressWidget(self)
+        self.unvalidated = UnvalidatedWidget(self)
 
         self.layout.addWidget(self.translated)
         self.layout.addWidget(self.validated)
@@ -82,10 +87,13 @@ class QColorBar(QFrame):
 
     @Slot()
     def __update(self):
-        worker = UpdateWorker(self.main_window.main_model.items())
+        worker = UpdateWorker(app_state.packages_storage.items())
         worker.setAutoDelete(True)
         worker.signals.finished.connect(self.__finished)
         self.__pool.start(worker)
+
+    def resfesh(self):
+        self.__update()
     
     @Slot(int, int, int, int)
     def __finished(self, translated_count, validated_count, progess_count, unvalidated_count):

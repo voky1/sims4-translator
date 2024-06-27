@@ -4,17 +4,12 @@ import os
 import glob
 import xml.etree.ElementTree as ElementTree
 from collections import namedtuple
-from typing import Dict, Optional, List
+from typing import List
 
 from singletons.config import config
-from utils.singleton import Singleton
 
 
-class Lang(namedtuple('Lang', 'code name items')):
-
-    code: str
-    name: str
-    items: Dict[str, Dict[str, Optional[str]]]
+class Lang(namedtuple('Lang', 'code name items authors version')):
 
     def get(self, k: str, v: str) -> str:
         if k in self.items and v in self.items[k]:
@@ -23,7 +18,7 @@ class Lang(namedtuple('Lang', 'code name items')):
         return v.strip()
 
 
-class Interface(metaclass=Singleton):
+class Interface:
 
     def __init__(self) -> None:
         self.__languages = {}
@@ -45,6 +40,8 @@ class Interface(metaclass=Singleton):
 
             code = root.get('language')
             name = root.get('name')
+            authors = root.get('authors')
+            version = root.get('version')
 
             if code and name:
                 lang_items = {}
@@ -62,7 +59,7 @@ class Interface(metaclass=Singleton):
 
                         lang_items[key] = context_items
 
-                self.__languages[code] = Lang(code, name, lang_items)
+                self.__languages[code] = Lang(code, name, lang_items, authors, version)
 
         self.__languages = dict(sorted(self.__languages.items()))
 
@@ -73,7 +70,15 @@ class Interface(metaclass=Singleton):
 
     def text(self, k: str, v: str) -> str:
         return self.__current.get(k, v) if isinstance(self.__current, Lang) else v
-    
+
+    @property
+    def authors(self) -> str:
+        return self.__current.authors if isinstance(self.__current, Lang) else None
+
+    @property
+    def version(self) -> str:
+        return self.__current.version if isinstance(self.__current, Lang) else None
+
     @property
     def languages(self) -> List[Lang]:
         return list(self.__languages.values())

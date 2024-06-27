@@ -4,8 +4,9 @@ import os
 import operator
 import pathlib
 import xml.etree.ElementTree as ElementTree
-from PySide6.QtWidgets import QMessageBox, QApplication
-from typing import TYPE_CHECKING, Union, Dict
+from PySide6.QtCore import QObject, Signal
+from PySide6.QtWidgets import QApplication
+from typing import Union, Dict, List
 from pathlib import Path
 
 from packer.dbpf import DbpfPackage
@@ -15,24 +16,33 @@ from packer.stbl import Stbl
 from .container import Container
 from .records import MainRecord
 
+from models.main import Model, ProxyModel
+
 from singletons.config import config
 from singletons.interface import interface
-from utils.signals import progress_signals, undo_signals
+from singletons.signals import progress_signals, window_signals
+from singletons.state import app_state
+from singletons.undo import undo
 from utils.functions import text_to_stbl, compare, fnv64, prettify, create_temporary_copy
 from utils.constants import *
 
 
-if TYPE_CHECKING:
-    from windows.mainwindow import MainWindow
+class StorageSignals(QObject):
+    loaded = Signal(list)
+    closed = Signal(str)
+    cleared = Signal()
 
 
 class PackagesStorage:
 
-    def __init__(self, parent: 'MainWindow') -> None:
-        self.main_window = parent
-        self.main_model = parent.main_model
+    def __init__(self) -> None:
+        self.packages: List[Container] = []
 
-        self.packages = []
+        self.model = Model()
+        self.proxy = ProxyModel()
+        self.proxy.setSourceModel(self.model)
+
+        self.signals = StorageSignals()
 
     def find(self, key: str) -> Union[Container, None]:
         for package in self.packages:
@@ -45,19 +55,13 @@ class PackagesStorage:
         return package is not None
 
     @property
-    def package(self) -> Container:
-        key = None
-        cb = self.main_window.toolbar.cb_files
-        if cb.currentIndex() > 0:
-            key = cb.currentText()
-        elif cb.count() == 2:
-            key = cb.itemText(1)
+    def current_package(self) -> Container:
+        key = app_state.current_package
         return self.find(key) if key else None
 
     @property
-    def instance(self) -> int:
-        package = self.package
-        return package.instance if package is not None else 0
+    def current_instance(self) -> int:
+        return app_state.current_instance
 
     @property
     def modified(self) -> bool:
@@ -78,6 +82,26 @@ class PackagesStorage:
         for package in self.packages:
             package.modify(state)
 
+    def items(self, key: str = None, instance: int = 0) -> List[MainRecord]:
+        items = self.model.items
+
+        if key or instance:
+            if instance > 0:
+                items = [i for i in items if i.instance == instance]
+            elif key:
+                items = [i for i in items if i.package == key]
+
+        else:
+            package_key = app_state.current_package
+            package_instance = app_state.current_instance
+
+            if package_instance > 0:
+                items = [i for i in items if i.instance == package_instance]
+            elif package_key:
+                items = [i for i in items if i.package == package_key]
+
+        return items
+
     def load(self, files: Union[list, str], added: bool = False) -> None:
         if not isinstance(files, list):
             files = [files]
@@ -92,16 +116,17 @@ class PackagesStorage:
 
         idx_all = len(self) + 1
 
+        loaded = []
         items = []
         empty = []
 
-        dictionaries_storage = self.main_window.dictionaries_storage
+        dictionaries_storage = app_state.dictionaries_storage
         strong_dict = config.value('dictionaries', 'strong')
         group_original = config.value('group', 'original')
         group_highbit = config.value('group', 'highbit')
 
         for file in files:
-            package = Container(self, file)
+            package = Container(file)
 
             if self.exists(package.key):
                 continue
@@ -111,7 +136,7 @@ class PackagesStorage:
             if strings:
                 progress_signals.initiate.emit(
                     interface.text('System', 'Opening file {}...').format(package.fullname),
-                    len(package) / 100)
+                    len(strings) / 100)
 
                 for i, string in enumerate(strings):
                     if i % 100 == 0:
@@ -176,33 +201,27 @@ class PackagesStorage:
                     idx_all += 1
 
                 self.packages.append(package)
-                self.main_window.toolbar.cb_files.addItem(package.key)
+                loaded.append(package.key)
 
             else:
                 empty.append(package.name)
 
         if items:
-            self.main_model.append(items)
+            self.model.append(items)
 
         progress_signals.finished.emit()
 
         if empty:
             if len(files) == 1:
-                QMessageBox.information(self.main_window, self.main_window.windowTitle(),
-                                        interface.text('Messages', 'Not found text records in this file!'))
+                window_signals.message.emit(interface.text('Messages', 'Not found text records in this file!'))
             elif len(files) == len(empty):
-                QMessageBox.information(self.main_window, self.main_window.windowTitle(),
-                                        interface.text('Messages', 'Not found text records in this files!'))
+                window_signals.message.emit(interface.text('Messages', 'Not found text records in this files!'))
             else:
-                names = "\n".join([p.name for p in empty])
-                QMessageBox.information(
-                    self.main_window, self.main_window.windowTitle(),
-                    interface.text('Messages', "Not found text records in following files:\n\n{}".format(names)))
+                names = "\n".join(empty)
+                window_signals.message.emit(
+                    interface.text('Messages', 'Not found text records in following files:') + "\n\n{}".format(names))
 
-        if len(files) == 1:
-            self.main_window.toolbar.cb_files.setCurrentIndex(self.main_window.toolbar.cb_files.count() - 1)
-
-        self.main_window.set_state_menu()
+        self.signals.loaded.emit(loaded)
 
     def load_bundle(self, filename: str) -> None:
         if not os.path.exists(filename):
@@ -252,7 +271,7 @@ class PackagesStorage:
     def get_stbl(self, convert: bool = True) -> Dict[ResourceID, Stbl]:
         stbl = {}
 
-        items = sorted(self.main_model.model.items, key=operator.itemgetter(RECORD_MAIN_INDEX), reverse=False)
+        items = sorted(self.model.items, key=operator.itemgetter(RECORD_MAIN_INDEX), reverse=False)
 
         experemental = config.value('save', 'experemental')
 
@@ -304,7 +323,7 @@ class PackagesStorage:
             is_temp = False
 
             if config.value('save', 'backup') and fpath.lower() == tpath.lower():
-                fpath = self.package.backup(fpath)
+                fpath = self.current_package.backup(fpath)
             else:
                 fpath = create_temporary_copy(fpath)
                 is_temp = True
@@ -348,35 +367,34 @@ class PackagesStorage:
             progress_signals.finished.emit()
 
     def close(self) -> None:
-        package = self.package
-        key = package.key if package else None
+        if not self.packages:
+            return
+
         items = []
 
-        if key:
-            self.main_window.toolbar.cb_files.removeItem(self.main_window.toolbar.cb_files.findText(key))
+        package_key = app_state.current_package
+
+        if package_key and len(self.packages) > 1:
+            undo.clean(package_key)
 
             idx = 1
-            for item in self.main_model.model.items:
-                if item.package != key:
+            for item in self.model.items:
+                if item.package != package_key:
                     item.idx = idx
                     items.append(item)
                     idx += 1
 
-            self.packages = [p for p in self.packages if p.key != key]
+            self.packages = [p for p in self.packages if p.key != package_key]
 
-            undo_signals.clean_by_key.emit(key)
+            self.signals.closed.emit(package_key)
 
         else:
-            self.main_window.toolbar.cb_files.clear()
-            self.main_window.toolbar.cb_files.addItem(interface.text('ToolBar', '-- All files --'))
-
+            undo.clean()
             self.packages = []
+            self.signals.cleared.emit()
 
-            undo_signals.clean_all.emit()
-
-        self.main_model.replace(items)
-
-        self.main_window.toolbar.cb_files.setCurrentIndex(0)
+        self.model.replace(items)
+        # self.pro
 
     def __len__(self) -> int:
         return sum(len(p) for p in self.packages)
@@ -485,3 +503,6 @@ class PackagesStorage:
                 table[sid] = text_to_stbl(s.find('Dest').text)
 
         return table
+
+
+packages_storage = PackagesStorage()

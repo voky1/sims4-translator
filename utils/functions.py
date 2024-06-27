@@ -3,11 +3,9 @@
 import os
 import re
 import hashlib
-import platform
 import tempfile
 import shutil
 from PySide6.QtWidgets import QFileDialog
-from PySide6.QtGui import QIcon, QFont
 from xml.etree import ElementTree
 from xml.dom import minidom
 
@@ -115,16 +113,6 @@ def compare(text1, text2):
     return text_to_stbl(text1) == text_to_stbl(text2)
 
 
-@static_vars(wrapper={})
-def icon(image_name):
-    key = 'icon_' + image_name
-    ico = icon.wrapper.get(key)
-    if not ico:
-        ico = QIcon(f':/images/{image_name}.png')
-        icon.wrapper[key] = ico
-    return ico
-
-
 def md5(string):
     hash_object = hashlib.md5(string.encode('utf-8'))
     return hash_object.hexdigest()
@@ -156,12 +144,3 @@ def prettify(node):
 
 def parsexml(content):
     return ''.join((re.sub(r'<(\w+)', r'<\1 DUMMY_LINE="' + str(i + 1) + '"', line) for i, line in enumerate(content)))
-
-
-@static_vars(font=None)
-def monospace_font():
-    if monospace_font.font is None:
-        families = {'Windows': 'Consolas', 'Darwin': 'Menlo'}
-        fontname = families.get(platform.system(), 'Monospace')
-        monospace_font.font = QFont(fontname, 10)
-    return monospace_font.font

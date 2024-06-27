@@ -1,13 +1,13 @@
 <RCC>
   <qresource>
+    <file>logo.ico</file>
+
     <file>images/translate.png</file>
-    <file>images/setting.png</file>
     <file>images/export_xml.png</file>
     <file>images/api.png</file>
     <file>images/search_dest.png</file>
     <file>images/search_id.png</file>
     <file>images/search_source.png</file>
-    <file>images/add.png</file>
     <file>images/close.png</file>
     <file>images/copy.png</file>
     <file>images/dict.png</file>
@@ -16,7 +16,6 @@
     <file>images/import.png</file>
     <file>images/lang.png</file>
     <file>images/load.png</file>
-    <file>images/logo.png</file>
     <file>images/options.png</file>
     <file>images/paste.png</file>
     <file>images/replace.png</file>
@@ -26,5 +25,45 @@
     <file>images/validate_2.png</file>
     <file>images/validate_3.png</file>
     <file>images/validate_4.png</file>
+
+    <file>fonts/roboto.ttf</file>
+    <file>fonts/jetbrainsmono.ttf</file>
+    <file>fonts/jetbrainsmono-bold.ttf</file>
+
+    <file>theme.qss</file>
+
+    <file>images/light/arrow_down.png</file>
+    <file>images/light/arrow_up.png</file>
+    <file>images/light/backspace.png</file>
+    <file>images/light/checkbox_checked.png</file>
+    <file>images/light/checkbox_checked_disabled.png</file>
+    <file>images/light/checkbox_unchecked.png</file>
+    <file>images/light/checkbox_unchecked_disabled.png</file>
+    <file>images/light/checked.png</file>
+    <file>images/light/checked_hover.png</file>
+    <file>images/light/menu_right_arrow.png</file>
+    <file>images/light/menu_right_arrow_hover.png</file>
+    <file>images/light/menu_right_arrow_disabled.png</file>
+    <file>images/light/radio_checked.png</file>
+    <file>images/light/radio_checked_disabled.png</file>
+    <file>images/light/radio_unchecked.png</file>
+    <file>images/light/radio_unchecked_disabled.png</file>
+
+    <file>images/dark/arrow_down.png</file>
+    <file>images/dark/arrow_up.png</file>
+    <file>images/dark/backspace.png</file>
+    <file>images/dark/checkbox_checked.png</file>
+    <file>images/dark/checkbox_checked_disabled.png</file>
+    <file>images/dark/checkbox_unchecked.png</file>
+    <file>images/dark/checkbox_unchecked_disabled.png</file>
+    <file>images/dark/checked.png</file>
+    <file>images/dark/checked_hover.png</file>
+    <file>images/dark/menu_right_arrow.png</file>
+    <file>images/dark/menu_right_arrow_hover.png</file>
+    <file>images/dark/menu_right_arrow_disabled.png</file>
+    <file>images/dark/radio_checked.png</file>
+    <file>images/dark/radio_checked_disabled.png</file>
+    <file>images/dark/radio_unchecked.png</file>
+    <file>images/dark/radio_unchecked_disabled.png</file>
   </qresource>
 </RCC>

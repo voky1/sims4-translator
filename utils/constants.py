@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+APP_VERSION = '1.3'
+APP_RELEASE_CANDITATE = True
 DICTIONARY_VERSION = 4
 
 COLUMN_MAIN_INDEX = 1

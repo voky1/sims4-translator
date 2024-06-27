@@ -5,13 +5,13 @@ from utils.functions import compare
 from utils.constants import *
 
 
-class AbstractContainer(list):
+class AbstractRecord(list):
 
     def __init__(self, *args):
         super().__init__(args)
 
 
-class MainRecord(AbstractContainer):
+class MainRecord(AbstractRecord):
 
     @property
     def idx(self) -> int:
