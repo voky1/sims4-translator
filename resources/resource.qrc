@@ -28,7 +28,7 @@
 
     <file>fonts/roboto.ttf</file>
     <file>fonts/jetbrainsmono.ttf</file>
-    <file>fonts/jetbrainsmono-bold.ttf</file>
+    <file>fonts/jetbrainsmono-semibold.ttf</file>
 
     <file>theme.qss</file>
 

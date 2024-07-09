@@ -103,7 +103,7 @@ class DictionariesStorage:
             self.model.append(list(self.__hash.values()))
             self.signals.updated.emit()
 
-            self.__hash = {}
+            self.__hash.clear()
 
             progress_signals.finished.emit()
 
@@ -129,10 +129,10 @@ class DictionariesStorage:
     def update_hash(self, name: str, item: list):
         self.__sid.setdefault(item[0], []).append((name, item[1], item[2], item[3]))
 
-        sources = self.__sources.get(item[1], [])
-        if item[2] not in sources:
-            sources.append(item[2])
-            self.__sources[item[1]] = sources
+        if item[1] not in self.__sources:
+            self.__sources[item[1]] = []
+        if item[2] not in self.__sources[item[1]]:
+            self.__sources[item[1]].append(item[2])
 
         k = f'{item[1]}__{item[2]}'
         if k not in self.__hash:

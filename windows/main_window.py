@@ -554,7 +554,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if item:
             self.edit_dialog.prepare(item)
             self.edit_dialog.exec()
-            self.tableview.refresh()
 
     def validate_selected(self, flag):
         if not app_state.packages_storage.enabled:
@@ -637,6 +636,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def options(self):
         dlg = OptionsDialog(self)
         dlg.exec()
+        dlg.deleteLater()
 
     def colorbar_toggle(self):
         config.set_value('view', 'colorbar', self.action_colorbar.isChecked())
@@ -827,8 +827,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     @Slot(str)
     def __packages_closed(self, key: str):
+        self.toolbar.cb_files.blockSignals(True)
         self.toolbar.cb_files.removeItem(self.toolbar.cb_files.findText(key))
         self.toolbar.cb_files.setCurrentIndex(0)
+        self.toolbar.cb_files.blockSignals(False)
+
+        self.update_current_file()
+        self.build_instances_list()
+        self.update_current_instance()
+
+        self.filter_timer.start()
+
         self.set_state_menu()
 
     @Slot()

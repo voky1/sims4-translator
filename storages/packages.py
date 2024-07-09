@@ -3,6 +3,7 @@
 import os
 import operator
 import pathlib
+import gc
 import xml.etree.ElementTree as ElementTree
 from PySide6.QtCore import QObject, Signal
 from PySide6.QtWidgets import QApplication
@@ -370,12 +371,12 @@ class PackagesStorage:
         if not self.packages:
             return
 
-        items = []
-
         package_key = app_state.current_package
 
         if package_key and len(self.packages) > 1:
             undo.clean(package_key)
+
+            items = []
 
             idx = 1
             for item in self.model.items:
@@ -383,6 +384,10 @@ class PackagesStorage:
                     item.idx = idx
                     items.append(item)
                     idx += 1
+                else:
+                    item.clear()
+
+            self.model.replace(items)
 
             self.packages = [p for p in self.packages if p.key != package_key]
 
@@ -390,11 +395,11 @@ class PackagesStorage:
 
         else:
             undo.clean()
-            self.packages = []
+            self.model.clear()
+            self.packages.clear()
             self.signals.cleared.emit()
 
-        self.model.replace(items)
-        # self.pro
+        gc.collect()
 
     def __len__(self) -> int:
         return sum(len(p) for p in self.packages)

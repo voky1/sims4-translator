@@ -39,10 +39,21 @@ class AbstractTableModel(QAbstractTableModel):
 
     def replace(self, rows):
         self.beginResetModel()
+        self.items.clear()
+        self.filtered.clear()
         self.items = rows
         self.endResetModel()
 
     def filter(self, rows):
         self.beginResetModel()
+        self.filtered.clear()
         self.filtered = rows
+        self.endResetModel()
+
+    def clear(self):
+        self.beginResetModel()
+        for item in self.items:
+            item.clear()
+        self.items.clear()
+        self.filtered.clear()
         self.endResetModel()
