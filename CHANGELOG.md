@@ -1,6 +1,6 @@
 # Changelog
 
-## Version 1.3 RC - 2024-06-26
+## Version 1.3 - 2024-07-09
 
 - Added light and dark themes
 - Added Polish language
