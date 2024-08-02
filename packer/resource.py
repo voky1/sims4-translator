@@ -85,6 +85,11 @@ class ResourceID(namedtuple('ResourceID', 'group instance type')):
         return '0x{instance:016X}'.format(instance=self.instance)
 
     @property
+    def base_instance(self) -> int:
+        hex_inst = self.hex_instance
+        return int(hex_inst[4:], 16)
+
+    @property
     def is_stbl(self) -> bool:
         return self.type == 0x220557DA
 

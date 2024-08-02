@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 1.3.1 - 2024-08-02
+
+- Added German language
+- Fixed working with merged packages
+- Variables in curly brackets are no longer translated using translators (such as {0.String}, {0.Number}, etc)
+
 ## Version 1.3 - 2024-07-09
 
 - Added light and dark themes

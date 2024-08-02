@@ -30,7 +30,7 @@ class Translator:
         return len(self.engines) > 0
 
     def translate(self, engine: str, text: str) -> Response:
-        placeholders = re.findall(r'{[^}]+}', text)
+        placeholders = re.findall(r'{\d+\.[^{}]+}', text)
         modified_text = text
 
         temp_placeholders = {}
@@ -40,9 +40,9 @@ class Translator:
             temp_placeholders[temp_placeholder] = placeholder
 
         if engine.lower() == 'deepl':
-            response = self.__deepl(text)
+            response = self.__deepl(modified_text)
         else:
-            response = self.__google(text)
+            response = self.__google(modified_text)
 
         if response.status_code != 200:
             return response

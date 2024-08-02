@@ -113,16 +113,18 @@ class Container:
 
             for rid, strings in _to.items():
                 for sid, dest in strings.items():
-                    __to[sid] = (rid, dest)
+                    key = f'{rid.base_instance}_{sid}'
+                    __to[key] = (rid, dest)
 
             for rid, strings in _from.items():
                 line = 0
                 for sid, source in strings.items():
                     if source:
+                        key = f'{rid.base_instance}_{sid}'
                         dest = source
-                        if sid in __to:
-                            rid = __to[sid][0]
-                            dest = __to[sid][1]
+                        if key in __to:
+                            rid = __to[key][0]
+                            dest = __to[key][1]
 
                         if rid.hex_instance not in self.instances:
                             self.instances.append(rid.hex_instance)
