@@ -1,0 +1,713 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ts language="it_IT" name="Italiano (Italian)" version="1.3.1" authors="vale93_games">
+  <context name="EditWindow">
+    <string>
+      <source>Search and Edit</source>
+      <translation>Cerca e Modifica</translation>
+    </string>
+    <string>
+      <source>OK (Ctrl+Enter)</source>
+      <translation>OK (Ctrl+Invio)</translation>
+    </string>
+    <string>
+      <source>Original text</source>
+      <translation>Testo Originale</translation>
+    </string>
+    <string>
+      <source>Different original</source>
+      <translation>Testo Originale Diverso</translation>
+    </string>
+    <string>
+      <source>Current translation</source>
+      <translation>Traduzione Attuale</translation>
+    </string>
+    <string>
+      <source>Different translation</source>
+      <translation>Traduzione Diversa</translation>
+    </string>
+    <string>
+      <source>Cancel</source>
+      <translation>Annulla</translation>
+    </string>
+    <string>
+      <source>Translate</source>
+      <translation>Tradurre</translation>
+    </string>
+    <string>
+      <source>Use this translation</source>
+      <translation>Usa Questa Traduzione</translation>
+    </string>
+    <string>
+      <source>Loading...</source>
+      <translation>Caricamento...</translation>
+    </string>
+    <string>
+      <source>Comment...</source>
+      <translation>Commento...</translation>
+    </string>
+  </context>
+  <context name="ExportDialog">
+    <string>
+      <source>Export translate</source>
+      <translation>Esporta Traduzione</translation>
+    </string>
+    <string>
+      <source>Export</source>
+      <translation>Esporta</translation>
+    </string>
+    <string>
+      <source>Everything</source>
+      <translation>Tutto</translation>
+    </string>
+    <string>
+      <source>Everything but untranslated strings</source>
+      <translation>Tutto tranne le stringhe non tradotte</translation>
+    </string>
+    <string>
+      <source>Only selected instance</source>
+      <translation>Solo Istanza Selezionata</translation>
+    </string>
+    <string>
+      <source>Each instance as a separate file</source>
+      <translation>Ogni istanza come file separato</translation>
+    </string>
+    <string>
+      <source>Each package as a separate file</source>
+      <translation>Ogni package come file separato</translation>
+    </string>
+    <string>
+      <source>Exported records</source>
+      <translation>Record Esportati</translation>
+    </string>
+    <string>
+      <source>Cancel</source>
+      <translation>Annulla</translation>
+    </string>
+  </context>
+  <context name="MainTableView">
+    <string>
+      <source>Original</source>
+      <translation>Originale</translation>
+    </string>
+    <string>
+      <source>Translated</source>
+      <translation>Traduzione</translation>
+    </string>
+    <string>
+      <source>LD</source>
+      <translation>LD</translation>
+    </string>
+    <string>
+      <source>Instance</source>
+      <translation>Instanza</translation>
+    </string>
+    <string>
+      <source>Group</source>
+      <translation>Gruppo</translation>
+    </string>
+    <string>
+      <source>Comment</source>
+      <translation>Commento</translation>
+    </string>
+  </context>
+  <context name="MainWindow">
+    <string>
+      <source>File</source>
+      <translation>File</translation>
+    </string>
+    <string>
+      <source>Export translation</source>
+      <translation>Esporta Traduzione</translation>
+    </string>
+    <string>
+      <source>Translation</source>
+      <translation>Traduzione</translation>
+    </string>
+    <string>
+      <source>View</source>
+      <translation>Visualizzazione</translation>
+    </string>
+    <string>
+      <source>Options</source>
+      <translation>Opzioni</translation>
+    </string>
+    <string>
+      <source>Group</source>
+      <translation>Gruppo</translation>
+    </string>
+    <string>
+      <source>Help</source>
+      <translation>Aiuto</translation>
+    </string>
+    <string>
+      <source>Save as...</source>
+      <translation>Salva come...</translation>
+    </string>
+    <string>
+      <source>Close</source>
+      <translation>Chiudi</translation>
+    </string>
+    <string>
+      <source>Save</source>
+      <translation>Salva</translation>
+    </string>
+    <string>
+      <source>Save dictionary</source>
+      <translation>Salva Dizionario</translation>
+    </string>
+    <string>
+      <source>Search and replace...</source>
+      <translation>Cerca e Sostituisci..</translation>
+    </string>
+    <string>
+      <source>Validate all translations</source>
+      <translation>Convalida Tutte le Traduzioni</translation>
+    </string>
+    <string>
+      <source>Reset all translations</source>
+      <translation>Resetta Tutte le Traduzioni</translation>
+    </string>
+    <string>
+      <source>Exit</source>
+      <translation>Esci</translation>
+    </string>
+    <string>
+      <source>Undo</source>
+      <translation>Elimina</translation>
+    </string>
+    <string>
+      <source>About Qt...</source>
+      <translation>Su Qt...</translation>
+    </string>
+    <string>
+      <source>Options...</source>
+      <translation>Opzioni...</translation>
+    </string>
+    <string>
+      <source>To XML...</source>
+      <translation>In XML...</translation>
+    </string>
+    <string>
+      <source>Translate from dictionaries</source>
+      <translation>Traduci dai Dizionari</translation>
+    </string>
+    <string>
+      <source>Finalize package</source>
+      <translation>Finalizza il package</translation>
+    </string>
+    <string>
+      <source>Finalize package as...</source>
+      <translation>Finalizza il package come...</translation>
+    </string>
+    <string>
+      <source>To XML (Deaderpool's STBL editor)...</source>
+      <translation>In XML (editor STBL di Deaderpool)...</translation>
+    </string>
+    <string>
+      <source>Use original group</source>
+      <translation>Utilizza il Gruppo Originale</translation>
+    </string>
+    <string>
+      <source>Use high-bit</source>
+      <translation>Usa Bit Alti</translation>
+    </string>
+    <string>
+      <source>To STBL...</source>
+      <translation>A STBL...</translation>
+    </string>
+    <string>
+      <source>Use low-bit</source>
+      <translation>Usa Bit Bassi</translation>
+    </string>
+    <string>
+      <source>Edit String</source>
+      <translation>Modifica Stringa</translation>
+    </string>
+    <string>
+      <source>Validate as [translated]</source>
+      <translation>Convalida come [tradotto]</translation>
+    </string>
+    <string>
+      <source>Validate as [work in progress]</source>
+      <translation>Convalida come [lavori in corso]</translation>
+    </string>
+    <string>
+      <source>Cancel translation</source>
+      <translation>Annulla la Traduzione</translation>
+    </string>
+    <string>
+      <source>Copy</source>
+      <translation>Copia</translation>
+    </string>
+    <string>
+      <source>Paste</source>
+      <translation>Incolla</translation>
+    </string>
+    <string>
+      <source>Load file...</source>
+      <translation>Carica File...</translation>
+    </string>
+    <string>
+      <source>Add file...</source>
+      <translation>Aggiungi File...</translation>
+    </string>
+    <string>
+      <source>Import translation...</source>
+      <translation>Importa Traduzione...</translation>
+    </string>
+    <string>
+      <source>Remove record</source>
+      <translation>Rimuovi Record</translation>
+    </string>
+    <string>
+      <source>Save bundle...</source>
+      <translation>Salva package XML......</translation>
+    </string>
+    <string>
+      <source>Load bundle...</source>
+      <translation>Carica package XML...</translation>
+    </string>
+    <string>
+      <source>Numeration</source>
+      <translation>Numerazione</translation>
+    </string>
+    <string>
+      <source>Standart</source>
+      <translation>Standard</translation>
+    </string>
+    <string>
+      <source>From the source file</source>
+      <translation>Dal File Sorgente</translation>
+    </string>
+    <string>
+      <source>XML format</source>
+      <translation>Formato XML</translation>
+    </string>
+    <string>
+      <source>XML format (Deaderpool's STBL editor)</source>
+      <translation>Formato XML (editor STBL di Deaderpool)</translation>
+    </string>
+    <string>
+      <source>Batch translate...</source>
+      <translation>Traduzione Automatica...</translation>
+    </string>
+    <string>
+      <source>Translate</source>
+      <translation>Tradurre</translation>
+    </string>
+    <string>
+      <source>Color visualization</source>
+      <translation>Visualizzazione del Colore</translation>
+    </string>
+  </context>
+  <context name="Messages">
+    <string>
+      <source>Save dictionary for modified packages?</source>
+      <translation>Salvare il dizionario per i package modificati?</translation>
+    </string>
+    <string>
+      <source>Are you sure you want to delete the selected records?</source>
+      <translation>Sei sicuro di voler eliminare i record selezionati?</translation>
+    </string>
+    <string>
+      <source>Not found text records in this file!</source>
+      <translation>Non sono stati trovati record di testo in questo file!</translation>
+    </string>
+    <string>
+      <source>Not found text records in this files!</source>
+      <translation>Non sono stati trovati record di testo in questi file!</translation>
+    </string>
+    <string>
+      <source>Not found text records in following files:</source>
+      <translation>Non sono stati trovati record di testo nei seguenti file:</translation>
+    </string>
+  </context>
+  <context name="Errors">
+    <string>
+      <source>Language code not found!</source>
+      <translation>Codice lingua non trovato!</translation>
+    </string>
+    <string>
+      <source>Translation failed with error code: {}</source>
+      <translation>Traduzione non riuscita con codice di errore: {}</translation>
+    </string>
+    <string>
+      <source>Invalid API key.</source>
+      <translation>Chiave API non valida.</translation>
+    </string>
+    <string>
+      <source>Your quota has exceeded!</source>
+      <translation>La tua quota è stata superata!</translation>
+    </string>
+    <string>
+      <source>There was a temporary problem with the DeepL Service.</source>
+      <translation>Si è verificato un problema temporaneo con il servizio DeepL.</translation>
+    </string>
+  </context>
+  <context name="OptionsDialog">
+    <string>
+      <source>NOT FOUND</source>
+      <translation>NON TROVATO</translation>
+    </string>
+    <string>
+      <source>{} not exist</source>
+      <translation>{} non esiste</translation>
+    </string>
+    <string>
+      <source>FOUND</source>
+      <translation>TROVATO</translation>
+    </string>
+    <string>
+      <source>BASE GAME</source>
+      <translation>BASE GAME</translation>
+    </string>
+    <string>
+      <source>Expansion packs</source>
+      <translation>Expansion Packs</translation>
+    </string>
+    <string>
+      <source>Game packs</source>
+      <translation>Game Packs</translation>
+    </string>
+    <string>
+      <source>Stuff packs</source>
+      <translation>Stuff/Kit Packs</translation>
+    </string>
+    <string>
+      <source>Options and dictionaries</source>
+      <translation>Opzioni e Dizionari</translation>
+    </string>
+    <string>
+      <source>Build dictionaries</source>
+      <translation>Costruisci Dizionari</translation>
+    </string>
+    <string>
+      <source>Languages</source>
+      <translation>Le Lingue</translation>
+    </string>
+    <string>
+      <source>Source</source>
+      <translation>Fonte</translation>
+    </string>
+    <string>
+      <source>Destination</source>
+      <translation>Destinazione</translation>
+    </string>
+    <string>
+      <source>Game path</source>
+      <translation>Percorso del Gioco</translation>
+    </string>
+    <string>
+      <source>...</source>
+      <translation>...</translation>
+    </string>
+    <string>
+      <source>Create backup package before finalization</source>
+      <translation>Crea un package di backup prima della finalizzazione</translation>
+    </string>
+    <string>
+      <source>Saving translation without conflicts (experemental)</source>
+      <translation>Salvataggio della traduzione senza conflitti (sperimentale)</translation>
+    </string>
+    <string>
+      <source>Interface</source>
+      <translation>Interfaccia</translation>
+    </string>
+    <string>
+      <source>Do not use automatic translation from other dictionaries</source>
+      <translation>Non utilizzare la traduzione automatica da altri dizionari</translation>
+    </string>
+    <string>
+      <source>General</source>
+      <translation>Generale</translation>
+    </string>
+    <string>
+      <source>Dictionaries</source>
+      <translation>Dizionari</translation>
+    </string>
+    <string>
+      <source>DeepL API key</source>
+      <translation>Chiave API DeepL</translation>
+    </string>
+    <string>
+      <source>Language</source>
+      <translation>Lingua</translation>
+    </string>
+    <string>
+      <source>Theme</source>
+      <translation>Tema</translation>
+    </string>
+    <string>
+      <source>Light</source>
+      <translation>Chiaro</translation>
+    </string>
+    <string>
+      <source>Dark</source>
+      <translation>Scuro</translation>
+    </string>
+    <string>
+      <source>The application needs to be restarted</source>
+      <translation>L'applicazione deve essere riavviata</translation>
+    </string>
+    <string>
+      <source>The translation version differs from the application version, so the interface may not be fully translated</source>
+      <translation>La versione tradotta è differente dalla versione dell'applicazione, quindi l'interfaccia potrebbe non essere completamente tradotta</translation>
+    </string>
+    <string>
+      <source>by {}</source>
+      <translation>di {}</translation>
+    </string>
+  </context>
+  <context name="ReplaceDialog">
+    <string>
+      <source>Search and replace</source>
+      <translation>Cerca e Sostituisci</translation>
+    </string>
+    <string>
+      <source>Case sensitive</source>
+      <translation>Maiuscole e Minuscole</translation>
+    </string>
+    <string>
+      <source>Search</source>
+      <translation>Cerca</translation>
+    </string>
+    <string>
+      <source>Replace</source>
+      <translation>Sostituisci</translation>
+    </string>
+    <string>
+      <source>Search and replace in:</source>
+      <translation>Cerca e Sostituisci in:</translation>
+    </string>
+    <string>
+      <source>All strings</source>
+      <translation>Tutte le Stringhe</translation>
+    </string>
+    <string>
+      <source>Not validated strings</source>
+      <translation>Stringhe non Convalidate</translation>
+    </string>
+    <string>
+      <source>Cancel</source>
+      <translation>Annulla</translation>
+    </string>
+    <string>
+      <source>OK</source>
+      <translation>OK</translation>
+    </string>
+  </context>
+  <context name="System">
+    <string>
+      <source>Saving package {}...</source>
+      <translation>Salvataggio del Package {}...</translation>
+    </string>
+    <string>
+      <source>Loading dictionaries...</source>
+      <translation>Caricamento Dizionari...</translation>
+    </string>
+    <string>
+      <source>Build dictionaries...</source>
+      <translation>Costruisci Dizionari...</translation>
+    </string>
+    <string>
+      <source>Exporting translate...</source>
+      <translation>Esportazione Traduzione...</translation>
+    </string>
+    <string>
+      <source>Importing translate...</source>
+      <translation>Importazione Traduzione...</translation>
+    </string>
+    <string>
+      <source>All files</source>
+      <translation>Tutti i File</translation>
+    </string>
+    <string>
+      <source>Packages</source>
+      <translation>Packages</translation>
+    </string>
+    <string>
+      <source>STBL files</source>
+      <translation>File STBL</translation>
+    </string>
+    <string>
+      <source>XML files</source>
+      <translation>File XML</translation>
+    </string>
+    <string>
+      <source>Opening file {}...</source>
+      <translation>Apertura File {}...</translation>
+    </string>
+    <string>
+      <source>Opening files...</source>
+      <translation>Apertura dei File...</translation>
+    </string>
+    <string>
+      <source>Opening file...</source>
+      <translation>Apertura File...</translation>
+    </string>
+    <string>
+      <source>Translating...</source>
+      <translation>Traduzione in Corso...</translation>
+    </string>
+    <string>
+      <source>Stopping translate, waiting for the finish of the threads...</source>
+      <translation>Interrompi la traduzione, aspetto la fine dei thread...</translation>
+    </string>
+  </context>
+  <context name="ToolBar">
+    <string>
+      <source>-- All files --</source>
+      <translation>-- Tutti i File --</translation>
+    </string>
+    <string>
+      <source>Search in translation</source>
+      <translation>Cerca nella Traduzione</translation>
+    </string>
+    <string>
+      <source>Search in ID</source>
+      <translation>Cerca nell'ID</translation>
+    </string>
+    <string>
+      <source>Search in original</source>
+      <translation>Cerca nell'Originale</translation>
+    </string>
+    <string>
+      <source>-- All instances --</source>
+      <translation>-- Tutte le Istanze --</translation>
+    </string>
+    <string>
+      <source>Translated</source>
+      <translation>Tradotto</translation>
+    </string>
+    <string>
+      <source>Not translated</source>
+      <translation>Non Tradotto</translation>
+    </string>
+    <string>
+      <source>Validated translation</source>
+      <translation>Traduzione Convalidata</translation>
+    </string>
+    <string>
+      <source>Partial translation</source>
+      <translation>Traduzione Parziale</translation>
+    </string>
+    <string>
+      <source>Different strings</source>
+      <translation>Stringhe Diverse</translation>
+    </string>
+    <string>
+      <source>Search...</source>
+      <translation>Cerca...</translation>
+    </string>
+  </context>
+  <context name="ImportDialog">
+    <string>
+      <source>Import translate</source>
+      <translation>Importa Traduzione</translation>
+    </string>
+    <string>
+      <source>Overwrite</source>
+      <translation>Sovrascrivi</translation>
+    </string>
+    <string>
+      <source>Everything</source>
+      <translation>Tutto</translation>
+    </string>
+    <string>
+      <source>Everything but already validated strings</source>
+      <translation>Tutto tranne le stringhe già convalidate</translation>
+    </string>
+    <string>
+      <source>Everything but already validated and partial strings</source>
+      <translation>Tutto tranne le stringhe già convalidate e parziali</translation>
+    </string>
+    <string>
+      <source>Partial strings</source>
+      <translation>Stringhe Parziali</translation>
+    </string>
+    <string>
+      <source>Selection only</source>
+      <translation>Solo Selezione</translation>
+    </string>
+    <string>
+      <source>Replace existing translation</source>
+      <translation>Sostituisci la Traduzione Esistente</translation>
+    </string>
+    <string>
+      <source>Import</source>
+      <translation>Importa</translation>
+    </string>
+    <string>
+      <source>Cancel</source>
+      <translation>Annulla</translation>
+    </string>
+  </context>
+  <context name="TranslateDialog">
+    <string>
+      <source>Translate</source>
+      <translation>Tradurre</translation>
+    </string>
+    <string>
+      <source>Cancel</source>
+      <translation>Annulla</translation>
+    </string>
+    <string>
+      <source>Batch translate</source>
+      <translation>Traduzione Automatica</translation>
+    </string>
+    <string>
+      <source>Log</source>
+      <translation>Log</translation>
+    </string>
+    <string>
+      <source>Line-by-line translation</source>
+      <translation>Traduzione Riga per Riga</translation>
+    </string>
+    <string>
+      <source>Multiline translation</source>
+      <translation>Traduzione Multilinea</translation>
+    </string>
+    <string>
+      <source>Slow but more accurate translation.</source>
+      <translation>Traduzione lenta ma più accurata.</translation>
+    </string>
+    <string>
+      <source>A faster, but perhaps less accurate translation. It is recommended to use it together with DeepL, because when using Google, some strings may not be translated.</source>
+      <translation>Una traduzione più veloce, ma forse meno accurata. Si consiglia di utilizzarlo insieme a DeepL, perché quando si utilizza Google alcune stringhe potrebbero non essere tradotte.</translation>
+    </string>
+    <string>
+      <source>Some lines could not be translated.</source>
+      <translation>Alcune righe non possono essere tradotte.</translation>
+    </string>
+    <string>
+      <source>Stop translate</source>
+      <translation>Smetti di Tradurre</translation>
+    </string>
+  </context>
+  <context name="TextEditor">
+    <string>
+      <source>Undo</source>
+      <translation>Elimina</translation>
+    </string>
+    <string>
+      <source>Redo</source>
+      <translation>Ripristina</translation>
+    </string>
+    <string>
+      <source>Cut</source>
+      <translation>Taglia</translation>
+    </string>
+    <string>
+      <source>Copy</source>
+      <translation>Copia</translation>
+    </string>
+    <string>
+      <source>Paste</source>
+      <translation>Incolla</translation>
+    </string>
+    <string>
+      <source>Select All</source>
+      <translation>Seleziona Tutto</translation>
+    </string>
+  </context>
+</ts>
