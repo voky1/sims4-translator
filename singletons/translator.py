@@ -7,14 +7,14 @@ import urllib.request
 import urllib.parse
 from collections import namedtuple
 from typing import List
+import time
+import random
 
 from singletons.config import config
 from singletons.interface import interface
 from singletons.languages import languages
 
-
 Response = namedtuple('Response', 'status_code text')
-
 
 class Translator:
 
@@ -30,32 +30,28 @@ class Translator:
         return len(self.engines) > 0
 
     def translate(self, engine: str, text: str) -> Response:
-        placeholders = re.findall(r'{\d+\.[^{}]+}', text)
-        modified_text = text
+        parts = re.split(r'({.*?})', text)
+        translated_parts = []
+        for part in parts:
+            if part.startswith('{') and part.endswith('}'):
+                translated_parts.append(part)
+            else:
+                if engine.lower() == 'deepl':
+                    response = self.__deepl(part)
+                else:
+                    response = self.__google(part)
 
-        temp_placeholders = {}
-        for i, placeholder in enumerate(placeholders):
-            temp_placeholder = f'__PH_{i}__'
-            modified_text = modified_text.replace(placeholder, temp_placeholder)
-            temp_placeholders[temp_placeholder] = placeholder
+                if response.status_code != 200:
+                    return response
 
-        if engine.lower() == 'deepl':
-            response = self.__deepl(modified_text)
-        else:
-            response = self.__google(modified_text)
+                translated_parts.append(response.text)
 
-        if response.status_code != 200:
-            return response
-
-        translated_text = response.text
-
-        for temp_placeholder, placeholder in temp_placeholders.items():
-            translated_text = translated_text.replace(temp_placeholder, placeholder)
-  
-        return Response(response.status_code, translated_text)
+        translated_text = ''.join(translated_parts)
+        return Response(200, translated_text)
 
     @staticmethod
-    def __google(text: str) -> Response:
+    def __google(text: str, retry_count=0) -> Response:
+        print(f"Traduciendo: {text}")  # Registro del texto a traducir
         url = 'http://translate.google.com/m?sl=auto&tl=%s&q=%s'
 
         language = languages.destination
@@ -65,11 +61,26 @@ class Translator:
         if language and language.google:
             link = url % (language.google, urllib.parse.quote(text))
             request = urllib.request.Request(link, headers={'User-Agent': ua})
-            data = urllib.request.urlopen(request).read()
 
-            data = data.decode('utf-8')
-            expr = r'(?s)class="(?:t0|result-container)">(.*?)<'
-            return Response(200, html.unescape(re.findall(expr, data)[0]))
+            try:
+                print(f"Enviando solicitud a: {link}")  # Registro de la URL de la solicitud
+                data = urllib.request.urlopen(request).read()
+                data = data.decode('utf-8')
+                expr = r'(?s)class="(?:t0|result-container)">(.*?)<'
+                result = re.findall(expr, data)[0]
+                print(f"Resultado de la traducción: {result}")  # Registro del resultado de la traducción
+                return Response(200, html.unescape(result))
+            except urllib.error.HTTPError as e:
+                print(f"Error HTTP: {e.code}")  # Registro del código de error HTTP
+                if e.code == 429:
+                    if retry_count < 5:  # Aumenta el número de reintentos
+                        wait_time = (2 ** retry_count) + random.uniform(10, 30)  # Retraso exponencial con aleatoriedad
+                        time.sleep(wait_time)
+                        return Translator.__google(text, retry_count + 1)
+                    else:
+                        return Response(e.code, interface.text('Errors', 'Too Many Requests after multiple retries.'))
+                else:
+                    return Response(e.code, interface.text('Errors', 'Google Translate error: {}').format(e.code))
 
         return Response(404, interface.text('Errors', 'Language code not found!'))
 
@@ -115,6 +126,5 @@ class Translator:
                                     response.status_code))
 
         return Response(404, interface.text('Errors', 'Language code not found!'))
-
 
 translator = Translator()
