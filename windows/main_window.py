@@ -486,20 +486,37 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.translate_dialog.exec()
 
     def translate(self):
-        item = self.tableview.selected_item()
-        if item:
-            progress_signals.initiate.emit(interface.text('System', 'Translating...'), 0)
-            response = translator.translate(config.value('api', 'engine'), item.source)
-            if response.status_code == 200:
-                undo.wrap(item)
-                item.translate = response.text
-                item.flag = FLAG_VALIDATED
+        items = self.tableview.selected_items()
+        if items:
+            progress_signals.initiate.emit(interface.text('System', 'Translating...'), len(items))
+            
+            success_count = 0       
+            error_messages = []
+            
+            for item in items:
+                response = translator.translate(config.value('api', 'engine'), item.source)
+                if response.status_code == 200:
+                    undo.wrap(item)
+                    item.translate = response.text
+                    item.flag = FLAG_VALIDATED
+                    success_count += 1
+                else:
+                    error_messages.append(f"Erreur pour '{item.source[:50]}...': {response.text}")
+                
+                progress_signals.increment.emit()
+            
+            if success_count > 0:
                 self.colorbar.resfesh()
                 self.tableview.refresh()
                 undo.commit()
-                progress_signals.finished.emit()
-            else:
-                QMessageBox.critical(self, self.windowTitle(), response.text)
+            
+            progress_signals.finished.emit()
+            
+            if error_messages:
+                QMessageBox.critical(self, self.windowTitle(), 
+                                   f"Traduction terminée avec {success_count} succès.\n\nErreurs:\n" + 
+                                   "\n".join(error_messages[:5]) + 
+                                   (f"\n... et {len(error_messages)-5} autres erreurs" if len(error_messages) > 5 else ""))
 
     @staticmethod
     def save_dictionary():
