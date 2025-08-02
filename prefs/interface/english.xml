@@ -321,6 +321,17 @@
       <source>Not found text records in following files:</source>
       <translation/>
     </string>
+    <string>
+      <source>Translation completed with {} successes.
+
+Errors:
+{}</source>
+      <translation/>
+    </string>
+    <string>
+      <source>... and {} other errors</source>
+      <translation/>
+    </string>
   </context>
   <context name="Errors">
     <string>

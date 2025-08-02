@@ -25,10 +25,6 @@ class Translator:
         return len(self.engines) > 0
 
     def translate(self, engine: str, text: str) -> Response:
-        print('--------------------------------------------------------------\n')
-        print(f'Translating with {engine} engine...')
-        print(f'Original text: {text}\n')
-
         def gender_to_xml(match):
             gid, content = match.group(1), match.group(2)
             return f'<span id="{gid}">{content}</span>'
@@ -84,21 +80,19 @@ class Translator:
             flags=re.IGNORECASE
         )
         
-        # &amp;, &lt;, &gt;, etc. are replaced with their actual characters
         final = html.unescape(final)
 
-        print(f'Translated text: {final}\n\n')
         return Response(200, final)
 
     @staticmethod
     def __google(text: str) -> Response:
-        url = 'http://translate.google.com/m?sl=auto&tl=%s&q=%s'
         language = languages.destination
-        ua = ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
-              'AppleWebKit/537.36 (KHTML, like Gecko) '
-              'Chrome/122.0.0.0 Safari/537.36')
         if language and language.google:
+            url = 'http://translate.google.com/m?sl=auto&tl=%s&q=%s'
             link = url % (language.google, urllib.parse.quote(text))
+            ua = ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
+                  'AppleWebKit/537.36 (KHTML, like Gecko) '
+                  'Chrome/122.0.0.0 Safari/537.36')
             try:
                 request = urllib.request.Request(link, headers={'User-Agent': ua})
                 data = urllib.request.urlopen(request, timeout=10).read().decode('utf-8')
@@ -111,10 +105,7 @@ class Translator:
 
     @staticmethod
     def __deepl(text: str, xml_mode=True) -> Response:
-        url = 'https://api.deepl.com/v2/translate'
-        url_free = 'https://api-free.deepl.com/v2/translate'
         api_key = config.value('api', 'deepl_key')
-        api_url = url_free if ':fx' in api_key else url
         src = languages.source
         dst = languages.destination
         if src and src.deepl and dst and dst.deepl:
@@ -125,6 +116,9 @@ class Translator:
                 'split_sentences': 1,
                 'tag_handling': 'xml' if xml_mode else 'plain'
             }
+            url = 'https://api.deepl.com/v2/translate'
+            url_free = 'https://api-free.deepl.com/v2/translate'
+            api_url = url_free if ':fx' in api_key else url
             try:
                 resp = requests.post(
                     api_url,
@@ -146,5 +140,4 @@ class Translator:
                 return Response(500, str(e))
         return Response(404, interface.text('Errors', 'Language code not found!'))
 
-# Instanciation du traducteur
 translator = Translator()

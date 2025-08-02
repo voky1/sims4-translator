@@ -501,8 +501,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     item.flag = FLAG_VALIDATED
                     success_count += 1
                 else:
-                    error_messages.append(f"Erreur pour '{item.source[:50]}...': {response.text}")
-                
+                    error_messages.append(f"Error for '{item.source[:50]}...': {response.text}")
+
                 progress_signals.increment.emit()
             
             if success_count > 0:
@@ -513,10 +513,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             progress_signals.finished.emit()
             
             if error_messages:
+                error_text = "\n".join(error_messages[:5])
+                if len(error_messages) > 5:
+                    error_text += "\n" + interface.text('Messages', '... and {} other errors').format(len(error_messages)-5)
+                
                 QMessageBox.critical(self, self.windowTitle(), 
-                                   f"Traduction terminée avec {success_count} succès.\n\nErreurs:\n" + 
-                                   "\n".join(error_messages[:5]) + 
-                                   (f"\n... et {len(error_messages)-5} autres erreurs" if len(error_messages) > 5 else ""))
+                                   interface.text('Messages', 'Translation completed with {} successes.\n\nErrors:\n{}').format(success_count, error_text))
 
     @staticmethod
     def save_dictionary():

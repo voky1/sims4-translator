@@ -353,6 +353,24 @@
       <source>Not found text records in this files!</source>
       <translation>找不到文件的文本信息！</translation>
     </string>
+    <string>
+      <source>Not found text records in following files:</source>
+      <translation>在以下文件中找不到文本记录：</translation>
+    </string>
+    <string>
+      <source>Translation completed with {} successes.
+
+Errors:
+{}</source>
+      <translation>翻译完成，成功 {} 个。
+
+错误：
+{}</translation>
+    </string>
+    <string>
+      <source>... and {} other errors</source>
+      <translation>... 和 {} 个其他错误</translation>
+    </string>
   </context>
   <context name="Errors">
     <string>

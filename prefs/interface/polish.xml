@@ -325,6 +325,20 @@
       <source>Not found text records in following files:</source>
       <translation>Nie znaleziono tekstu w następujących plikach:</translation>
     </string>
+    <string>
+      <source>Translation completed with {} successes.
+
+Errors:
+{}</source>
+      <translation>Tłumaczenie zakończone z {} sukcesami.
+
+Błędy:
+{}</translation>
+    </string>
+    <string>
+      <source>... and {} other errors</source>
+      <translation>... i {} innych błędów</translation>
+    </string>
   </context>
   <context name="Errors">
     <string>
