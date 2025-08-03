@@ -492,18 +492,46 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             
             success_count = 0       
             error_messages = []
+            retry_delay = 1
+            max_retry_delay = 60
             
-            for item in items:
-                response = translator.translate(config.value('api', 'engine'), item.source)
-                if response.status_code == 200:
-                    undo.wrap(item)
-                    item.translate = response.text
-                    item.flag = FLAG_VALIDATED
-                    success_count += 1
-                else:
-                    error_messages.append(f"Error for '{item.source[:50]}...': {response.text}")
+            for i, item in enumerate(items):
+                retry_count = 0
+                max_retries = 3
+                translated = False
+                
+                while retry_count <= max_retries and not translated:
+                    response = translator.translate(config.value('api', 'engine'), item.source)
+                    
+                    if response.status_code == 200:
+                        undo.wrap(item)
+                        item.translate = response.text
+                        item.flag = FLAG_VALIDATED
+                        success_count += 1
+                        translated = True
+                        retry_delay = max(1, retry_delay * 0.8)
+                        
+                    elif response.status_code == 429:  # Too Many Requests
+                        retry_count += 1
+                        if retry_count <= max_retries:
+                            # Wait before retrying
+                            import time
+                            time.sleep(retry_delay)
+                            # Increase the delay for the next attempt
+                            retry_delay = min(max_retry_delay, retry_delay * 2)
+                        else:
+                            error_messages.append(f"Rate limit exceeded for '{item.source[:50]}...': {response.text}")
+                    else:
+                        error_messages.append(f"Error for '{item.source[:50]}...': {response.text}")
+                        break
 
                 progress_signals.increment.emit()
+                
+                # Adder a small delay between requests to avoid rate limiting
+                if i < len(items) - 1:
+                    import time
+                    base_delay = 0.1 if retry_delay <= 1 else 0.2
+                    time.sleep(base_delay)
             
             if success_count > 0:
                 self.colorbar.resfesh()
