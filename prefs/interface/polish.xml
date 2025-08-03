@@ -228,6 +228,14 @@
       <translation>Do XML (Deaderpool's STBL editor)...</translation>
     </string>
     <string>
+      <source>To JSON (Sims 4 Studio format)...</source>
+      <translation>Do JSON (format Sims 4 Studio)...</translation>
+    </string>
+    <string>
+      <source>To Binary (Sims 4 Studio format)...</source>
+      <translation>Do Binarnego (format Sims 4 Studio)...</translation>
+    </string>
+    <string>
       <source>Use original group</source>
       <translation>Użyj oryginalnej grupy</translation>
     </string>
@@ -542,6 +550,14 @@ Błędy:
     <string>
       <source>XML files</source>
       <translation>Pliki XML</translation>
+    </string>
+    <string>
+      <source>JSON files</source>
+      <translation>Pliki JSON</translation>
+    </string>
+    <string>
+      <source>Binary files</source>
+      <translation>Pliki Binarne</translation>
     </string>
     <string>
       <source>TXT files</source>

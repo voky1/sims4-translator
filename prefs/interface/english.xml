@@ -204,6 +204,14 @@
       <translation/>
     </string>
     <string>
+      <source>To JSON (Sims 4 Studio format)...</source>
+      <translation>To JSON (Sims 4 Studio format)...</translation>
+    </string>
+    <string>
+      <source>To Binary (Sims 4 Studio format)...</source>
+      <translation>To Binary (Sims 4 Studio format)...</translation>
+    </string>
+    <string>
       <source>Use original group</source>
       <translation/>
     </string>
@@ -538,6 +546,14 @@ Errors:
     </string>
     <string>
       <source>XML files</source>
+      <translation/>
+    </string>
+    <string>
+      <source>JSON files</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Binary files</source>
       <translation/>
     </string>
     <string>

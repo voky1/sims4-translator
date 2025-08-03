@@ -112,6 +112,12 @@ class Ui_MainWindow(object):
         self.action_export_stbl = QAction(MainWindow)
         self.action_export_stbl.setIcon(QIcon(':/images/export.png'))
 
+        self.action_export_json_s4s = QAction(MainWindow)
+        self.action_export_json_s4s.setIcon(QIcon(':/images/export_xml.png'))
+
+        self.action_export_binary_s4s = QAction(MainWindow)
+        self.action_export_binary_s4s.setIcon(QIcon(':/images/export.png'))
+
         self.action_group_original = QAction(MainWindow)
         self.action_group_original.setCheckable(True)
         self.action_group_highbit = QAction(MainWindow)
@@ -175,6 +181,8 @@ class Ui_MainWindow(object):
         self.menu_export_translation.addAction(self.action_export_stbl)
         self.menu_export_translation.addAction(self.action_export_xml)
         self.menu_export_translation.addAction(self.action_export_xml_dp)
+        self.menu_export_translation.addAction(self.action_export_json_s4s)
+        self.menu_export_translation.addAction(self.action_export_binary_s4s)
         self.menu_translation.addAction(self.action_replace)
         self.menu_translation.addSeparator()
         self.menu_translation.addAction(self.action_translate_from_dictionaries)

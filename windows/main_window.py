@@ -93,6 +93,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.action_export_stbl.triggered.connect(self.export_translation_stbl)
         self.action_export_xml.triggered.connect(self.export_translation_xml)
         self.action_export_xml_dp.triggered.connect(self.export_translation_xml_dp)
+        self.action_export_json_s4s.triggered.connect(self.export_translation_json_s4s)
+        self.action_export_binary_s4s.triggered.connect(self.export_translation_binary_s4s)
         self.action_save_dictionary.triggered.connect(self.save_dictionary)
         self.action_close.triggered.connect(self.close_package)
         self.action_exit.triggered.connect(sys.exit)
@@ -199,6 +201,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.action_finalize.setText(interface.text('MainWindow', 'Finalize package'))
         self.action_finalize_as.setText(interface.text('MainWindow', 'Finalize package as...'))
         self.action_export_xml_dp.setText(interface.text('MainWindow', 'To XML (Deaderpool\'s STBL editor)...'))
+        self.action_export_json_s4s.setText(interface.text('MainWindow', 'To JSON (Sims 4 Studio format)...'))
+        self.action_export_binary_s4s.setText(interface.text('MainWindow', 'To Binary (Sims 4 Studio format)...'))
         self.action_group_original.setText(interface.text('MainWindow', 'Use original group'))
         self.action_group_highbit.setText(interface.text('MainWindow', 'Use high-bit'))
         self.action_export_stbl.setText(interface.text('MainWindow', 'To STBL...'))
@@ -239,7 +243,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def dragEnterEvent(self, event):
         event.setAccepted(False)
         filename = event.mimeData().text().lower()
-        if filename.endswith('.package') or filename.endswith('.stbl') or filename.endswith('.xml'):
+        if filename.endswith('.package') or filename.endswith('.stbl') or filename.endswith('.xml') or filename.endswith('.json') or filename.endswith('.binary'):
             event.setAccepted(True)
 
     def dragMoveEvent(self, event):
@@ -447,6 +451,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
             if filename.lower().endswith('.xml'):
                 found = app_state.packages_storage.check_xml(filename)
+            elif filename.lower().endswith('.json'):
+                found = app_state.packages_storage.check_json(filename)
+            elif filename.lower().endswith('.binary'):
+                found = app_state.packages_storage.check_binary(filename)
             elif filename.lower().endswith('.stbl'):
                 found = app_state.packages_storage.check_stbl(filename)
             elif filename.lower().endswith('.package'):
@@ -467,6 +475,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def export_translation_xml_dp(self):
         self.export_dialog.xml_dp()
+
+    def export_translation_json_s4s(self):
+        self.export_dialog.json_s4s()
+
+    def export_translation_binary_s4s(self):
+        self.export_dialog.binary_s4s()
 
     def translate_from_dict(self):
         for item in app_state.packages_storage.items():

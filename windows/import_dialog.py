@@ -56,6 +56,10 @@ class ImportDialog(QDialog, Ui_ImportDialog):
 
         if self.filename.lower().endswith('.xml'):
             table = app_state.packages_storage.read_xml(self.filename)
+        elif self.filename.lower().endswith('.json'):
+            table = app_state.packages_storage.read_json(self.filename)
+        elif self.filename.lower().endswith('.binary'):
+            table = app_state.packages_storage.read_binary(self.filename)
         elif self.filename.lower().endswith('.stbl'):
             table = app_state.packages_storage.read_stbl(self.filename)
         elif self.filename.lower().endswith('.package'):

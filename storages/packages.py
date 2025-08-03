@@ -1,10 +1,13 @@
 # -*- coding: utf-8 -*-
 
+import json
 import os
 import operator
 import pathlib
 import gc
 import xml.etree.ElementTree as ElementTree
+from json import JSONDecodeError
+
 from PySide6.QtCore import QObject, Signal
 from PySide6.QtWidgets import QApplication
 from typing import Union, Dict, List
@@ -442,6 +445,40 @@ class PackagesStorage:
         return False
 
     @staticmethod
+    def check_json(path):
+        if not os.path.exists(path):
+            return False
+
+        with open(path, 'r', encoding='utf-8') as fp:
+            try:
+                content = json.load(fp)
+            except JSONDecodeError:
+                return False
+
+            entries = content.get('Entries', None)
+
+            if entries:
+                return True
+
+        return False
+
+    @staticmethod
+    def check_binary(path):
+        if not os.path.exists(path):
+            return False
+
+        try:
+            with open(path, 'rb') as fp:
+                # Check if it's a valid STBL file
+                header = fp.read(4)
+                if header == b'STBL':
+                    return True
+        except (IOError, OSError):
+            return False
+
+        return False
+
+    @staticmethod
     def read_package(path):
         if not os.path.exists(path):
             return {}
@@ -509,5 +546,51 @@ class PackagesStorage:
 
         return table
 
+    @staticmethod
+    def read_json(path):
+        if not os.path.exists(path):
+            return {}
+
+        try:
+            with open(path, 'r', encoding='utf-8') as fp:
+                content = json.load(fp)
+        except JSONDecodeError:
+            return {}
+
+        entries = content.get('Entries', None)
+
+        if not entries:
+            return {}
+
+        table = {}
+
+        for entry in entries:
+            QApplication.processEvents()
+            sid = int(entry['Key'], 16)
+            source = text_to_stbl(entry['Value'])
+            table[sid] = source
+
+        return table
+
+    @staticmethod
+    def read_binary(path):
+        if not os.path.exists(path):
+            return {}
+
+        try:
+            with open(path, 'rb') as fp:
+                # Read STBL binary file
+                from packer.resource import ResourceID
+                from packer.stbl import Stbl
+                
+                # Create a dummy ResourceID for the STBL
+                rid = ResourceID(group=0x80000000, instance=0x00000000, type=0x220557DA)
+                stbl = Stbl(rid, fp.read())
+                
+                return stbl.strings
+        except (IOError, OSError, Exception):
+            return {}
+
+        return {}
 
 packages_storage = PackagesStorage()

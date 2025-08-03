@@ -248,6 +248,14 @@
       <translation>至XML(Deaderpool的STBL editor)...</translation>
     </string>
     <string>
+      <source>To JSON (Sims 4 Studio format)...</source>
+      <translation>至JSON(Sims 4 Studio格式)...</translation>
+    </string>
+    <string>
+      <source>To Binary (Sims 4 Studio format)...</source>
+      <translation>至二进制(Sims 4 Studio格式)...</translation>
+    </string>
+    <string>
       <source>Use original group</source>
       <translation>使用原始组别</translation>
     </string>
@@ -522,6 +530,14 @@ Errors:
     <string>
       <source>XML files</source>
       <translation>XML文件</translation>
+    </string>
+    <string>
+      <source>JSON files</source>
+      <translation>JSON文件</translation>
+    </string>
+    <string>
+      <source>Binary files</source>
+      <translation>二进制文件</translation>
     </string>
     <string>
       <source>Opening file {}...</source>
