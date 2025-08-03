@@ -1,0 +1,737 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ts language="uk_UA" name="Українська" version="1.3.1" authors="Roman Kozin">
+  <context name="EditWindow">
+    <string>
+      <source>Search and Edit</source>
+      <translation>Пошук та Редагування</translation>
+    </string>
+    <string>
+      <source>OK (Ctrl+Enter)</source>
+    </string>
+    <string>
+      <source>Original text</source>
+      <translation>Оригінальний текст</translation>
+    </string>
+    <string>
+      <source>Different original</source>
+      <translation>Альтернативний оригінал</translation>
+    </string>
+    <string>
+      <source>Current translation</source>
+      <translation>Поточний переклад</translation>
+    </string>
+    <string>
+      <source>Different translation</source>
+      <translation>Альтернативний переклад</translation>
+    </string>
+    <string>
+      <source>Cancel</source>
+      <translation>Скасувати</translation>
+    </string>
+    <string>
+      <source>Translate</source>
+      <translation>Перекласти</translation>
+    </string>
+    <string>
+      <source>Use this translation</source>
+      <translation>Використати цей переклад</translation>
+    </string>
+    <string>
+      <source>Loading...</source>
+      <translation>Завантаження...</translation>
+    </string>
+    <string>
+      <source>Comment...</source>
+      <translation>Коментувати...</translation>
+    </string>
+  </context>
+  <context name="ExportDialog">
+    <string>
+      <source>Export translate</source>
+      <translation>Експортувати переклад</translation>
+    </string>
+    <string>
+      <source>Export</source>
+      <translation>Експортувати</translation>
+    </string>
+    <string>
+      <source>Everything</source>
+      <translation>Все</translation>
+    </string>
+    <string>
+      <source>Everything but untranslated strings</source>
+      <translation>Все, окрім неперекладених стрічок</translation>
+    </string>
+    <string>
+      <source>Only selected instance</source>
+      <translation>Лише вибрані</translation>
+    </string>
+    <string>
+      <source>Each instance as a separate file</source>
+      <translation>Кожна сутність у різні файли</translation>
+    </string>
+    <string>
+      <source>Each package as a separate file</source>
+      <translation>Кожен пакет у різні файли</translation>
+    </string>
+    <string>
+      <source>Exported records</source>
+      <translation>Експортовані записи</translation>
+    </string>
+    <string>
+      <source>Cancel</source>
+      <translation>Скасувати</translation>
+    </string>
+  </context>
+  <context name="MainTableView">
+    <string>
+      <source>Original</source>
+      <translation>Оригінал</translation>
+    </string>
+    <string>
+      <source>Translated</source>
+      <translation>Переклад</translation>
+    </string>
+    <string>
+      <source>LD</source>
+      <translation>LD</translation>
+    </string>
+    <string>
+      <source>Instance</source>
+      <translation>Сутність</translation>
+    </string>
+    <string>
+      <source>Group</source>
+      <translation>Група</translation>
+    </string>
+    <string>
+      <source>Comment</source>
+      <translation>Коментар</translation>
+    </string>
+  </context>
+  <context name="MainWindow">
+    <string>
+      <source>File</source>
+      <translation>Файли</translation>
+    </string>
+    <string>
+      <source>Export translation</source>
+      <translation>Експортувати переклади</translation>
+    </string>
+    <string>
+      <source>Translation</source>
+      <translation>Переклади</translation>
+    </string>
+    <string>
+      <source>View</source>
+      <translation>Вигляд</translation>
+    </string>
+    <string>
+      <source>Options</source>
+      <translation>Опції</translation>
+    </string>
+    <string>
+      <source>Group</source>
+      <translation>Група</translation>
+    </string>
+    <string>
+      <source>Help</source>
+      <translation>Допомога</translation>
+    </string>
+    <string>
+      <source>Save as...</source>
+      <translation>Зберегти як...</translation>
+    </string>
+    <string>
+      <source>Close</source>
+      <translation>Закрити</translation>
+    </string>
+    <string>
+      <source>Save</source>
+      <translation>Зберегти</translation>
+    </string>
+    <string>
+      <source>Save dictionary</source>
+      <translation>Збрегти словник</translation>
+    </string>
+    <string>
+      <source>Search and replace...</source>
+      <translation>Пошук та Заміна...</translation>
+    </string>
+    <string>
+      <source>Validate all translations</source>
+      <translation>Валідація усіх перекладів</translation>
+    </string>
+    <string>
+      <source>Reset all translations</source>
+      <translation>Скинути всі переклади</translation>
+    </string>
+    <string>
+      <source>Exit</source>
+      <translation>Вихід</translation>
+    </string>
+    <string>
+      <source>Undo</source>
+      <translation>Відмінити</translation>
+    </string>
+    <string>
+      <source>About Qt...</source>
+      <translation>Про Qt</translation>
+    </string>
+    <string>
+      <source>Options...</source>
+      <translation>Опції</translation>
+    </string>
+    <string>
+      <source>To XML...</source>
+      <translation>В XML</translation>
+    </string>
+    <string>
+      <source>To JSON (Sims 4 Studio format)...</source>
+      <translation>В JSON (формат Sims 4 Studio)...</translation>
+    </string>
+    <string>
+      <source>To Binary (Sims 4 Studio format)...</source>
+      <translation>В бінарний (формат Sims 4 Studio)...</translation>
+    </string>
+    <string>
+      <source>Translate from dictionaries</source>
+      <translation>Перекласти зі словників</translation>
+    </string>
+    <string>
+      <source>Finalize package</source>
+      <translation>Фіналізувати пакет</translation>
+    </string>
+    <string>
+      <source>Finalize package as...</source>
+      <translation>Фіналізувати пакет як</translation>
+    </string>
+    <string>
+      <source>To XML (Deaderpool's STBL editor)...</source>
+      <translation>В XML (Редактор Deaderpool's STBL)...</translation>
+    </string>
+    <string>
+      <source>Use original group</source>
+      <translation>Використати оригінальну групу</translation>
+    </string>
+    <string>
+      <source>Use high-bit</source>
+      <translation>Використати вищий біт</translation>
+    </string>
+    <string>
+      <source>To STBL...</source>
+      <translation>В STBL</translation>
+    </string>
+    <string>
+      <source>Use low-bit</source>
+      <translation>Використати низький біт</translation>
+    </string>
+    <string>
+      <source>Edit String</source>
+      <translation>Редагувати стрічку</translation>
+    </string>
+    <string>
+      <source>Validate as [translated]</source>
+      <translation>Валідувати як [перекладені]</translation>
+    </string>
+    <string>
+      <source>Validate as [work in progress]</source>
+      <translation>Валідувати як [в роботі]</translation>
+    </string>
+    <string>
+      <source>Cancel translation</source>
+      <translation>Скасувати переклад</translation>
+    </string>
+    <string>
+      <source>Copy</source>
+      <translation>Копіювати</translation>
+    </string>
+    <string>
+      <source>Paste</source>
+      <translation>Вставити</translation>
+    </string>
+    <string>
+      <source>Load file...</source>
+      <translation>Завантажити файл</translation>
+    </string>
+    <string>
+      <source>Add file...</source>
+      <translation>Додати файл</translation>
+    </string>
+    <string>
+      <source>Import translation...</source>
+      <translation>Імпортувати переклад</translation>
+    </string>
+    <string>
+      <source>Remove record</source>
+      <translation>Видалити запис</translation>
+    </string>
+    <string>
+      <source>Save bundle...</source>
+      <translation>Зберегти збірку</translation>
+    </string>
+    <string>
+      <source>Load bundle...</source>
+      <translation>Завантажити збірку</translation>
+    </string>
+    <string>
+      <source>Numeration</source>
+      <translation>Нумерація</translation>
+    </string>
+    <string>
+      <source>Standart</source>
+      <translation>Стандартна</translation>
+    </string>
+    <string>
+      <source>From the source file</source>
+      <translation>З файлу джерела</translation>
+    </string>
+    <string>
+      <source>XML format</source>
+      <translation>Формат XML</translation>
+    </string>
+    <string>
+      <source>XML format (Deaderpool's STBL editor)</source>
+      <translation>Формат XML (Редактор Deaderpool's STBL)</translation>
+    </string>
+    <string>
+      <source>Batch translate...</source>
+      <translation>Груповий переклад</translation>
+    </string>
+    <string>
+      <source>Translate</source>
+      <translation>Перекласти</translation>
+    </string>
+    <string>
+      <source>Color visualization</source>
+      <translation>Кольорова візуалізація</translation>
+    </string>
+  </context>
+  <context name="Messages">
+    <string>
+      <source>Save dictionary for modified packages?</source>
+      <translation>Зберегти словник для модифікованих збірок?</translation>
+    </string>
+    <string>
+      <source>Are you sure you want to delete the selected records?</source>
+      <translation>Ви впевнені що бажаєте видалити вибрані записи?</translation>
+    </string>
+    <string>
+      <source>Not found text records in this file!</source>
+      <translation>Текстових даних не було знайдено в цьому файлі!</translation>
+    </string>
+    <string>
+      <source>Not found text records in following files:</source>
+      <translation>У наступних файлах не було знайдено текстових даних:</translation>
+    </string>
+    <string>
+      <source>Translation completed with {} successes.
+
+Errors:
+{}</source>
+      <translation>Переклад завершено з {} успіхами.
+
+Помилки:
+{}</translation>
+    </string>
+    <string>
+      <source>... and {} other errors</source>
+      <translation>... та {} інших помилок</translation>
+    </string>
+  </context>
+  <context name="OptionsDialog">
+    <string>
+      <source>NOT FOUND</source>
+      <translation>НЕ ЗНАЙДЕНО</translation>
+    </string>
+    <string>
+      <source>{} not exist</source>
+      <translation>{} не існує</translation>
+    </string>
+    <string>
+      <source>FOUND</source>
+      <translation>ЗНАЙДЕНО</translation>
+    </string>
+    <string>
+      <source>BASE GAME</source>
+      <translation>БАЗОВА ГРА</translation>
+    </string>
+    <string>
+      <source>Expansion packs</source>
+      <translation>Набори розширення</translation>
+    </string>
+    <string>
+      <source>Game packs</source>
+      <translation>Ігрові набори</translation>
+    </string>
+    <string>
+      <source>Stuff packs</source>
+      <translation>Набори речей</translation>
+    </string>
+    <string>
+      <source>Options and dictionaries</source>
+      <translation>Опції та словники</translation>
+    </string>
+    <string>
+      <source>Build dictionaries</source>
+      <translation>Створити словники</translation>
+    </string>
+    <string>
+      <source>Languages</source>
+      <translation>Список мов</translation>
+    </string>
+    <string>
+      <source>Source</source>
+      <translation>Мова гри</translation>
+    </string>
+    <string>
+      <source>Destination</source>
+      <translation>Цільова мова</translation>
+    </string>
+    <string>
+      <source>Game path</source>
+      <translation>Шлях до гри</translation>
+    </string>
+    <string>
+      <source>...</source>
+      <translation>...</translation>
+    </string>
+    <string>
+      <source>Create backup package before finalization</source>
+      <translation>Створити резервну копію перед фіналізацією</translation>
+    </string>
+    <string>
+      <source>Saving translation without conflicts (experemental)</source>
+      <translation>Зберігати переклади без конфліктів (експерементальний режим)</translation>
+    </string>
+    <string>
+      <source>Interface</source>
+      <translation>Інтерфейс</translation>
+    </string>
+    <string>
+      <source>Do not use automatic translation from other dictionaries</source>
+      <translation>Не використовувати автоматичні переклади з інших словників</translation>
+    </string>
+    <string>
+      <source>General</source>
+      <translation>Основні</translation>
+    </string>
+    <string>
+      <source>Dictionaries</source>
+      <translation>Словники</translation>
+    </string>
+    <string>
+      <source>DeepL API key</source>
+      <translation>DeepL АРІ ключ</translation>
+    </string>
+    <string>
+      <source>Language</source>
+      <translation>Мова</translation>
+    </string>
+    <string>
+      <source>Theme</source>
+      <translation>Тема</translation>
+    </string>
+    <string>
+      <source>Light</source>
+      <translation>Світла</translation>
+    </string>
+    <string>
+      <source>Dark</source>
+      <translation>Темна</translation>
+    </string>
+    <string>
+      <source>The application needs to be restarted</source>
+      <translation>Потрібен перезапуск програми</translation>
+    </string>
+    <string>
+      <source>The translation version differs from the application version, so the interface may not be fully translated</source>
+      <translation>Версія перекладу відрізняється від версії програми, Тому інтерфейс може бути не до кінця перекладеним</translation>
+    </string>
+    <string>
+      <source>by {}</source>
+    </string>
+  </context>
+  <context name="Errors">
+    <string>
+      <source>Language code not found!</source>
+      <translation>Код мови не знайдено!</translation>
+    </string>
+    <string>
+      <source>Translation failed with error code: {}</source>
+      <translation>Транзакція завершилась з наступним кодом помилки: {}</translation>
+    </string>
+    <string>
+      <source>Invalid API key.</source>
+      <translation>Некоректний АРІ ключ.</translation>
+    </string>
+    <string>
+      <source>Your quota has exceeded!</source>
+      <translation>Перевищена квота!</translation>
+    </string>
+    <string>
+      <source>There was a temporary problem with the DeepL Service.</source>
+      <translation>DeepL сервіс тимчасово не працює або виникли тимчасові труднощі. Спробуйте знову..</translation>
+    </string>
+  </context>
+  <context name="ReplaceDialog">
+    <string>
+      <source>Search and replace</source>
+      <translation>Знайти та Замінити</translation>
+    </string>
+    <string>
+      <source>Case sensitive</source>
+      <translation>Чутливість до регістру</translation>
+    </string>
+    <string>
+      <source>Search</source>
+      <translation>Пошук</translation>
+    </string>
+    <string>
+      <source>Replace</source>
+      <translation>Замінити</translation>
+    </string>
+    <string>
+      <source>Search and replace in:</source>
+      <translation>Знайти та замінити у:</translation>
+    </string>
+    <string>
+      <source>All strings</source>
+      <translation>Всі стрічки</translation>
+    </string>
+    <string>
+      <source>Not validated strings</source>
+      <translation>Немає валідних стрічок</translation>
+    </string>
+    <string>
+      <source>Cancel</source>
+      <translation>Скасувати</translation>
+    </string>
+    <string>
+      <source>OK</source>
+      <translation>ОК</translation>
+    </string>
+  </context>
+  <context name="ToolBar">
+    <string>
+      <source>-- All files --</source>
+      <translation>-- Всі файли --</translation>
+    </string>
+    <string>
+      <source>Search in translation</source>
+      <translation>Пошук в перекладах</translation>
+    </string>
+    <string>
+      <source>Search in ID</source>
+      <translation>Пошук по ID</translation>
+    </string>
+    <string>
+      <source>Search in original</source>
+      <translation>Пошук в оригінальному тексті</translation>
+    </string>
+    <string>
+      <source>-- All instances --</source>
+      <translation>-- Всі сутності --</translation>
+    </string>
+    <string>
+      <source>Translated</source>
+      <translation>Перекладені</translation>
+    </string>
+    <string>
+      <source>Not translated</source>
+      <translation>Не перекладені</translation>
+    </string>
+    <string>
+      <source>Validated translation</source>
+      <translation>Провалідовані переклади</translation>
+    </string>
+    <string>
+      <source>Partial translation</source>
+      <translation>Часткові переклади</translation>
+    </string>
+    <string>
+      <source>Different strings</source>
+      <translation>Різні стрічки</translation>
+    </string>
+    <string>
+      <source>Search...</source>
+      <translation>Пошук...</translation>
+    </string>
+  </context>
+  <context name="ImportDialog">
+    <string>
+      <source>Import translate</source>
+      <translation>Імпорт перекладів</translation>
+    </string>
+    <string>
+      <source>Overwrite</source>
+      <translation>Перезаписати</translation>
+    </string>
+    <string>
+      <source>Everything</source>
+      <translation>Все</translation>
+    </string>
+    <string>
+      <source>Everything but already validated strings</source>
+      <translation>Все окрім провалідованих стрічок</translation>
+    </string>
+    <string>
+      <source>Everything but already validated and partial strings</source>
+      <translation>Все окрім провалідованих та часткових стрічок</translation>
+    </string>
+    <string>
+      <source>Partial strings</source>
+      <translation>Часткові стрічки</translation>
+    </string>
+    <string>
+      <source>Selection only</source>
+      <translation>Тільки обрані</translation>
+    </string>
+    <string>
+      <source>Replace existing translation</source>
+      <translation>Замінити існуючі переклади</translation>
+    </string>
+    <string>
+      <source>Import</source>
+      <translation>Імпорт</translation>
+    </string>
+    <string>
+      <source>Cancel</source>
+      <translation>Скасувати</translation>
+    </string>
+  </context>
+  <context name="TranslateDialog">
+    <string>
+      <source>Translate</source>
+      <translation>Перекласти</translation>
+    </string>
+    <string>
+      <source>Cancel</source>
+      <translation>Скасувати</translation>
+    </string>
+    <string>
+      <source>Batch translate</source>
+      <translation>Batch translate</translation>
+    </string>
+    <string>
+      <source>Log</source>
+      <translation>Лог</translation>
+    </string>
+    <string>
+      <source>Line-by-line translation</source>
+      <translation>Пострічковий переклад</translation>
+    </string>
+    <string>
+      <source>Multiline translation</source>
+      <translation>Багатострічковий переклад</translation>
+    </string>
+    <string>
+      <source>Slow but more accurate translation.</source>
+      <translation>Повільний, але точний переклад.</translation>
+    </string>
+    <string>
+      <source>A faster, but perhaps less accurate translation. It is recommended to use it together with DeepL, because when using Google, some strings may not be translated.</source>
+      <translation>Швидший, але можливо менш точний переклад. Рекомендується використовувати разом з DeepL, тому що під час використання Google, деякі стрічки можуть бути не перекладені коректно або взагалі.</translation>
+    </string>
+    <string>
+      <source>Some lines could not be translated.</source>
+      <translation>Деякі стрічки неможливо переклоасти.</translation>
+    </string>
+    <string>
+      <source>Stop translate</source>
+      <translation>Зупинити переклад</translation>
+    </string>
+  </context>
+  <context name="TextEditor">
+    <string>
+      <source>Undo</source>
+      <translation>Крок назад</translation>
+    </string>
+    <string>
+      <source>Redo</source>
+      <translation>Крок вперед</translation>
+    </string>
+    <string>
+      <source>Cut</source>
+      <translation>Вирізати</translation>
+    </string>
+    <string>
+      <source>Copy</source>
+      <translation>Копіювати</translation>
+    </string>
+    <string>
+      <source>Paste</source>
+      <translation>Вставити</translation>
+    </string>
+    <string>
+      <source>Select All</source>
+      <translation>Обрати все</translation>
+    </string>
+  </context>
+  <context name="System">
+    <string>
+      <source>Saving package {}...</source>
+      <translation>Збереження пакету {}...</translation>
+    </string>
+    <string>
+      <source>Loading dictionaries...</source>
+      <translation>Завантаження словників...</translation>
+    </string>
+    <string>
+      <source>Build dictionaries...</source>
+      <translation>Створення словників...</translation>
+    </string>
+    <string>
+      <source>Exporting translate...</source>
+      <translation>Експорт перекладу...</translation>
+    </string>
+    <string>
+      <source>Importing translate...</source>
+      <translation>Імпорт перекладу...</translation>
+    </string>
+    <string>
+      <source>All files</source>
+      <translation>Всі файли</translation>
+    </string>
+    <string>
+      <source>Packages</source>
+      <translation>Пакети</translation>
+    </string>
+    <string>
+      <source>STBL files</source>
+      <translation>STBL файли</translation>
+    </string>
+    <string>
+      <source>XML files</source>
+      <translation>XML файли</translation>
+    </string>
+    <string>
+      <source>JSON files</source>
+      <translation>JSON файли</translation>
+    </string>
+    <string>
+      <source>Binary files</source>
+      <translation>Бінарні файли</translation>
+    </string>
+    <string>
+      <source>Opening file {}...</source>
+      <translation>Відкриття файлу {}...</translation>
+    </string>
+    <string>
+      <source>Opening files...</source>
+      <translation>Відкриття файлів...</translation>
+    </string>
+    <string>
+      <source>Opening file...</source>
+      <translation>Відкриття файлу...</translation>
+    </string>
+    <string>
+      <source>Translating...</source>
+      <translation>Переклад...</translation>
+    </string>
+    <string>
+      <source>Stopping translate, waiting for the finish of the threads...</source>
+      <translation>Зупинка перекладу, очікування завершення потоків...</translation>
+    </string>
+  </context>
+</ts>

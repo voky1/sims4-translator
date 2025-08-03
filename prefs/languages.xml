@@ -9,6 +9,7 @@
   <language locale="FIN_FI" code="0x06" google-code="fi" deepl-code="FI"/>
   <language locale="FRE_FR" code="0x07" google-code="fr" deepl-code="FR"/>
   <language locale="GER_DE" code="0x08" google-code="de" deepl-code="DE"/>
+  <language locale="IND_ID" code="0x16" google-code="id" deepl-code="ID"/>
   <language locale="ITA_IT" code="0x0B" google-code="it" deepl-code="IT"/>
   <language locale="JPN_JP" code="0x0C" google-code="ja" deepl-code="JA"/>
   <language locale="KOR_KR" code="0x0D" google-code="ko" deepl-code="KO"/>
@@ -19,5 +20,6 @@
   <language locale="RUS_RU" code="0x12" google-code="ru" deepl-code="RU"/>
   <language locale="SPA_ES" code="0x13" google-code="es" deepl-code="ES"/>
   <language locale="SWE_SE" code="0x15" google-code="sv" deepl-code="SV"/>
-  <language locale="THA_TH" code="0x16" google-code="th" deepl-code=""/>
+  <language locale="UKR_UA" code="0x17" google-code="sv" deepl-code="UA"/>
+  <language locale="THA_TH" code="0x16" google-code="th" deepl-code="TH"/>
 </lng>

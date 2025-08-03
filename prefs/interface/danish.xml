@@ -1,815 +1,739 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ts language="zh_TW" name="中文 (Chinese)" version="1.1.2" authors="Tina.">
+<ts language="da_DK" name="Dansk" version="1.3.1" authors="Marianne Topping">
   <context name="EditWindow">
     <string>
       <source>Search and Edit</source>
-      <translation>查找并编辑</translation>
+      <translation>Søg og erstat</translation>
     </string>
     <string>
       <source>OK (Ctrl+Enter)</source>
-      <translation>确认 (Ctrl+Enter)</translation>
+      <translation/>
     </string>
     <string>
       <source>Original text</source>
-      <translation>原文</translation>
+      <translation>Original tekst</translation>
     </string>
     <string>
       <source>Different original</source>
-      <translation>其他原文</translation>
+      <translation>Forskel i forhold til originalen</translation>
     </string>
     <string>
       <source>Current translation</source>
-      <translation>当前翻译</translation>
+      <translation>Nuværende oversættelse</translation>
     </string>
     <string>
       <source>Different translation</source>
-      <translation>其他翻译</translation>
+      <translation>Anden oversættelse</translation>
     </string>
     <string>
       <source>Cancel</source>
-      <translation>取消</translation>
+      <translation>Fortryd</translation>
     </string>
     <string>
       <source>Translate</source>
-      <translation>翻译</translation>
+      <translation>Oversæt</translation>
     </string>
     <string>
       <source>Use this translation</source>
-      <translation>使用当前翻译</translation>
+      <translation>Brug denne oversættelse</translation>
     </string>
     <string>
       <source>Loading...</source>
-      <translation>加载中...</translation>
+      <translation>Henter...</translation>
     </string>
     <string>
       <source>Comment...</source>
-      <translation>评论...</translation>
+      <translation>Kommentar...</translation>
     </string>
   </context>
   <context name="ExportDialog">
     <string>
       <source>Export translate</source>
-      <translation>导出译本</translation>
+      <translation>Eksporter oversættelse</translation>
     </string>
     <string>
       <source>Export</source>
-      <translation>导出</translation>
+      <translation>Eksport</translation>
     </string>
     <string>
       <source>Everything</source>
-      <translation>全部</translation>
+      <translation>Alt</translation>
     </string>
     <string>
       <source>Everything but untranslated strings</source>
-      <translation>除未翻译词条外全部</translation>
+      <translation>Alt undtagen uoversatte strenge</translation>
     </string>
     <string>
       <source>Only selected instance</source>
-      <translation>选中项目</translation>
+      <translation>Kun udvalgt forekomst</translation>
     </string>
     <string>
       <source>Each instance as a separate file</source>
-      <translation>分别保存所有实例</translation>
+      <translation>Hver forekomst som en seperat fil</translation>
     </string>
     <string>
       <source>Each package as a separate file</source>
-      <translation>分别保存所有包</translation>
+      <translation>Hver pakke som en seperat fil</translation>
     </string>
     <string>
       <source>Exported records</source>
-      <translation>导出记录</translation>
+      <translation>Eksporterede poster</translation>
     </string>
     <string>
       <source>Cancel</source>
-      <translation>取消</translation>
-    </string>
-    <string>
-      <source>Exported records</source>
-      <translation>导出记录</translation>
-    </string>
-  </context>
-  <context name="GenerateDialog">
-    <string>
-      <source>Generate hash</source>
-      <translation>生成hash</translation>
-    </string>
-    <string>
-      <source>Enter a string to generate FNV hash</source>
-      <translation>进入词条以生成FNV hash</translation>
-    </string>
-    <string>
-      <source>Cancel</source>
-      <translation>取消</translation>
-    </string>
-    <string>
-      <source>Generate</source>
-      <translation>生成</translation>
-    </string>
-  </context>
-  <context name="InsertDialog">
-    <string>
-      <source>Insert new record</source>
-      <translation>插入新记录</translation>
-    </string>
-    <string>
-      <source>Cancel</source>
-      <translation>取消</translation>
-    </string>
-    <string>
-      <source>Insert</source>
-      <translation>插入</translation>
-    </string>
-    <string>
-      <source>Original text</source>
-      <translation>原文</translation>
-    </string>
-    <string>
-      <source>Or enter new instance</source>
-      <translation>或进入进实例</translation>
-    </string>
-    <string>
-      <source>Generate</source>
-      <translation>生成</translation>
-    </string>
-    <string>
-      <source>File</source>
-      <translation>文件</translation>
-    </string>
-    <string>
-      <source>ID</source>
-      <translation>ID</translation>
-    </string>
-    <string>
-      <source>Instance</source>
-      <translation>实例</translation>
+      <translation>Fortryd</translation>
     </string>
   </context>
   <context name="MainTableView">
     <string>
       <source>Original</source>
-      <translation>原文</translation>
+      <translation/>
     </string>
     <string>
       <source>Translated</source>
-      <translation>译文</translation>
+      <translation>Oversat</translation>
     </string>
     <string>
       <source>LD</source>
-      <translation>ID</translation>
+      <translation/>
     </string>
     <string>
       <source>Instance</source>
-      <translation>实例</translation>
+      <translation>Forekomst</translation>
     </string>
     <string>
       <source>Group</source>
-      <translation>组</translation>
+      <translation>Gruppe</translation>
     </string>
     <string>
       <source>Comment</source>
-      <translation>评论</translation>
+      <translation>Kommentar</translation>
     </string>
   </context>
   <context name="MainWindow">
     <string>
       <source>File</source>
-      <translation>文件</translation>
+      <translation>Fil</translation>
     </string>
     <string>
       <source>Export translation</source>
-      <translation>导出译文</translation>
+      <translation>Eksporter oversættelse</translation>
     </string>
     <string>
       <source>Translation</source>
-      <translation>翻译</translation>
+      <translation>Oversættelse</translation>
     </string>
     <string>
       <source>View</source>
-      <translation>查看</translation>
+      <translation>Se</translation>
     </string>
     <string>
       <source>Options</source>
-      <translation>设置</translation>
+      <translation>Indstillinger</translation>
     </string>
     <string>
       <source>Group</source>
-      <translation>Group</translation>
+      <translation>Grupper</translation>
     </string>
     <string>
       <source>Help</source>
-      <translation>帮助</translation>
+      <translation>Hjælp</translation>
     </string>
     <string>
       <source>Save as...</source>
-      <translation>保存为...</translation>
+      <translation>Gem som...</translation>
     </string>
     <string>
       <source>Close</source>
-      <translation>关闭</translation>
+      <translation>Luk</translation>
     </string>
     <string>
       <source>Save</source>
-      <translation>保存</translation>
+      <translation>Gem</translation>
     </string>
     <string>
       <source>Save dictionary</source>
-      <translation>保存词库</translation>
+      <translation>Gem ordbog</translation>
     </string>
     <string>
       <source>Search and replace...</source>
-      <translation>查找与替换</translation>
+      <translation>Søg og erstat</translation>
     </string>
     <string>
       <source>Validate all translations</source>
-      <translation>确认所有翻译</translation>
+      <translation>Valider alle oversættelser</translation>
     </string>
     <string>
       <source>Reset all translations</source>
-      <translation>重置所有翻译</translation>
+      <translation>Nulstil alle oversættelser</translation>
     </string>
     <string>
       <source>Exit</source>
-      <translation>退出</translation>
+      <translation/>
     </string>
     <string>
       <source>Undo</source>
-      <translation>撤销</translation>
+      <translation>Fortryd</translation>
     </string>
     <string>
       <source>About Qt...</source>
-      <translation>关于Qt</translation>
+      <translation>Om Qt...</translation>
     </string>
     <string>
       <source>Options...</source>
-      <translation>设置...</translation>
+      <translation>Indstillinger</translation>
     </string>
     <string>
       <source>To XML...</source>
-      <translation>至XML...</translation>
-    </string>
-    <string>
-      <source>Translate from dictionaries</source>
-      <translation>根据词库翻译</translation>
-    </string>
-    <string>
-      <source>Finalize package</source>
-      <translation>确认保存package</translation>
-    </string>
-    <string>
-      <source>Finalize package as...</source>
-      <translation>确认保存package至...</translation>
-    </string>
-    <string>
-      <source>To XML (Deaderpool's STBL editor)...</source>
-      <translation>至XML(Deaderpool的STBL editor)...</translation>
+      <translation>Til XML</translation>
     </string>
     <string>
       <source>To JSON (Sims 4 Studio format)...</source>
-      <translation>至JSON(Sims 4 Studio格式)...</translation>
+      <translation>Til JSON (Sims 4 Studio format)...</translation>
     </string>
     <string>
       <source>To Binary (Sims 4 Studio format)...</source>
-      <translation>至二进制(Sims 4 Studio格式)...</translation>
+      <translation>Til binær (Sims 4 Studio format)...</translation>
+    </string>
+    <string>
+      <source>Translate from dictionaries</source>
+      <translation>Oversæt fra ordbøger</translation>
+    </string>
+    <string>
+      <source>Finalize package</source>
+      <translation>Færdiggør pakken</translation>
+    </string>
+    <string>
+      <source>Finalize package as...</source>
+      <translation>Færdiggør pakken som...</translation>
+    </string>
+    <string>
+      <source>To XML (Deaderpool's STBL editor)...</source>
+      <translation>Til XML (Deaderpool's STBL editor)...</translation>
     </string>
     <string>
       <source>Use original group</source>
-      <translation>使用原始组别</translation>
+      <translation>Brug original gruppe</translation>
     </string>
     <string>
       <source>Use high-bit</source>
-      <translation>使用高比特率</translation>
+      <translation>Brug high-bit</translation>
     </string>
     <string>
       <source>To STBL...</source>
-      <translation>至STBL...</translation>
+      <translation>Til STBL...</translation>
     </string>
     <string>
       <source>Use low-bit</source>
-      <translation>使用低比特率</translation>
+      <translation>Brug low-bit</translation>
     </string>
     <string>
       <source>Edit String</source>
-      <translation>编辑词条</translation>
+      <translation>Rediger streng</translation>
     </string>
     <string>
       <source>Validate as [translated]</source>
-      <translation>标记为[已翻译]</translation>
+      <translation>Valider som [translated]</translation>
     </string>
     <string>
       <source>Validate as [work in progress]</source>
-      <translation>标记为[翻译中]</translation>
+      <translation>Valider som [work in progress]</translation>
     </string>
     <string>
       <source>Cancel translation</source>
-      <translation>取消译本</translation>
-    </string>
-    <string>
-      <source>Insert new record</source>
-      <translation>插入新记录</translation>
+      <translation>Fortryd oversættelse</translation>
     </string>
     <string>
       <source>Copy</source>
-      <translation>复制</translation>
+      <translation>Kopier</translation>
     </string>
     <string>
       <source>Paste</source>
-      <translation>粘贴</translation>
+      <translation>Indsæt</translation>
     </string>
     <string>
       <source>Load file...</source>
-      <translation>载入文件...</translation>
+      <translation>Hent fil</translation>
     </string>
     <string>
       <source>Add file...</source>
-      <translation>添加文件...</translation>
+      <translation>Tilføj fil</translation>
     </string>
     <string>
       <source>Import translation...</source>
-      <translation>导入翻译...</translation>
+      <translation>Importer oversættelse</translation>
     </string>
     <string>
       <source>Remove record</source>
-      <translation>移除记录</translation>
+      <translation>Fjern post</translation>
     </string>
     <string>
       <source>Save bundle...</source>
-      <translation>批量保存...</translation>
+      <translation>Gem samlet pakke</translation>
     </string>
     <string>
       <source>Load bundle...</source>
-      <translation>批量导入...</translation>
+      <translation>Hent samlet pakke...</translation>
     </string>
     <string>
       <source>Numeration</source>
-      <translation>备用编号方式</translation>
+      <translation>Nummerering</translation>
     </string>
     <string>
       <source>Standart</source>
-      <translation/>
+      <translation>Standard</translation>
     </string>
     <string>
       <source>From the source file</source>
-      <translation/>
+      <translation>Fra kilde filen</translation>
     </string>
     <string>
       <source>XML format</source>
-      <translation/>
+      <translation>XML format</translation>
     </string>
     <string>
       <source>XML format (Deaderpool's STBL editor)</source>
-      <translation>XML格式 (Deaderpool's STBL编辑器)</translation>
+      <translation>XML format (Deaderpool's STBL editor)</translation>
     </string>
     <string>
       <source>Batch translate...</source>
-      <translation>批量翻译...</translation>
+      <translation>Batch-oversættelse</translation>
     </string>
     <string>
       <source>Translate</source>
-      <translation>翻译</translation>
+      <translation>Oversæt</translation>
     </string>
     <string>
       <source>Color visualization</source>
-      <translation>颜色可视化</translation>
+      <translation>Farve visualisering</translation>
     </string>
   </context>
   <context name="Messages">
     <string>
       <source>Save dictionary for modified packages?</source>
-      <translation>是否保存已修改package为词典？</translation>
+      <translation>Gem ordbog for ændrede pakker?</translation>
     </string>
     <string>
       <source>Are you sure you want to delete the selected records?</source>
-      <translation>是否确认删除选中记录？</translation>
+      <translation>Er du sikker på, at du ønsker at slette de valgte poster?</translation>
     </string>
     <string>
       <source>Not found text records in this file!</source>
-      <translation>找不到文件的文本信息！</translation>
+      <translation>Der er ikke fundet tekst poster i denne fil!</translation>
     </string>
     <string>
       <source>Not found text records in this files!</source>
-      <translation>找不到文件的文本信息！</translation>
+      <translation>Der er ikke fundet tekst poster i disse filer!</translation>
     </string>
     <string>
       <source>Not found text records in following files:</source>
-      <translation>在以下文件中找不到文本记录：</translation>
+      <translation>Der er ikke fundet tekst poster i følgende filer:</translation>
     </string>
     <string>
       <source>Translation completed with {} successes.
 
 Errors:
 {}</source>
-      <translation>翻译完成，成功 {} 个。
+      <translation>Oversættelse afsluttet med {} succeser.
 
-错误：
+Fejl:
 {}</translation>
     </string>
     <string>
       <source>... and {} other errors</source>
-      <translation>... 和 {} 个其他错误</translation>
+      <translation>... og {} andre fejl</translation>
     </string>
   </context>
   <context name="Errors">
     <string>
       <source>Language code not found!</source>
-      <translation>语言代码未找到！</translation>
+      <translation>Sprogkode ikke fundet!</translation>
     </string>
     <string>
       <source>Translation failed with error code: {}</source>
-      <translation>翻译失败，错误代码：{}</translation>
+      <translation>Oversættelsen fejlede med følgende fejlkode: {}</translation>
     </string>
     <string>
       <source>Invalid API key.</source>
-      <translation>无效的API密钥。</translation>
+      <translation>Ugyldig API nøgle.</translation>
     </string>
     <string>
       <source>Your quota has exceeded!</source>
-      <translation>您的配额已超额！</translation>
+      <translation>Din kvote er nået!</translation>
     </string>
     <string>
       <source>There was a temporary problem with the DeepL Service.</source>
-      <translation>DeepL服务出现临时问题。</translation>
+      <translation>Der var et midlertidigt problem med DeepL Service</translation>
     </string>
   </context>
   <context name="OptionsDialog">
     <string>
       <source>NOT FOUND</source>
-      <translation>文件未找到</translation>
+      <translation>IKKE FUNDET</translation>
     </string>
     <string>
       <source>{} not exist</source>
-      <translation>{} 不存在</translation>
+      <translation>{} findes ikke</translation>
     </string>
     <string>
       <source>FOUND</source>
-      <translation>已发现</translation>
+      <translation>FUNDET</translation>
     </string>
     <string>
       <source>BASE GAME</source>
-      <translation>主游戏</translation>
+      <translation>GRUNDSPILLET</translation>
     </string>
     <string>
       <source>Expansion packs</source>
-      <translation>扩充包</translation>
+      <translation>Udvidelses pakker</translation>
     </string>
     <string>
       <source>Game packs</source>
-      <translation>资料片</translation>
+      <translation>Spil pakker</translation>
     </string>
     <string>
       <source>Stuff packs</source>
-      <translation>组合</translation>
+      <translation>Stuff pakker</translation>
     </string>
     <string>
       <source>Options and dictionaries</source>
-      <translation>设置与词库</translation>
+      <translation>Indstillinger og ordbøger</translation>
     </string>
     <string>
-      <source>Build dictionaries</source>
-      <translation>建立词库</translation>
-    </string>
-    <string>
-      <source>Close</source>
-      <translation>关闭</translation>
+      <source>Byg ordbøger</source>
+      <translation/>
     </string>
     <string>
       <source>Languages</source>
-      <translation>语言</translation>
+      <translation>Sprog</translation>
     </string>
     <string>
       <source>Source</source>
-      <translation>源语言</translation>
+      <translation>Kilde</translation>
     </string>
     <string>
       <source>Destination</source>
-      <translation>目标语言</translation>
+      <translation>Destination</translation>
     </string>
     <string>
       <source>Game path</source>
-      <translation>游戏路径</translation>
-    </string>
-    <string>
-      <source>Create backup package before finalization</source>
-      <translation>在保存前生成备份package</translation>
-    </string>
-    <string>
-      <source>Saving translation without conflicts (experemental)</source>
-      <translation>无冲突保存翻译（试验中）</translation>
-    </string>
-    <string>
-      <source>Interface</source>
-      <translation>界面语言</translation>
-    </string>
-    <string>
-      <source>Do not use automatic translation from other dictionaries</source>
-      <translation>不使用其他词典的自动翻译</translation>
+      <translation>Spil sti</translation>
     </string>
     <string>
       <source>...</source>
-      <translation>...</translation>
+      <translation/>
+    </string>
+    <string>
+      <source>Create backup package before finalization</source>
+      <translation>Opret backup pakke før afslutning</translation>
+    </string>
+    <string>
+      <source>Saving translation without conflicts (experemental)</source>
+      <translation>Gemmer oversættelse uden konflikter (eksperimenterende)</translation>
+    </string>
+    <string>
+      <source>Interface</source>
+      <translation>Interface</translation>
+    </string>
+    <string>
+      <source>Do not use automatic translation from other dictionaries</source>
+      <translation>Brug ikke automatisk oversættelse fra andre ordbøger</translation>
     </string>
     <string>
       <source>General</source>
-      <translation>常规</translation>
+      <translation>Generelt</translation>
     </string>
     <string>
       <source>Dictionaries</source>
-      <translation>词典</translation>
+      <translation>Ordbøger</translation>
     </string>
     <string>
       <source>DeepL API key</source>
-      <translation>DeepL API密钥</translation>
+      <translation>DeepL API nøgle</translation>
     </string>
     <string>
       <source>Language</source>
-      <translation>语言</translation>
+      <translation>Sprog</translation>
     </string>
     <string>
       <source>Theme</source>
-      <translation>主题</translation>
+      <translation>Tema</translation>
     </string>
     <string>
       <source>Light</source>
-      <translation>浅色</translation>
+      <translation>Lys</translation>
     </string>
     <string>
       <source>Dark</source>
-      <translation>深色</translation>
+      <translation>Mørk</translation>
     </string>
     <string>
       <source>The application needs to be restarted</source>
-      <translation>应用程序需要重启</translation>
+      <translation>Dette program skal genstartes</translation>
     </string>
     <string>
       <source>The translation version differs from the application version, so the interface may not be fully translated</source>
-      <translation>翻译版本与应用程序版本不同，因此界面可能未完全翻译</translation>
+      <translation>Oversættelsesversionen er forskellig fra programmets version, så interfacet bliver måske ikke oversat</translation>
     </string>
   </context>
   <context name="ReplaceDialog">
     <string>
       <source>Search and replace</source>
-      <translation>查找与替换</translation>
+      <translation>Søg og erstat</translation>
     </string>
     <string>
       <source>Case sensitive</source>
-      <translation>区分大小写</translation>
+      <translation>Store og små bogstaver</translation>
     </string>
     <string>
       <source>Search</source>
-      <translation>查找</translation>
+      <translation>Søg</translation>
     </string>
     <string>
       <source>Replace</source>
-      <translation>替换</translation>
+      <translation>Erstat</translation>
     </string>
     <string>
       <source>Search and replace in:</source>
-      <translation>查找与替换范围</translation>
+      <translation>Søg og erstat i:</translation>
     </string>
     <string>
       <source>All strings</source>
-      <translation>所有词条</translation>
+      <translation>Alle strenge</translation>
     </string>
     <string>
       <source>Not validated strings</source>
-      <translation>未确认词条</translation>
+      <translation>Ikke validerede strenge</translation>
     </string>
     <string>
       <source>Cancel</source>
-      <translation>取消</translation>
+      <translation>Fortryd</translation>
     </string>
     <string>
       <source>OK</source>
-      <translation>确认</translation>
+      <translation/>
     </string>
   </context>
   <context name="System">
     <string>
       <source>Saving package {}...</source>
-      <translation>保存package {}...</translation>
+      <translation>Gemmer pakke {}...</translation>
     </string>
     <string>
       <source>Loading dictionaries...</source>
-      <translation>载入词库...</translation>
+      <translation>Henter ordbøger...</translation>
     </string>
     <string>
       <source>Build dictionaries...</source>
-      <translation>建立词库...</translation>
+      <translation>Opbyg ordbøger</translation>
     </string>
     <string>
       <source>Exporting translate...</source>
-      <translation>导出译本...</translation>
-    </string>
-    <string>
-      <source>All files</source>
-      <translation>所有文件</translation>
-    </string>
-    <string>
-      <source>Packages</source>
-      <translation>Packages</translation>
-    </string>
-    <string>
-      <source>STBL files</source>
-      <translation>STBL文件</translation>
-    </string>
-    <string>
-      <source>XML files</source>
-      <translation>XML文件</translation>
-    </string>
-    <string>
-      <source>JSON files</source>
-      <translation>JSON文件</translation>
-    </string>
-    <string>
-      <source>Binary files</source>
-      <translation>二进制文件</translation>
-    </string>
-    <string>
-      <source>Opening file {}...</source>
-      <translation>打开文件{}...</translation>
-    </string>
-    <string>
-      <source>Opening files...</source>
-      <translation>打开多个文件...</translation>
-    </string>
-    <string>
-      <source>Opening file...</source>
-      <translation>打开文件...</translation>
+      <translation>Eksporterer oversættelse...</translation>
     </string>
     <string>
       <source>Importing translate...</source>
-      <translation>导入翻译中...</translation>
+      <translation>Importerer oversættelse...</translation>
+    </string>
+    <string>
+      <source>All files</source>
+      <translation>Alle filer</translation>
+    </string>
+    <string>
+      <source>Packages</source>
+      <translation>Pakker</translation>
+    </string>
+    <string>
+      <source>STBL files</source>
+      <translation>STBL filer</translation>
+    </string>
+    <string>
+      <source>XML files</source>
+      <translation>XML filer</translation>
+    </string>
+    <string>
+      <source>JSON files</source>
+      <translation>JSON filer</translation>
+    </string>
+    <string>
+      <source>Binary files</source>
+      <translation>Binære filer</translation>
+    </string>
+    <string>
+      <source>Opening file {}...</source>
+      <translation>Åbner fil {}...</translation>
+    </string>
+    <string>
+      <source>Opening files...</source>
+      <translation>Åbner filer...</translation>
+    </string>
+    <string>
+      <source>Opening file...</source>
+      <translation>Åbner fil</translation>
     </string>
     <string>
       <source>Translating...</source>
-      <translation>翻译中...</translation>
+      <translation>Oversætter</translation>
     </string>
     <string>
       <source>Stopping translate, waiting for the finish of the threads...</source>
-      <translation>停止翻译中，等待线程完成...</translation>
+      <translation>Stopper med at oversætte og venter på, at trådene bliver færdige...</translation>
     </string>
   </context>
   <context name="ToolBar">
     <string>
       <source>-- All files --</source>
-      <translation>-- 所有文件 --</translation>
+      <translation>-- Alle filer --</translation>
     </string>
     <string>
       <source>Search in translation</source>
-      <translation>在译文中查找</translation>
+      <translation>Søg i oversættelse</translation>
     </string>
     <string>
       <source>Search in ID</source>
-      <translation>在ID中查找</translation>
+      <translation>Søg i ID</translation>
     </string>
     <string>
       <source>Search in original</source>
-      <translation>在原文中查找</translation>
+      <translation>Søg i original</translation>
     </string>
     <string>
       <source>-- All instances --</source>
-      <translation>-- 所有 --</translation>
+      <translation>-- Alle forekomster --</translation>
     </string>
     <string>
       <source>Translated</source>
-      <translation>已翻译</translation>
+      <translation>Oversat</translation>
     </string>
     <string>
       <source>Not translated</source>
-      <translation>未翻译</translation>
+      <translation>Ikke oversat</translation>
     </string>
     <string>
       <source>Validated translation</source>
-      <translation>已确认</translation>
+      <translation>Valideret oversættelse</translation>
     </string>
     <string>
       <source>Partial translation</source>
-      <translation>待修改</translation>
+      <translation>Delvis oversættelse</translation>
     </string>
     <string>
       <source>Different strings</source>
-      <translation>特殊词条</translation>
+      <translation>Forskellige strenge</translation>
     </string>
     <string>
       <source>Search...</source>
-      <translation>搜索...</translation>
-    </string>
-    <string>
-      <source>Search and replace</source>
-      <translation>查找与替换</translation>
-    </string>
-    <string>
-      <source>Insert new record</source>
-      <translation>插入新记录</translation>
+      <translation>Søg...</translation>
     </string>
   </context>
   <context name="ImportDialog">
     <string>
       <source>Import translate</source>
-      <translation>导入译本</translation>
+      <translation>Importer oversættelse</translation>
     </string>
     <string>
       <source>Overwrite</source>
-      <translation>覆盖</translation>
+      <translation>Overskriv</translation>
     </string>
     <string>
       <source>Everything</source>
-      <translation>全部</translation>
+      <translation>Alt</translation>
     </string>
     <string>
       <source>Everything but already validated strings</source>
-      <translation>除已确认词条外的全部</translation>
+      <translation>Alt, undtagen allerede validerede strenge</translation>
     </string>
     <string>
       <source>Everything but already validated and partial strings</source>
-      <translation>除已确认与待修改词条外的全部</translation>
+      <translation>Alt, undtagen allederede validerede strenge og delvise strenge</translation>
     </string>
     <string>
       <source>Partial strings</source>
-      <translation>待修改词条</translation>
+      <translation>Delvise strenge</translation>
     </string>
     <string>
       <source>Selection only</source>
-      <translation>选中词条</translation>
+      <translation>Kun valgte</translation>
     </string>
     <string>
       <source>Replace existing translation</source>
-      <translation>替换已有翻译</translation>
-    </string>
-    <string>
-      <source>Cancel</source>
-      <translation>取消</translation>
+      <translation>Restat eksisterende oversættelse</translation>
     </string>
     <string>
       <source>Import</source>
-      <translation>导入</translation>
+      <translation>Importer</translation>
+    </string>
+    <string>
+      <source>Cancel</source>
+      <translation>Fortryd</translation>
     </string>
   </context>
   <context name="TranslateDialog">
     <string>
       <source>Translate</source>
-      <translation>翻译</translation>
+      <translation>Oversæt</translation>
     </string>
     <string>
       <source>Cancel</source>
-      <translation>取消</translation>
+      <translation>Fortryd</translation>
     </string>
     <string>
       <source>Batch translate</source>
-      <translation>批量翻译</translation>
+      <translation>Batch oversæt</translation>
     </string>
     <string>
       <source>Log</source>
-      <translation>日志</translation>
+      <translation/>
     </string>
     <string>
       <source>Line-by-line translation</source>
-      <translation>逐行翻译</translation>
+      <translation>Linje-for-linje oversættelse</translation>
     </string>
     <string>
       <source>Multiline translation</source>
-      <translation>多行翻译</translation>
+      <translation>Flerlinje oversættelse</translation>
     </string>
     <string>
       <source>Slow but more accurate translation.</source>
-      <translation>速度较慢但更准确的翻译。</translation>
+      <translation>Langsom men mere korrekt oversættelse</translation>
     </string>
     <string>
       <source>A faster, but perhaps less accurate translation. It is recommended to use it together with DeepL, because when using Google, some strings may not be translated.</source>
-      <translation>速度更快但可能不够准确的翻译。建议与DeepL一起使用，因为使用Google时，某些字符串可能无法翻译。</translation>
+      <translation>En hurtigere, men måske mindre korrekt oversættelse. Det er anbefalet at bruge den sammen med DeepL, da nogle strnge måske ikke bliver oversat, når der bruges Google</translation>
     </string>
     <string>
       <source>Some lines could not be translated.</source>
-      <translation>某些行无法翻译。</translation>
+      <translation>Nogle linjer kunne ikke oversættes</translation>
     </string>
     <string>
       <source>Stop translate</source>
-      <translation>停止翻译</translation>
+      <translation>Stop oversættelse</translation>
     </string>
   </context>
   <context name="TextEditor">
     <string>
       <source>Undo</source>
-      <translation>撤销</translation>
+      <translation>Fortryd</translation>
     </string>
     <string>
       <source>Redo</source>
-      <translation>重做</translation>
+      <translation>Gentag</translation>
     </string>
     <string>
       <source>Cut</source>
-      <translation>剪切</translation>
+      <translation>Klip</translation>
     </string>
     <string>
       <source>Copy</source>
-      <translation>复制</translation>
+      <translation>Kopier</translation>
     </string>
     <string>
       <source>Paste</source>
-      <translation>粘贴</translation>
+      <translation>Indsæt</translation>
     </string>
     <string>
       <source>Select All</source>
-      <translation>全选</translation>
+      <translation>Vælg alle</translation>
     </string>
   </context>
 </ts>
