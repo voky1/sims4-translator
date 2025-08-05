@@ -1,5 +1,18 @@
 # Changelog
 
+## Version 1.4 - 2025-08-05
+
+- Resolved issues with Google Translate (It's not perfect, so check the results)
+- Added support for MyMemory translator as an alternative to Google Translate
+- Added support for translating multiple text selections simultaneously
+- Added support for JSON and binary files used by Sims 4 Studio
+- Added Danish language
+- Added French language
+- Added Indonesian language
+- Added Ukrainian language
+
+Many changes are taken from other forks, for which special thanks to their authors (TURBODRIVER, EliD-Dev, etc).
+
 ## Version 1.3.1 - 2024-08-02
 
 - Added German language

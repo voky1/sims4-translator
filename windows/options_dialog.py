@@ -110,18 +110,18 @@ class Model(QAbstractTableModel):
         item = self.items[row]
         extension = isinstance(item, tuple)
 
-        if role == Qt.TextAlignmentRole:
+        if role == Qt.ItemDataRole.TextAlignmentRole:
             if column == 2:
-                return int(Qt.AlignRight | Qt.AlignVCenter)
+                return int(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
 
-        elif role == Qt.ForegroundRole:
+        elif role == Qt.ItemDataRole.ForegroundRole:
             if extension:
                 if not item.exists:
                     return self.color_null
                 elif self.is_dark_theme:
                     return self.color_found if item.exists_strings else self.color_not_found
 
-        elif role == Qt.DisplayRole:
+        elif role == Qt.ItemDataRole.DisplayRole:
             if not column:
                 return None
 
@@ -212,7 +212,7 @@ class OptionsDialog(QDialog, Ui_OptionsDialog):
         self.tableview.setModel(self.model)
 
         header = self.tableview.verticalHeader()
-        header.setSectionResizeMode(QHeaderView.Fixed)
+        header.setSectionResizeMode(QHeaderView.ResizeMode.Fixed)
         header.setDefaultSectionSize(26)
 
         self.tableview.horizontalHeader().setSectionResizeMode(1, QHeaderView.ResizeMode.Stretch)
@@ -271,7 +271,7 @@ class OptionsDialog(QDialog, Ui_OptionsDialog):
         self.cb_theme.blockSignals(False)
 
     def keyPressEvent(self, event):
-        if event.key() == Qt.Key_Escape:
+        if event.key() == Qt.Key.Key_Escape:
             self.close()
         else:
             super().keyPressEvent(event)

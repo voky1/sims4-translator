@@ -94,7 +94,7 @@ class HeaderProxy(QProxyStyle):
         self.text_color = QColor(dark.TEXT) if self.theme_name == 'dark' else QColor(light.TEXT)
 
     def drawControl(self, element, option, painter, widget=None):
-        if element == QStyle.CE_HeaderLabel:
+        if element == QStyle.ControlElement.CE_HeaderLabel:
             sort_option = option.sortIndicator
             rect = option.rect
 
@@ -107,9 +107,9 @@ class HeaderProxy(QProxyStyle):
             painter.drawText(text_rect, option.text)
 
             sort_icon = None
-            if sort_option == QStyleOptionHeader.SortDown:
+            if sort_option == QStyleOptionHeader.SortIndicator.SortDown:
                 sort_icon = QIcon(f':/images/{self.theme_name}/arrow_down.png').pixmap(10, 6)
-            elif sort_option == QStyleOptionHeader.SortUp:
+            elif sort_option == QStyleOptionHeader.SortIndicator.SortUp:
                 sort_icon = QIcon(f':/images/{self.theme_name}/arrow_up.png').pixmap(10, 6)
 
             if sort_icon:

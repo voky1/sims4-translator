@@ -40,7 +40,7 @@ class ImportDialog(QDialog, Ui_ImportDialog):
         self.btn_cancel.setText(interface.text('ImportDialog', 'Cancel'))
 
     def keyPressEvent(self, event):
-        if event.key() == Qt.Key_Escape:
+        if event.key() == Qt.Key.Key_Escape:
             self.close()
         else:
             super().keyPressEvent(event)
@@ -60,6 +60,10 @@ class ImportDialog(QDialog, Ui_ImportDialog):
             table = app_state.packages_storage.read_stbl(self.filename)
         elif self.filename.lower().endswith('.package'):
             table = app_state.packages_storage.read_package(self.filename)
+        elif self.filename.lower().endswith('.json'):
+            table = app_state.packages_storage.read_json(self.filename)
+        elif self.filename.lower().endswith('.binary'):
+            table = app_state.packages_storage.read_binary(self.filename)
 
         if self.rb_selection.isChecked():
             items = app_state.tableview.selected_items()

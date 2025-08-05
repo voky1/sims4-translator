@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import os
+import json
 import xml.etree.ElementTree as ElementTree
+from json import JSONDecodeError
+
 from typing import List
 
 from packer.dbpf import DbpfPackage
@@ -41,6 +44,14 @@ class Container:
         return self.fullname.lower().endswith('.xml')
 
     @property
+    def is_json(self) -> bool:
+        return self.fullname.lower().endswith('.json')
+
+    @property
+    def is_binary(self) -> bool:
+        return self.fullname.lower().endswith('.binary')
+
+    @property
     def filename(self) -> str:
         language_source = config.value('translation', 'source')
         language_dest = config.value('translation', 'destination')
@@ -63,6 +74,10 @@ class Container:
             items = self.open_stbl(filename)
         elif self.is_xml:
             items = self.open_xml(filename)
+        elif self.is_json:
+            items = self.open_json(filename)
+        elif self.is_binary:
+            items = self.open_binary(filename)
 
         self.__len = len(items)
 
@@ -149,12 +164,16 @@ class Container:
 
         rid = ResourceID.from_string(self.name)
         self.instances.append(rid.hex_instance)
-        with open(filename, 'rb') as fp:
-            stbl = Stbl(rid, fp.read())
-            line = 0
-            for sid, source in stbl.strings.items():
-                line += 1
-                items.append((rid, sid, source, source, '', line, line))
+
+        try:
+            with open(filename, 'rb') as fp:
+                stbl = Stbl(rid, fp.read())
+                line = 0
+                for sid, source in stbl.strings.items():
+                    line += 1
+                    items.append((rid, sid, source, source, '', line, line))
+        except (IOError, OSError, Exception):
+            return []
 
         return items
 
@@ -208,6 +227,51 @@ class Container:
                         line = int(s.get('DUMMY_LINE'))
                         items.append((resources[key], sid, source, dest, comment, line, i))
                         i += 1
+
+        return items
+
+    def open_json(self, filename: str) -> List[tuple]:
+        items = []
+
+        try:
+            with open(filename, 'r', encoding='utf-8') as fp:
+                content = json.load(fp)
+        except JSONDecodeError:
+            return []
+
+        entries = content.get('Entries', None)
+
+        if not entries:
+            return []
+
+        rid = ResourceID.from_string(self.name)
+        self.instances.append(rid.hex_instance)
+        line = 0
+        for entry in entries:
+            sid = int(entry['Key'], 16)
+            dest = entry['Value']
+            source = entry.get('Original', dest)
+            items.append((rid, sid, source, dest, '', line, line))
+            line += 1
+
+        return items
+
+    def open_binary(self, filename: str) -> List[tuple]:
+        items = []
+
+        rid = ResourceID.from_string(self.name)
+        self.instances.append(rid.hex_instance)
+
+        try:
+            with open(filename, 'rb') as fp:
+                stbl = Stbl(rid, fp.read())
+                line = 0
+                for sid, source in stbl.strings.items():
+                    line += 1
+                    items.append((rid, sid, source, source, '', line, line))
+
+        except (IOError, OSError, Exception):
+            return []
 
         return items
 

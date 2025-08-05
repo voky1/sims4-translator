@@ -128,6 +128,8 @@ class TranslateDialog(QDialog, Ui_TranslateDialog):
         self.__error = False
         self.__log = []
 
+        self.check_api()
+
         self.retranslate()
 
     def retranslate(self):
@@ -143,7 +145,7 @@ class TranslateDialog(QDialog, Ui_TranslateDialog):
         self.rb_slow.setText(interface.text('TranslateDialog', 'Line-by-line translation'))
         self.rb_fast.setText(interface.text('TranslateDialog', 'Multiline translation'))
         self.lbl_slow.setText(interface.text('TranslateDialog', 'Slow but more accurate translation.'))
-        self.lbl_fast.setText(interface.text('TranslateDialog', 'A faster, but perhaps less accurate translation. It is recommended to use it together with DeepL, because when using Google, some strings may not be translated.'))
+        self.lbl_fast.setText(interface.text('TranslateDialog', 'A faster, but perhaps less accurate translation.'))
         self.log_box.setTitle(interface.text('TranslateDialog', 'Log'))
 
     def showEvent(self, event):
@@ -154,13 +156,22 @@ class TranslateDialog(QDialog, Ui_TranslateDialog):
         self.cb_api.setCurrentIndex(engine_index if engine_index >= 0 else 0)
 
     def keyPressEvent(self, event):
-        if event.key() == Qt.Key_Escape:
+        if event.key() == Qt.Key.Key_Escape:
             self.close()
         else:
             super().keyPressEvent(event)
 
     def change_api(self):
         config.set_value('api', 'engine', self.cb_api.currentText())
+        self.check_api()
+
+    def check_api(self):
+        api = self.cb_api.currentText().lower()
+        if api == 'deepl':
+            self.rb_fast.setEnabled(True)
+        else:
+            self.rb_fast.setEnabled(False)
+            self.rb_slow.setChecked(True)
 
     def translate(self):
         progress_signals.initiate.emit(interface.text('System', 'Translating...'), 0)

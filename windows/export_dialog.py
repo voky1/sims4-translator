@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+import json
 import operator
 import xml.etree.ElementTree as ElementTree
 from PySide6.QtCore import Qt
@@ -16,7 +17,7 @@ from .ui.export_dialog import Ui_ExportDialog
 from singletons.interface import interface
 from singletons.signals import progress_signals
 from singletons.state import app_state
-from utils.functions import opendir, save_xml, save_stbl, text_to_stbl, text_to_edit, prettify
+from utils.functions import opendir, save_xml, save_stbl, text_to_stbl, text_to_edit, prettify, save_json, save_binary
 from utils.constants import *
 
 
@@ -42,6 +43,7 @@ class ExportDialog(QDialog, Ui_ExportDialog):
         self.gb_rec.setTitle(interface.text('ExportDialog', 'Exported records'))
         self.rb_all.setText(interface.text('ExportDialog', 'Everything'))
         self.rb_translated.setText(interface.text('ExportDialog', 'Everything but untranslated strings'))
+        self.rb_selection.setText(interface.text('ExportDialog', 'Selection only'))
         self.cb_current_instance.setText(interface.text('ExportDialog', 'Only selected instance'))
         self.cb_separate_instances.setText(interface.text('ExportDialog', 'Each instance as a separate file'))
         self.cb_separate_packages.setText(interface.text('ExportDialog', 'Each package as a separate file'))
@@ -49,7 +51,7 @@ class ExportDialog(QDialog, Ui_ExportDialog):
         self.btn_cancel.setText(interface.text('ExportDialog', 'Cancel'))
 
     def keyPressEvent(self, event):
-        if event.key() == Qt.Key_Escape:
+        if event.key() == Qt.Key.Key_Escape:
             self.close()
         else:
             super().keyPressEvent(event)
@@ -96,6 +98,12 @@ class ExportDialog(QDialog, Ui_ExportDialog):
     def xml_dp(self):
         self.__exec(EXPORT_XML_DP)
 
+    def json_s4s(self):
+        self.__exec(EXPORT_JSON_S4S)
+
+    def binary_s4s(self):
+        self.__exec(EXPORT_BINARY_S4S)
+
     def __exec(self, export: int):
         self.__export = export
 
@@ -130,35 +138,92 @@ class ExportDialog(QDialog, Ui_ExportDialog):
         separate_instances = self.cb_separate_instances.isVisible() and self.cb_separate_instances.isChecked()
         separate_packages = self.cb_separate_packages.isVisible() and self.cb_separate_packages.isChecked()
 
-        items = app_state.packages_storage.model.items
+        if self.rb_selection.isChecked():
+            items = app_state.tableview.selected_items()
+        else:
+            items = app_state.packages_storage.items()
 
         package = app_state.packages_storage.current_package
         instance = app_state.packages_storage.current_instance
 
-        one_instance = package is not None and instance > 0 and len(package.instances) == 1
+        if self.rb_selection.isChecked():
+            instances = {i.instance for i in items}
+            packages = {i.package for i in items}
 
-        if self.__export == EXPORT_STBL:
-            if one_instance or current_instance and package:
-                items = app_state.packages_storage.items(instance=instance)
-                item = items[0] if items else None
-                if item:
-                    filename = save_stbl(item.resource.filename)
+            one_instance = len(instances) == 1
+            one_package = len(packages) == 1
+
+            item = items[0] if items else None
+
+            if self.__export == EXPORT_STBL:
+                if one_instance:
+                    if item:
+                        filename = save_stbl(item.resource.filename)
+                else:
+                    directory = opendir()
             else:
-                directory = opendir()
+                if separate_instances or separate_packages:
+                    directory = opendir()
+                else:
+                    if one_instance:
+                        if item:
+                            if self.__export == EXPORT_JSON_S4S:
+                                filename = save_json(item.resource.filename)
+                            elif self.__export == EXPORT_BINARY_S4S:
+                                filename = save_binary(item.resource.filename)
+                            else:
+                                filename = save_xml(item.resource.filename)
+                    elif one_package and package:
+                        if item:
+                            if self.__export == EXPORT_JSON_S4S:
+                                filename = save_json(package.name)
+                            elif self.__export == EXPORT_BINARY_S4S:
+                                filename = save_binary(package.name)
+                            else:
+                                filename = save_xml(package.name)
+                    else:
+                        directory = opendir()
+
         else:
-            if separate_instances or separate_packages:
-                directory = opendir()
-            else:
+            one_instance = package is not None and instance > 0 and len(package.instances) == 1
+
+            if self.__export == EXPORT_STBL:
                 if one_instance or current_instance and package:
                     items = app_state.packages_storage.items(instance=instance)
                     item = items[0] if items else None
                     if item:
-                        filename = save_xml(item.resource.filename)
-                elif package:
-                    items = app_state.packages_storage.items(key=package.key)
-                    filename = save_xml(package.name)
+                        filename = save_stbl(item.resource.filename)
                 else:
-                    filename = save_xml('translate_merged')
+                    directory = opendir()
+            else:
+                if separate_instances or separate_packages:
+                    directory = opendir()
+                else:
+                    if one_instance or current_instance and package:
+                        items = app_state.packages_storage.items(instance=instance)
+                        item = items[0] if items else None
+                        if item:
+                            if self.__export == EXPORT_JSON_S4S:
+                                filename = save_json(item.resource.filename)
+                            elif self.__export == EXPORT_BINARY_S4S:
+                                filename = save_binary(item.resource.filename)
+                            else:
+                                filename = save_xml(item.resource.filename)
+                    elif package:
+                        items = app_state.packages_storage.items(key=package.key)
+                        if self.__export == EXPORT_JSON_S4S:
+                            filename = save_json(package.name)
+                        elif self.__export == EXPORT_BINARY_S4S:
+                            filename = save_binary(package.name)
+                        else:
+                            filename = save_xml(package.name)
+                    else:
+                        if self.__export == EXPORT_JSON_S4S:
+                            filename = save_json('translate_merged')
+                        elif self.__export == EXPORT_BINARY_S4S:
+                            filename = save_binary('translate_merged')
+                        else:
+                            filename = save_xml('translate_merged')
 
         items = sorted(items, key=operator.itemgetter(RECORD_MAIN_INDEX), reverse=False)
 
@@ -169,6 +234,10 @@ class ExportDialog(QDialog, Ui_ExportDialog):
                 self.export_xml(items, filename=filename, directory=directory)
             elif self.__export == EXPORT_XML_DP:
                 self.export_xml_dp(items, filename=filename, directory=directory)
+            elif self.__export == EXPORT_JSON_S4S:
+                self.export_json_s4s(items, filename=filename, directory=directory)
+            elif self.__export == EXPORT_BINARY_S4S:
+                self.export_binary_s4s(items, filename=filename, directory=directory)
             else:
                 self.export_stbl(items, filename=filename, directory=directory)
 
@@ -334,3 +403,129 @@ class ExportDialog(QDialog, Ui_ExportDialog):
                     content.extend(strings)
                     with open(filename, 'wb') as fp:
                         fp.write(prettify(root))
+
+    def export_json_s4s(self, items: List[MainRecord], directory: str = None, filename: str = None) -> None:
+        all_entries = []
+        packages = {}
+        tables = {}
+
+        separate_packages = self.cb_separate_packages.isVisible() and self.cb_separate_packages.isChecked()
+
+        for i, item in enumerate(items):
+            if i % 100 == 0:
+                progress_signals.increment.emit()
+
+            if not self.rb_all.isChecked() and item.flag == FLAG_UNVALIDATED:
+                continue
+
+            rid = item.resource.convert_instance()
+
+            if separate_packages:
+                if item.package not in packages:
+                    packages[item.package] = {}
+                if rid not in packages[item.package]:
+                    packages[item.package][rid] = []
+                entries = packages[item.package][rid]
+            else:
+                if rid not in tables:
+                    tables[rid] = []
+                entries = tables[rid]
+
+            entry = {
+                'Key': '0x{id:08X}'.format(id=item.id),
+                'Value': text_to_stbl(item.translate)
+            }
+
+            all_entries.append(entry)
+            entries.append(entry)
+
+        if filename:
+            rid = items[0].resource.convert_instance()
+            with open(filename, 'w', encoding='utf-8') as fp:
+                fp.write(json.dumps({
+                    'Locale': rid.language,
+                    'Entries': all_entries,
+                }, indent=2, ensure_ascii=False))
+        elif directory:
+            if separate_packages:
+                for key, tables in packages.items():
+                    package = app_state.packages_storage.find(key)
+                    filename = os.path.join(directory, package.name + '.json')
+                    rid = None
+                    table_entries = []
+                    for rid, entries in tables.items():
+                        table_entries.extend(entries)
+                    with open(filename, 'w', encoding='utf-8') as fp:
+                        fp.write(json.dumps({
+                            'Locale': rid.language,
+                            'Entries': table_entries
+                        }, indent=2, ensure_ascii=False))
+            else:
+                for rid, entries in tables.items():
+                    filename = os.path.join(directory, rid.filename + '.json')
+                    with open(filename, 'w', encoding='utf-8') as fp:
+                        fp.write(json.dumps({
+                            'Locale': rid.language,
+                            'Entries': entries
+                        }, indent=2, ensure_ascii=False))
+
+    def export_binary_s4s(self, items: List[MainRecord], directory: str = None, filename: str = None) -> None:
+        stbl = {}
+
+        for i, item in enumerate(items):
+            if i % 100 == 0:
+                progress_signals.increment.emit()
+
+            if not self.rb_all.isChecked() and item.flag == FLAG_UNVALIDATED:
+                continue
+
+            rid = item.resource.convert_instance()
+
+            if rid not in stbl:
+                stbl[rid] = Stbl(rid)
+
+            stbl[rid].add(item.id, item.translate)
+
+        if filename:
+            for rid, inst in stbl.items():
+                with open(filename, 'wb') as fp:
+                    fp.write(inst.binary)
+                break
+        elif directory:
+            separate_packages = self.cb_separate_packages.isVisible() and self.cb_separate_packages.isChecked()
+
+            if separate_packages:
+                packages = {}
+                for i, item in enumerate(items):
+                    if not self.rb_all.isChecked() and item.flag == FLAG_UNVALIDATED:
+                        continue
+
+                    if item.package not in packages:
+                        packages[item.package] = {}
+
+                    rid = item.resource.convert_instance()
+                    if rid not in packages[item.package]:
+                        packages[item.package][rid] = Stbl(rid)
+
+                    packages[item.package][rid].add(item.id, item.translate)
+
+                for key, tables in packages.items():
+                    package = app_state.packages_storage.find(key)
+                    filename = os.path.join(directory, package.name + '.binary')
+
+                    merged_stbl = None
+                    for rid, table in tables.items():
+                        if merged_stbl is None:
+                            merged_stbl = table
+                        else:
+                            for str_id, str_value in table._strings.items():
+                                merged_stbl.add(str_id, str_value)
+
+                    if merged_stbl:
+                        with open(filename, 'wb') as fp:
+                            fp.write(merged_stbl.binary)
+            else:
+                for rid, inst in stbl.items():
+                    filename = os.path.join(directory, rid.filename + '.binary')
+                    with open(filename, 'wb') as fp:
+                        fp.write(inst.binary)

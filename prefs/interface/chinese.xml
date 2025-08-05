@@ -41,6 +41,10 @@
       <source>Loading...</source>
       <translation>加载中...</translation>
     </string>
+    <string>
+      <source>Comment...</source>
+      <translation />
+    </string>
   </context>
   <context name="ExportDialog">
     <string>
@@ -68,70 +72,26 @@
       <translation>分别保存所有实例</translation>
     </string>
     <string>
-      <source>Cancel</source>
-      <translation>取消</translation>
+      <source>Each package as a separate file</source>
+      <translation />
     </string>
     <string>
       <source>Exported records</source>
       <translation>导出记录</translation>
     </string>
+    <string>
+      <source>Cancel</source>
+      <translation>取消</translation>
+    </string>
+    <string>
+      <source>Selection only</source>
+      <translation>选中词条</translation>
+    </string>
   </context>
   <context name="GenerateDialog">
-    <string>
-      <source>Generate hash</source>
-      <translation>生成hash</translation>
-    </string>
-    <string>
-      <source>Enter a string to generate FNV hash</source>
-      <translation>进入词条以生成FNV hash</translation>
-    </string>
-    <string>
-      <source>Cancel</source>
-      <translation>取消</translation>
-    </string>
-    <string>
-      <source>Generate</source>
-      <translation>生成</translation>
-    </string>
-  </context>
+    </context>
   <context name="InsertDialog">
-    <string>
-      <source>Insert new record</source>
-      <translation>插入新记录</translation>
-    </string>
-    <string>
-      <source>Cancel</source>
-      <translation>取消</translation>
-    </string>
-    <string>
-      <source>Insert</source>
-      <translation>插入</translation>
-    </string>
-    <string>
-      <source>Original text</source>
-      <translation>原文</translation>
-    </string>
-    <string>
-      <source>Or enter new instance</source>
-      <translation>或进入进实例</translation>
-    </string>
-    <string>
-      <source>Generate</source>
-      <translation>生成</translation>
-    </string>
-    <string>
-      <source>File</source>
-      <translation>文件</translation>
-    </string>
-    <string>
-      <source>ID</source>
-      <translation>ID</translation>
-    </string>
-    <string>
-      <source>Instance</source>
-      <translation>实例</translation>
-    </string>
-  </context>
+    </context>
   <context name="MainTableView">
     <string>
       <source>Original</source>
@@ -152,6 +112,10 @@
     <string>
       <source>Group</source>
       <translation>组</translation>
+    </string>
+    <string>
+      <source>Comment</source>
+      <translation />
     </string>
   </context>
   <context name="MainWindow">
@@ -248,6 +212,14 @@
       <translation>至XML(Deaderpool的STBL editor)...</translation>
     </string>
     <string>
+      <source>To JSON (Sims 4 Studio format)...</source>
+      <translation />
+    </string>
+    <string>
+      <source>To Binary (Sims 4 Studio format)...</source>
+      <translation />
+    </string>
+    <string>
       <source>Use original group</source>
       <translation>使用原始组别</translation>
     </string>
@@ -278,10 +250,6 @@
     <string>
       <source>Cancel translation</source>
       <translation>取消译本</translation>
-    </string>
-    <string>
-      <source>Insert new record</source>
-      <translation>插入新记录</translation>
     </string>
     <string>
       <source>Copy</source>
@@ -321,19 +289,31 @@
     </string>
     <string>
       <source>Standart</source>
-      <translation/>
+      <translation />
     </string>
     <string>
       <source>From the source file</source>
-      <translation/>
+      <translation />
     </string>
     <string>
       <source>XML format</source>
-      <translation/>
+      <translation />
     </string>
     <string>
       <source>XML format (Deaderpool's STBL editor)</source>
-      <translation/>
+      <translation />
+    </string>
+    <string>
+      <source>Batch translate...</source>
+      <translation />
+    </string>
+    <string>
+      <source>Translate</source>
+      <translation />
+    </string>
+    <string>
+      <source>Color visualization</source>
+      <translation />
     </string>
   </context>
   <context name="Messages">
@@ -353,11 +333,42 @@
       <source>Not found text records in this files!</source>
       <translation>找不到文件的文本信息！</translation>
     </string>
+    <string>
+      <source>Not found text records in following files:</source>
+      <translation />
+    </string>
+    <string>
+      <source>Translation completed with {} successes.
+
+Errors:
+{}</source>
+      <translation />
+    </string>
+    <string>
+      <source>... and {} other errors</source>
+      <translation />
+    </string>
   </context>
   <context name="Errors">
     <string>
       <source>Language code not found!</source>
-      <translation/>
+      <translation />
+    </string>
+    <string>
+      <source>Translation failed with error code: {}</source>
+      <translation />
+    </string>
+    <string>
+      <source>Invalid API key.</source>
+      <translation />
+    </string>
+    <string>
+      <source>Your quota has exceeded!</source>
+      <translation />
+    </string>
+    <string>
+      <source>There was a temporary problem with the DeepL Service.</source>
+      <translation />
     </string>
   </context>
   <context name="OptionsDialog">
@@ -398,10 +409,6 @@
       <translation>建立词库</translation>
     </string>
     <string>
-      <source>Close</source>
-      <translation>关闭</translation>
-    </string>
-    <string>
       <source>Languages</source>
       <translation>语言</translation>
     </string>
@@ -418,6 +425,10 @@
       <translation>游戏路径</translation>
     </string>
     <string>
+      <source>...</source>
+      <translation />
+    </string>
+    <string>
       <source>Create backup package before finalization</source>
       <translation>在保存前生成备份package</translation>
     </string>
@@ -431,7 +442,43 @@
     </string>
     <string>
       <source>Do not use automatic translation from other dictionaries</source>
-      <translation/>
+      <translation />
+    </string>
+    <string>
+      <source>General</source>
+      <translation />
+    </string>
+    <string>
+      <source>Dictionaries</source>
+      <translation />
+    </string>
+    <string>
+      <source>DeepL API key</source>
+      <translation />
+    </string>
+    <string>
+      <source>Language</source>
+      <translation />
+    </string>
+    <string>
+      <source>Theme</source>
+      <translation />
+    </string>
+    <string>
+      <source>Light</source>
+      <translation />
+    </string>
+    <string>
+      <source>Dark</source>
+      <translation />
+    </string>
+    <string>
+      <source>The application needs to be restarted</source>
+      <translation />
+    </string>
+    <string>
+      <source>The translation version differs from the application version, so the interface may not be fully translated</source>
+      <translation />
     </string>
   </context>
   <context name="ReplaceDialog">
@@ -490,6 +537,10 @@
       <translation>导出译本...</translation>
     </string>
     <string>
+      <source>Importing translate...</source>
+      <translation />
+    </string>
+    <string>
       <source>All files</source>
       <translation>所有文件</translation>
     </string>
@@ -506,6 +557,14 @@
       <translation>XML文件</translation>
     </string>
     <string>
+      <source>JSON files</source>
+      <translation />
+    </string>
+    <string>
+      <source>Binary files</source>
+      <translation />
+    </string>
+    <string>
       <source>Opening file {}...</source>
       <translation>打开文件{}...</translation>
     </string>
@@ -516,6 +575,14 @@
     <string>
       <source>Opening file...</source>
       <translation>打开文件...</translation>
+    </string>
+    <string>
+      <source>Translating...</source>
+      <translation />
+    </string>
+    <string>
+      <source>Stopping translate, waiting for the finish of the threads...</source>
+      <translation />
     </string>
   </context>
   <context name="ToolBar">
@@ -560,12 +627,8 @@
       <translation>特殊词条</translation>
     </string>
     <string>
-      <source>Search and replace</source>
-      <translation>查找与替换</translation>
-    </string>
-    <string>
-      <source>Insert new record</source>
-      <translation>插入新记录</translation>
+      <source>Search...</source>
+      <translation />
     </string>
   </context>
   <context name="ImportDialog">
@@ -602,12 +665,80 @@
       <translation>替换已有翻译</translation>
     </string>
     <string>
+      <source>Import</source>
+      <translation>导入</translation>
+    </string>
+    <string>
       <source>Cancel</source>
       <translation>取消</translation>
     </string>
+  </context>
+  <context name="TranslateDialog">
     <string>
-      <source>Import</source>
-      <translation>导入</translation>
+      <source>Translate</source>
+      <translation />
+    </string>
+    <string>
+      <source>Cancel</source>
+      <translation />
+    </string>
+    <string>
+      <source>Batch translate</source>
+      <translation />
+    </string>
+    <string>
+      <source>Log</source>
+      <translation />
+    </string>
+    <string>
+      <source>Line-by-line translation</source>
+      <translation />
+    </string>
+    <string>
+      <source>Multiline translation</source>
+      <translation />
+    </string>
+    <string>
+      <source>Slow but more accurate translation.</source>
+      <translation />
+    </string>
+    <string>
+      <source>A faster, but perhaps less accurate translation.</source>
+      <translation />
+    </string>
+    <string>
+      <source>Some lines could not be translated.</source>
+      <translation />
+    </string>
+    <string>
+      <source>Stop translate</source>
+      <translation />
+    </string>
+  </context>
+  <context name="TextEditor">
+    <string>
+      <source>Undo</source>
+      <translation />
+    </string>
+    <string>
+      <source>Redo</source>
+      <translation />
+    </string>
+    <string>
+      <source>Cut</source>
+      <translation />
+    </string>
+    <string>
+      <source>Copy</source>
+      <translation />
+    </string>
+    <string>
+      <source>Paste</source>
+      <translation />
+    </string>
+    <string>
+      <source>Select All</source>
+      <translation />
     </string>
   </context>
 </ts>

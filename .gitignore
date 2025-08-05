@@ -14,10 +14,12 @@ venv/
 .idea/
 
 build/
+dist/
+dictionary/
 prefs/config.xml
+prefs/interface/sync.py
 setup.py
 
 *.bat
 *.dct
 *.svg
-*.ttf

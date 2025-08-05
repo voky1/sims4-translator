@@ -60,7 +60,7 @@ def stylesheet():
     }
 
     file = QFile(f':/theme.qss')
-    if file.open(QIODevice.ReadOnly | QIODevice.Text):
+    if file.open(QIODevice.OpenModeFlag.ReadOnly | QIODevice.OpenModeFlag.Text):
         stream = QTextStream(file)
         content = stream.readAll()
         file.close()

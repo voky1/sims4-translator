@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ts language="es_ES" name="Español (Spanish)" version="1.3.1" authors="Onnya">
+<ts language="es_ES" name="Español (Spanish)" version="1.4" authors="Onnya">
   <context name="EditWindow">
     <string>
       <source>Search and Edit</source>
@@ -82,6 +82,10 @@
     <string>
       <source>Cancel</source>
       <translation>Cancelar</translation>
+    </string>
+    <string>
+      <source>Selection only</source>
+      <translation>Solo la selección</translation>
     </string>
   </context>
   <context name="MainTableView">
@@ -204,6 +208,14 @@
       <translation>XML (Editor STBL de Deaderpool)...</translation>
     </string>
     <string>
+      <source>To JSON (Sims 4 Studio format)...</source>
+      <translation />
+    </string>
+    <string>
+      <source>To Binary (Sims 4 Studio format)...</source>
+      <translation />
+    </string>
+    <string>
       <source>Use original group</source>
       <translation>Usar grupo original</translation>
     </string>
@@ -320,6 +332,17 @@
     <string>
       <source>Not found text records in following files:</source>
       <translation>No se ha encontrado texto en las siguientes líneas:</translation>
+    </string>
+    <string>
+      <source>Translation completed with {} successes.
+
+Errors:
+{}</source>
+      <translation />
+    </string>
+    <string>
+      <source>... and {} other errors</source>
+      <translation />
     </string>
   </context>
   <context name="Errors">
@@ -453,10 +476,6 @@
       <source>The translation version differs from the application version, so the interface may not be fully translated</source>
       <translation>La versión de la traducción es distinta a la versión de la aplicación, por lo que la interfaz se podría no mostrar completamente traducida</translation>
     </string>
-    <string>
-      <source>by {}</source>
-      <translation></translation>
-    </string>
   </context>
   <context name="ReplaceDialog">
     <string>
@@ -532,6 +551,14 @@
     <string>
       <source>XML files</source>
       <translation>Archivos XML</translation>
+    </string>
+    <string>
+      <source>JSON files</source>
+      <translation />
+    </string>
+    <string>
+      <source>Binary files</source>
+      <translation />
     </string>
     <string>
       <source>Opening file {}...</source>
@@ -672,8 +699,8 @@
       <translation>Lento, pero las traducciones son más precisas.</translation>
     </string>
     <string>
-      <source>A faster, but perhaps less accurate translation. It is recommended to use it together with DeepL, because when using Google, some strings may not be translated.</source>
-      <translation>Rápido, pero las traducciones son menos precisas. Se recomienda usar en conjunto con DeepL, porque si solo se usa Google, algunas líneas no se traducirán.</translation>
+      <source>A faster, but perhaps less accurate translation.</source>
+      <translation>Rápido, pero las traducciones son menos precisas.</translation>
     </string>
     <string>
       <source>Some lines could not be translated.</source>

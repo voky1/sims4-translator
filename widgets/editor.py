@@ -42,7 +42,7 @@ class QTextEditor(QPlainTextEdit):
         self.updateLineNumberAreaWidth(0)
 
         option = QTextOption()
-        option.setFlags(QTextOption.ShowTabsAndSpaces | QTextOption.AddSpaceForLineAndParagraphSeparators)
+        option.setFlags(QTextOption.Flag.ShowTabsAndSpaces | QTextOption.Flag.AddSpaceForLineAndParagraphSeparators)
         self.document().setDefaultTextOption(option)
 
         self.highlighter = BracketHighlighter(self.document())
@@ -139,7 +139,7 @@ class QTextEditor(QPlainTextEdit):
                 number = str(block_number + 1)
                 painter.setPen(self.lines_text)
                 painter.drawText(0, top, self.lineNumberArea.width() - 8, self.fontMetrics().height(),
-                                 Qt.AlignRight, number)
+                                 Qt.AlignmentFlag.AlignRight, number)
 
             block = block.next()
             top = bottom
@@ -153,7 +153,7 @@ class QTextEditor(QPlainTextEdit):
             selection = QTextEdit.ExtraSelection()
 
             selection.format.setBackground(self.line_color)
-            selection.format.setProperty(QTextFormat.FullWidthSelection, True)
+            selection.format.setProperty(QTextFormat.Property.FullWidthSelection, True)
             selection.cursor = self.textCursor()
             selection.cursor.clearSelection()
 
@@ -218,7 +218,7 @@ class QTextEditor(QPlainTextEdit):
 
         new_cursor = self.textCursor()
         new_cursor.setPosition(cursor.block().position() + pos)
-        new_cursor.movePosition(QTextCursor.NextCharacter, QTextCursor.KeepAnchor)
+        new_cursor.movePosition(QTextCursor.MoveOperation.NextCharacter, QTextCursor.MoveMode.KeepAnchor)
         selection.cursor = new_cursor
 
         return selection
@@ -239,7 +239,7 @@ class BracketHighlighter(QSyntaxHighlighter):
             (re.compile(r'{\w+\.[^}]+}'), None, True),
             (re.compile(r'{[Mm]\w+\.[^}]+}'), QColor(light.EDITOR_MALE), light.EDITOR_MALE_BOLD),
             (re.compile(r'{[Ff]\w+\.[^}]+}'), QColor(light.EDITOR_FEMALE), light.EDITOR_FEMALE_BOLD),
-            (re.compile(r'{\d+\.(Sim)[^}]+}'), QColor(light.EDITOR_SIMNAME), light.EDITOR_SIMNAME_BOLD),
+            (re.compile(r'{\d+\.([Ss]im)[^}]+}'), QColor(light.EDITOR_SIMNAME), light.EDITOR_SIMNAME_BOLD),
             (re.compile(r'<[^>]+>'), QColor(light.EDITOR_TAG), False),
             (re.compile(r'(\s)'), QColor(0, 0, 0, 0), False),
             (re.compile(r'(\s\s+)'), QColor(light.EDITOR_TAG), False)
@@ -249,7 +249,7 @@ class BracketHighlighter(QSyntaxHighlighter):
             (re.compile(r'{\w+\.[^}]+}'), QColor('#fff'), True),
             (re.compile(r'{[Mm]\w+\.[^}]+}'), QColor(dark.EDITOR_MALE), dark.EDITOR_MALE_BOLD),
             (re.compile(r'{[Ff]\w+\.[^}]+}'), QColor(dark.EDITOR_FEMALE), dark.EDITOR_FEMALE_BOLD),
-            (re.compile(r'{\d+\.(Sim)[^}]+}'), QColor(dark.EDITOR_SIMNAME), dark.EDITOR_SIMNAME_BOLD),
+            (re.compile(r'{\d+\.([Ss]im)[^}]+}'), QColor(dark.EDITOR_SIMNAME), dark.EDITOR_SIMNAME_BOLD),
             (re.compile(r'<[^>]+>'), QColor(dark.EDITOR_TAG), False),
             (re.compile(r'(\s)'), QColor(0, 0, 0, 0), False),
             (re.compile(r'(\s\s+)'), QColor(dark.EDITOR_TAG), False)
@@ -266,7 +266,7 @@ class BracketHighlighter(QSyntaxHighlighter):
     def getFormat(self, color=None, bold=False):
         fmt = QTextCharFormat()
         if bold:
-            fmt.setFontWeight(QFont.Bold)
+            fmt.setFontWeight(QFont.Weight.Bold)
         if color:
             fmt.setForeground(color)
         return fmt

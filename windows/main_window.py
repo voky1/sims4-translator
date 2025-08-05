@@ -2,6 +2,7 @@
 
 import sys
 import pyperclip
+import time
 from PySide6.QtCore import Qt, QTimer, Slot
 from PySide6.QtWidgets import QApplication, QMainWindow, QMenu, QMessageBox
 from PySide6.QtGui import QAction, QIcon
@@ -93,6 +94,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.action_export_stbl.triggered.connect(self.export_translation_stbl)
         self.action_export_xml.triggered.connect(self.export_translation_xml)
         self.action_export_xml_dp.triggered.connect(self.export_translation_xml_dp)
+        self.action_export_json_s4s.triggered.connect(self.export_translation_json_s4s)
+        self.action_export_binary_s4s.triggered.connect(self.export_translation_binary_s4s)
         self.action_save_dictionary.triggered.connect(self.save_dictionary)
         self.action_close.triggered.connect(self.close_package)
         self.action_exit.triggered.connect(sys.exit)
@@ -199,6 +202,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.action_finalize.setText(interface.text('MainWindow', 'Finalize package'))
         self.action_finalize_as.setText(interface.text('MainWindow', 'Finalize package as...'))
         self.action_export_xml_dp.setText(interface.text('MainWindow', 'To XML (Deaderpool\'s STBL editor)...'))
+        self.action_export_json_s4s.setText(interface.text('MainWindow', 'To JSON (Sims 4 Studio format)...'))
+        self.action_export_binary_s4s.setText(interface.text('MainWindow', 'To Binary (Sims 4 Studio format)...'))
         self.action_group_original.setText(interface.text('MainWindow', 'Use original group'))
         self.action_group_highbit.setText(interface.text('MainWindow', 'Use high-bit'))
         self.action_export_stbl.setText(interface.text('MainWindow', 'To STBL...'))
@@ -227,19 +232,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         app_state.set_tableview(self.tableview)
         app_state.set_monospace(self.monospace)
 
-    #     # super().showEvent(event)
-    #     self.load([
-    #         'c:/Users/voky/Documents/Electronic Arts/The Sims 4/Mods/ww/TURBODRIVER_WickedWhims_Tuning.package',
-    #         r'i:\SteamLibrary\steamapps\common\The Sims 4\EP09\Strings_RUS_RU.package'
-    #     ])
-    #     progress_signals.initiate.emit('dasda', 3)
-    #     progress_signals.increment.emit()
-    #     progress_signals.increment.emit()
-    
     def dragEnterEvent(self, event):
         event.setAccepted(False)
         filename = event.mimeData().text().lower()
-        if filename.endswith('.package') or filename.endswith('.stbl') or filename.endswith('.xml'):
+        if filename.endswith('.package') or filename.endswith('.stbl') or filename.endswith('.xml') or filename.endswith('.json') or filename.endswith('.binary'):
             event.setAccepted(True)
 
     def dragMoveEvent(self, event):
@@ -256,43 +252,43 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             event.ignore()
 
     def keyPressEvent(self, event):
-        if event.key() == Qt.Key_F1:
-            if event.modifiers() and Qt.ControlModifier:
+        if event.key() == Qt.Key.Key_F1:
+            if event.modifiers() and Qt.KeyboardModifier.ControlModifier:
                 self.validate_2_all()
             else:
                 self.validate_2()
 
-        elif event.key() == Qt.Key_F2:
+        elif event.key() == Qt.Key.Key_F2:
             self.validate_1()
 
-        elif event.key() == Qt.Key_F4:
-            if event.modifiers() and Qt.ControlModifier:
+        elif event.key() == Qt.Key.Key_F4:
+            if event.modifiers() and Qt.KeyboardModifier.ControlModifier:
                 self.validate_0_all()
             else:
                 self.validate_0()
 
-        elif event.key() == Qt.Key_C and event.modifiers() and Qt.ControlModifier:
+        elif event.key() == Qt.Key.Key_C and event.modifiers() and Qt.KeyboardModifier.ControlModifier:
             self.copy()
 
-        elif event.key() == Qt.Key_V and event.modifiers() and Qt.ControlModifier:
+        elif event.key() == Qt.Key.Key_V and event.modifiers() and Qt.KeyboardModifier.ControlModifier:
             self.paste()
 
-        elif event.key() == Qt.Key_Enter or event.key() == Qt.Key_Return:
+        elif event.key() in [Qt.Key.Key_Enter, Qt.Key.Key_Return]:
             self.edit_string()
 
-        elif event.key() == Qt.Key_O and event.modifiers() and Qt.ControlModifier:
+        elif event.key() == Qt.Key.Key_O and event.modifiers() and Qt.KeyboardModifier.ControlModifier:
             self.open_file()
 
-        elif event.key() == Qt.Key_S and event.modifiers() and Qt.ControlModifier:
+        elif event.key() == Qt.Key.Key_S and event.modifiers() and Qt.KeyboardModifier.ControlModifier:
             self.save()
 
-        elif event.key() == Qt.Key_R and event.modifiers() and Qt.ControlModifier:
+        elif event.key() == Qt.Key.Key_R and event.modifiers() and Qt.KeyboardModifier.ControlModifier:
             self.replace()
 
-        elif event.key() == Qt.Key_Z and event.modifiers() and Qt.ControlModifier:
+        elif event.key() == Qt.Key.Key_Z and event.modifiers() and Qt.KeyboardModifier.ControlModifier:
             self.undo_restore()
 
-        elif event.key() == Qt.Key_T and event.modifiers() and Qt.ControlModifier:
+        elif event.key() == Qt.Key.Key_T and event.modifiers() and Qt.KeyboardModifier.ControlModifier:
             self.translate()
 
         else:
@@ -415,10 +411,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                                             flags,
                                             QMessageBox.StandardButton.NoButton)
 
-            if response == QMessageBox.Yes:
+            if response == QMessageBox.StandardButton.Yes:
                 app_state.dictionaries_storage.save(multi=multi)
 
-            return response != QMessageBox.Cancel
+            return response != QMessageBox.StandardButton.Cancel
 
         return True
 
@@ -451,6 +447,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 found = app_state.packages_storage.check_stbl(filename)
             elif filename.lower().endswith('.package'):
                 found = app_state.packages_storage.check_package(filename)
+            elif filename.lower().endswith('.json'):
+                found = app_state.packages_storage.check_json(filename)
+            elif filename.lower().endswith('.binary'):
+                found = app_state.packages_storage.check_binary(filename)
 
             if found:
                 self.import_dialog.filename = filename
@@ -467,6 +467,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def export_translation_xml_dp(self):
         self.export_dialog.xml_dp()
+
+    def export_translation_json_s4s(self):
+        self.export_dialog.json_s4s()
+
+    def export_translation_binary_s4s(self):
+        self.export_dialog.binary_s4s()
 
     def translate_from_dict(self):
         for item in app_state.packages_storage.items():
@@ -486,20 +492,66 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.translate_dialog.exec()
 
     def translate(self):
-        item = self.tableview.selected_item()
-        if item:
-            progress_signals.initiate.emit(interface.text('System', 'Translating...'), 0)
-            response = translator.translate(config.value('api', 'engine'), item.source)
-            if response.status_code == 200:
-                undo.wrap(item)
-                item.translate = response.text
-                item.flag = FLAG_VALIDATED
+        items = self.tableview.selected_items()
+
+        if items:
+            progress_signals.initiate.emit(interface.text('System', 'Translating...'), len(items))
+
+            success_count = 0
+            error_messages = []
+            retry_delay = 1
+            max_retry_delay = 60
+
+            for i, item in enumerate(items):
+                retry_count = 0
+                max_retries = 3
+                translated = False
+
+                while retry_count <= max_retries and not translated:
+                    response = translator.translate(config.value('api', 'engine'), item.source)
+
+                    if response.status_code == 200:
+                        undo.wrap(item)
+                        item.translate = response.text
+                        item.flag = FLAG_VALIDATED
+                        success_count += 1
+                        translated = True
+                        retry_delay = max(1, retry_delay * 0.8)
+
+                    elif response.status_code == 429:  # Too Many Requests
+                        retry_count += 1
+                        if retry_count <= max_retries:
+                            time.sleep(retry_delay)
+                            retry_delay = min(max_retry_delay, retry_delay * 2)
+                        else:
+                            error_messages.append(f"Rate limit exceeded for '{item.source[:50]}...': {response.text}")
+                    else:
+                        error_messages.append(f"Error for '{item.source[:50]}...': {response.text}")
+                        break
+
+                progress_signals.increment.emit()
+
+                if i < len(items) - 1:
+                    base_delay = 0.1 if retry_delay <= 1 else 0.2
+                    time.sleep(base_delay)
+
+            if success_count > 0:
                 self.colorbar.resfesh()
                 self.tableview.refresh()
                 undo.commit()
-                progress_signals.finished.emit()
-            else:
-                QMessageBox.critical(self, self.windowTitle(), response.text)
+
+            progress_signals.finished.emit()
+
+            if error_messages:
+                error_text = "\n".join(error_messages[:5])
+                if len(error_messages) > 5:
+                    error_text += "\n" + interface.text('Messages', '... and {} other errors').format(
+                        len(error_messages) - 5)
+
+                QMessageBox.critical(self, self.windowTitle(),
+                                     interface.text('Messages',
+                                                    'Translation completed with {} successes.\n\nErrors:\n{}').format(
+                                         success_count, error_text))
 
     @staticmethod
     def save_dictionary():

@@ -17,7 +17,7 @@ class QToolBar(ToolBar):
         self.setMovable(False)
         self.setIconSize(QSize(18, 18))
         self.setFloatable(False)
-        self.setContextMenuPolicy(Qt.PreventContextMenu)
+        self.setContextMenuPolicy(Qt.ContextMenuPolicy.PreventContextMenu)
 
         self.search_toggle = QAction(QIcon(':/images/search_source'), None)
 
@@ -63,7 +63,7 @@ class QToolBar(ToolBar):
         self.addSeparator()
 
         spacer = QWidget()
-        spacer.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        spacer.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
 
         self.addWidget(spacer)
 
@@ -95,7 +95,7 @@ class FixedLineEdit(QCleaningLineEdit):
         self.adjusted_size = 200
 
         self.setClearButtonEnabled(True)
-        self.setSizePolicy(QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed))
+        self.setSizePolicy(QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed))
         self.setContentsMargins(0, 0, 0, 0)
 
     def sizeHint(self):
@@ -105,7 +105,7 @@ class FixedLineEdit(QCleaningLineEdit):
         return QSize(self.adjusted_size, 26)
 
     def keyReleaseEvent(self, event):
-        if event.key() == Qt.Key_Escape:
+        if event.key() == Qt.Key.Key_Escape:
             self.clear()
 
 
@@ -116,7 +116,7 @@ class InstancesComboBox(QComboBox):
 
         self.adjusted_size = 200
 
-        self.setSizePolicy(QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed))
+        self.setSizePolicy(QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed))
         self.setContentsMargins(0, 0, 0, 0)
 
         self.addItem('')
@@ -135,7 +135,7 @@ class FilesComboBox(QComboBox):
 
         self.adjusted_size = 470
 
-        size_policy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        size_policy = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
 
         self.setSizePolicy(size_policy)
         self.setContentsMargins(0, 0, 0, 0)

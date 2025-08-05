@@ -25,7 +25,7 @@ class EditDialog(QDialog, Ui_EditDialog):
         super().__init__(parent)
         self.setupUi(self)
 
-        self.setWindowFlags(self.windowFlags() | Qt.WindowMaximizeButtonHint)
+        self.setWindowFlags(self.windowFlags() | Qt.WindowType.WindowMaximizeButtonHint)
 
         self.item = None
 
@@ -64,10 +64,10 @@ class EditDialog(QDialog, Ui_EditDialog):
         self.txt_translate.setFocus()
 
     def keyPressEvent(self, event):
-        if event.key() == Qt.Key_Enter or event.key() == Qt.Key_Return:
-            if event.modifiers() and Qt.ControlModifier:
+        if event.key() in [Qt.Key.Key_Enter, Qt.Key.Key_Return]:
+            if event.modifiers() and Qt.KeyboardModifier.ControlModifier:
                 self.ok_click()
-        elif event.key() == Qt.Key_Escape:
+        elif event.key() == Qt.Key.Key_Escape:
             self.close()
         else:
             super().keyPressEvent(event)

@@ -17,8 +17,8 @@ class Ui_ReplaceDialog(object):
         self.label_search = QLabel(ReplaceDialog)
         self.label_replace = QLabel(ReplaceDialog)
 
-        layout_form.setWidget(0, QFormLayout.LabelRole, self.label_search)
-        layout_form.setWidget(1, QFormLayout.LabelRole, self.label_replace)
+        layout_form.setWidget(0, QFormLayout.ItemRole.LabelRole, self.label_search)
+        layout_form.setWidget(1, QFormLayout.ItemRole.LabelRole, self.label_replace)
 
         self.cb_search = QComboBox(ReplaceDialog)
         self.cb_search.setEditable(True)
@@ -26,8 +26,8 @@ class Ui_ReplaceDialog(object):
         self.cb_replace = QComboBox(ReplaceDialog)
         self.cb_replace.setEditable(True)
 
-        layout_form.setWidget(0, QFormLayout.FieldRole, self.cb_search)
-        layout_form.setWidget(1, QFormLayout.FieldRole, self.cb_replace)
+        layout_form.setWidget(0, QFormLayout.ItemRole.FieldRole, self.cb_search)
+        layout_form.setWidget(1, QFormLayout.ItemRole.FieldRole, self.cb_replace)
 
         layout.addLayout(layout_form)
 

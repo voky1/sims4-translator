@@ -27,7 +27,7 @@ class Model(AbstractTableModel):
     def columnCount(self, parent=None):
         return 5
 
-    def data(self, index, role=Qt.DisplayRole):
+    def data(self, index, role=Qt.ItemDataRole.DisplayRole):
         if not index.isValid():
             return None
 
@@ -39,11 +39,11 @@ class Model(AbstractTableModel):
 
         item = self.filtered[row]
 
-        if role == Qt.FontRole:
+        if role == Qt.ItemDataRole.FontRole:
             if column == COLUMN_DICTIONARIES_PACKAGE:
                 return app_state.monospace.font()
 
-        elif role == Qt.ForegroundRole:
+        elif role == Qt.ItemDataRole.ForegroundRole:
             if column in (COLUMN_DICTIONARIES_SOURCE, COLUMN_DICTIONARIES_TRANSLATE):
                 if column == COLUMN_DICTIONARIES_SOURCE:
                     txt = item[RECORD_DICTIONARY_SOURCE]
@@ -52,7 +52,7 @@ class Model(AbstractTableModel):
                 if not txt or not str(txt).strip(' '):
                     return self.color_null
 
-        elif role == Qt.DisplayRole:
+        elif role == Qt.ItemDataRole.DisplayRole:
             if not column:
                 return None
 
@@ -73,9 +73,9 @@ class Model(AbstractTableModel):
 
         return None
 
-    def sort(self, column, order=Qt.AscendingOrder):
+    def sort(self, column, order=Qt.SortOrder.AscendingOrder):
         self.beginResetModel()
-        reverse = order == Qt.DescendingOrder
+        reverse = order == Qt.SortOrder.DescendingOrder
         idx = self.index_mapping.get(column, RECORD_DICTIONARY_LENGTH)
         key = operator.itemgetter(idx,
                                   self.addition_sort) if 0 <= self.addition_sort != idx else operator.itemgetter(idx)
@@ -91,7 +91,7 @@ class ProxyModel(QSortFilterProxyModel):
         self.__text = None
 
         self.__column = COLUMN_DICTIONARIES_LENGTH
-        self.__order = Qt.AscendingOrder
+        self.__order = Qt.SortOrder.AscendingOrder
 
     def filter(self, text: str):
         self.__text = text.lower() if text else None
@@ -107,7 +107,7 @@ class ProxyModel(QSortFilterProxyModel):
             model.filter([])
 
     def headerData(self, section, orientation, role=None):
-        if role == Qt.DisplayRole and orientation == Qt.Horizontal:
+        if role == Qt.ItemDataRole.DisplayRole and orientation == Qt.Orientation.Horizontal:
             header_mapping = {
                 COLUMN_DICTIONARIES_PACKAGE: 'ID',
                 COLUMN_DICTIONARIES_SOURCE: interface.text('MainTableView', 'Original'),
@@ -116,7 +116,7 @@ class ProxyModel(QSortFilterProxyModel):
             return header_mapping.get(section, '')
         return None
 
-    def sort(self, column, order=Qt.AscendingOrder):
+    def sort(self, column, order=Qt.SortOrder.AscendingOrder):
         self.__column = column
         self.__order = order
         self.sourceModel().sort(column, order)

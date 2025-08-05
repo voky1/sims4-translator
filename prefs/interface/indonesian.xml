@@ -1,101 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ts language="pl_PL" name="Polski (Polish)" version="1.4" authors="Simowe Osiedle">
+<ts language="id_ID" name="Indonesia (Indonesian)" version="1.4" authors="wahyudiZulhaidar">
   <context name="EditWindow">
     <string>
       <source>Search and Edit</source>
-      <translation>Wyszukaj i edytuj</translation>
+      <translation>Cari dan Edit</translation>
     </string>
     <string>
       <source>OK (Ctrl+Enter)</source>
-      <translation />
+      <translation>OK (Ctrl+Enter)</translation>
     </string>
     <string>
       <source>Original text</source>
-      <translation>Oryginalny Tekst</translation>
+      <translation>Teks asli</translation>
     </string>
     <string>
       <source>Different original</source>
-      <translation>Inny oryginał</translation>
+      <translation>Asli yang berbeda</translation>
     </string>
     <string>
       <source>Current translation</source>
-      <translation>Aktualne tłumaczenie</translation>
+      <translation>Terjemahan saat ini</translation>
     </string>
     <string>
       <source>Different translation</source>
-      <translation>Inne tłumaczenie</translation>
+      <translation>Terjemahan yang berbeda</translation>
     </string>
     <string>
       <source>Cancel</source>
-      <translation>Anuluj</translation>
+      <translation>Batal</translation>
     </string>
     <string>
       <source>Translate</source>
-      <translation>Przetłumacz</translation>
+      <translation>Terjemahkan</translation>
     </string>
     <string>
       <source>Use this translation</source>
-      <translation>Użyj tego tłumaczenia</translation>
+      <translation>Gunakan terjemahan ini</translation>
     </string>
     <string>
       <source>Loading...</source>
-      <translation>Ładowanie...</translation>
+      <translation>Memuat...</translation>
     </string>
     <string>
       <source>Comment...</source>
-      <translation>Komentarz...</translation>
+      <translation>Komentar...</translation>
     </string>
   </context>
   <context name="ExportDialog">
     <string>
       <source>Export translate</source>
-      <translation>Eksportuj tłumaczenie</translation>
+      <translation>Ekspor terjemahan</translation>
     </string>
     <string>
       <source>Export</source>
-      <translation>Eksportuj</translation>
+      <translation>Ekspor</translation>
     </string>
     <string>
       <source>Everything</source>
-      <translation>Wszystko</translation>
+      <translation>Semuanya</translation>
     </string>
     <string>
       <source>Everything but untranslated strings</source>
-      <translation>Wszystko oprócz nieprzetłumaczonych tekstów</translation>
+      <translation>Semua kecuali string yang belum diterjemahkan</translation>
     </string>
     <string>
       <source>Only selected instance</source>
-      <translation>Tylko wybrane instancje</translation>
+      <translation>Hanya instance yang dipilih</translation>
     </string>
     <string>
       <source>Each instance as a separate file</source>
-      <translation>Każda instancja jako osobny plik</translation>
+      <translation>Setiap instance sebagai file terpisah</translation>
     </string>
     <string>
       <source>Each package as a separate file</source>
-      <translation>Każdy plik package jako osobny</translation>
+      <translation>Setiap paket sebagai file terpisah</translation>
     </string>
     <string>
       <source>Exported records</source>
-      <translation>Eksportuj rekordy</translation>
+      <translation>Catatan yang diekspor</translation>
     </string>
     <string>
       <source>Cancel</source>
-      <translation>Anuluj</translation>
+      <translation>Batal</translation>
     </string>
     <string>
       <source>Selection only</source>
-      <translation>Tylko zaznaczone teksty (linijki)</translation>
+      <translation>Hanya pilihan</translation>
     </string>
   </context>
   <context name="MainTableView">
     <string>
       <source>Original</source>
-      <translation>Oryginalny Tekst</translation>
+      <translation>Asli</translation>
     </string>
     <string>
       <source>Translated</source>
-      <translation>Przetłumaczony Tekst</translation>
+      <translation>Diterjemahkan</translation>
     </string>
     <string>
       <source>LD</source>
@@ -103,193 +103,193 @@
     </string>
     <string>
       <source>Instance</source>
-      <translation>Instancja</translation>
+      <translation>Instance</translation>
     </string>
     <string>
       <source>Group</source>
-      <translation>Grupa</translation>
+      <translation>Grup</translation>
     </string>
     <string>
       <source>Comment</source>
-      <translation>Komentarz</translation>
+      <translation>Komentar</translation>
     </string>
   </context>
   <context name="MainWindow">
     <string>
       <source>File</source>
-      <translation>Plik</translation>
+      <translation>Berkas</translation>
     </string>
     <string>
       <source>Export translation</source>
-      <translation>Eksportuj tłumaczenie</translation>
+      <translation>Ekspor terjemahan</translation>
     </string>
     <string>
       <source>Translation</source>
-      <translation>Tłumaczenie</translation>
+      <translation>Terjemahan</translation>
     </string>
     <string>
       <source>View</source>
-      <translation>Podgląd</translation>
+      <translation>Tampilan</translation>
     </string>
     <string>
       <source>Options</source>
-      <translation>Opcje</translation>
+      <translation>Opsi</translation>
     </string>
     <string>
       <source>Group</source>
-      <translation>Grupa</translation>
+      <translation>Grup</translation>
     </string>
     <string>
       <source>Help</source>
-      <translation>Pomoc</translation>
+      <translation>Bantuan</translation>
     </string>
     <string>
       <source>Save as...</source>
-      <translation>Zapisz jako...</translation>
+      <translation>Simpan sebagai...</translation>
     </string>
     <string>
       <source>Close</source>
-      <translation>Zamknij</translation>
+      <translation>Tutup</translation>
     </string>
     <string>
       <source>Save</source>
-      <translation>Zapisz</translation>
+      <translation>Simpan</translation>
     </string>
     <string>
       <source>Save dictionary</source>
-      <translation>Zapisz projekt</translation>
+      <translation>Simpan kamus</translation>
     </string>
     <string>
       <source>Search and replace...</source>
-      <translation>Znajdź i zamień...</translation>
+      <translation>Cari dan ganti...</translation>
     </string>
     <string>
       <source>Validate all translations</source>
-      <translation>Zaznacz wszystko jako przetłumaczone</translation>
+      <translation>Validasi semua terjemahan</translation>
     </string>
     <string>
       <source>Reset all translations</source>
-      <translation>Zaznacz wszystko jako nie przetłumaczone</translation>
+      <translation>Reset semua terjemahan</translation>
     </string>
     <string>
       <source>Exit</source>
-      <translation>Wyjdź</translation>
+      <translation>Keluar</translation>
     </string>
     <string>
       <source>Undo</source>
-      <translation>Cofnij</translation>
+      <translation>Urungkan</translation>
     </string>
     <string>
       <source>About Qt...</source>
-      <translation>Na temat Qt...</translation>
+      <translation>Tentang Qt...</translation>
     </string>
     <string>
       <source>Options...</source>
-      <translation>Opcje...</translation>
+      <translation>Opsi...</translation>
     </string>
     <string>
       <source>To XML...</source>
-      <translation>Do XML...</translation>
+      <translation>Ke XML...</translation>
     </string>
     <string>
       <source>Translate from dictionaries</source>
-      <translation>Tłumacz ze słownika</translation>
+      <translation>Terjemahkan dari kamus</translation>
     </string>
     <string>
       <source>Finalize package</source>
-      <translation>Zapisz w aktualnym package</translation>
+      <translation>Selesaikan paket</translation>
     </string>
     <string>
       <source>Finalize package as...</source>
-      <translation>Zapisz jako duplikat package...</translation>
+      <translation>Selesaikan paket sebagai...</translation>
     </string>
     <string>
       <source>To XML (Deaderpool's STBL editor)...</source>
-      <translation>Do XML (Deaderpool's STBL editor)...</translation>
+      <translation>Ke XML (Editor STBL Deaderpool)...</translation>
     </string>
     <string>
       <source>To JSON (Sims 4 Studio format)...</source>
-      <translation />
+      <translation>Ke JSON (format Sims 4 Studio)...</translation>
     </string>
     <string>
       <source>To Binary (Sims 4 Studio format)...</source>
-      <translation />
+      <translation>Ke biner (format Sims 4 Studio)...</translation>
     </string>
     <string>
       <source>Use original group</source>
-      <translation>Użyj oryginalnej grupy</translation>
+      <translation>Gunakan grup asli</translation>
     </string>
     <string>
       <source>Use high-bit</source>
-      <translation>Użyj wysokiego bitu</translation>
+      <translation>Gunakan bit tinggi</translation>
     </string>
     <string>
       <source>To STBL...</source>
-      <translation>Do STBL...</translation>
+      <translation>Ke STBL...</translation>
     </string>
     <string>
       <source>Use low-bit</source>
-      <translation>Użyj niskiego bitu</translation>
+      <translation>Gunakan bit rendah</translation>
     </string>
     <string>
       <source>Edit String</source>
-      <translation>Edytuj tekst</translation>
+      <translation>Edit String</translation>
     </string>
     <string>
       <source>Validate as [translated]</source>
-      <translation>Oznacz jako [przetłumaczone]</translation>
+      <translation>Validasi sebagai [diterjemahkan]</translation>
     </string>
     <string>
       <source>Validate as [work in progress]</source>
-      <translation>Oznacz jako [w trakcie]</translation>
+      <translation>Validasi sebagai [sedang dikerjakan]</translation>
     </string>
     <string>
       <source>Cancel translation</source>
-      <translation>Oznacz jako [nie przetłumaczone]</translation>
+      <translation>Batalkan terjemahan</translation>
     </string>
     <string>
       <source>Copy</source>
-      <translation>Kopiuj</translation>
+      <translation>Salin</translation>
     </string>
     <string>
       <source>Paste</source>
-      <translation>Wklej</translation>
+      <translation>Tempel</translation>
     </string>
     <string>
       <source>Load file...</source>
-      <translation>Otwórz plik...</translation>
+      <translation>Muat berkas...</translation>
     </string>
     <string>
       <source>Add file...</source>
-      <translation>Dodaj plik...</translation>
+      <translation>Tambah berkas...</translation>
     </string>
     <string>
       <source>Import translation...</source>
-      <translation>Importuj tłumaczenie...</translation>
+      <translation>Impor terjemahan...</translation>
     </string>
     <string>
       <source>Remove record</source>
-      <translation>Usuń rekord</translation>
+      <translation>Hapus catatan</translation>
     </string>
     <string>
       <source>Save bundle...</source>
-      <translation>Zapisz listę plików...</translation>
+      <translation>Simpan bundel...</translation>
     </string>
     <string>
       <source>Load bundle...</source>
-      <translation>Wczytaj listę plików...</translation>
+      <translation>Muat bundel...</translation>
     </string>
     <string>
       <source>Numeration</source>
-      <translation>Numeracja</translation>
+      <translation>Penomoran</translation>
     </string>
     <string>
       <source>Standart</source>
-      <translation>Standardowy</translation>
+      <translation>Standar</translation>
     </string>
     <string>
       <source>From the source file</source>
-      <translation>Z oryginalnego pliku</translation>
+      <translation>Dari berkas sumber</translation>
     </string>
     <string>
       <source>XML format</source>
@@ -297,444 +297,447 @@
     </string>
     <string>
       <source>XML format (Deaderpool's STBL editor)</source>
-      <translation>Format XML (Deaderpool's STBL editor)</translation>
+      <translation>Format XML (Editor STBL Deaderpool)</translation>
     </string>
     <string>
       <source>Batch translate...</source>
-      <translation>Tłumaczenie zbiorcze (automatycznie)...</translation>
+      <translation>Terjemahkan batch...</translation>
     </string>
     <string>
       <source>Translate</source>
-      <translation>Przetłumacz (automatycznie)</translation>
+      <translation>Terjemahkan</translation>
     </string>
     <string>
       <source>Color visualization</source>
-      <translation>Wizualizacja kolorów</translation>
+      <translation>Visualisasi warna</translation>
     </string>
   </context>
   <context name="Messages">
     <string>
       <source>Save dictionary for modified packages?</source>
-      <translation>Zapisać projekt przetłumaczonych plików (Zalezane)?</translation>
+      <translation>Simpan kamus untuk paket yang dimodifikasi?</translation>
     </string>
     <string>
       <source>Are you sure you want to delete the selected records?</source>
-      <translation>Czy na pewno chcesz usunąć wybrane rekordy??</translation>
+      <translation>Anda yakin ingin menghapus catatan yang dipilih?</translation>
     </string>
     <string>
       <source>Not found text records in this file!</source>
-      <translation>Nie znaleziono tekstu w wybranym pliku!</translation>
+      <translation>Tidak ditemukan catatan teks dalam berkas ini!</translation>
     </string>
     <string>
       <source>Not found text records in this files!</source>
-      <translation>Nie znaleziono tekstu w wybranych plikach!</translation>
+      <translation>Tidak ditemukan catatan teks dalam berkas-berkas ini!</translation>
     </string>
     <string>
       <source>Not found text records in following files:</source>
-      <translation>Nie znaleziono tekstu w następujących plikach:</translation>
+      <translation>Tidak ditemukan catatan teks dalam berkas berikut:</translation>
     </string>
     <string>
       <source>Translation completed with {} successes.
 
 Errors:
 {}</source>
-      <translation />
+      <translation>Terjemahan selesai dengan {} keberhasilan.
+
+Kesalahan:
+{}</translation>
     </string>
     <string>
       <source>... and {} other errors</source>
-      <translation />
+      <translation>... dan {} kesalahan lainnya</translation>
     </string>
   </context>
   <context name="Errors">
     <string>
       <source>Language code not found!</source>
-      <translation>Nie znaleziono kodu języka!</translation>
+      <translation>Kode bahasa tidak ditemukan!</translation>
     </string>
     <string>
       <source>Translation failed with error code: {}</source>
-      <translation>Tłumaczenie nie powiodło się błąd: {}</translation>
+      <translation>Terjemahan gagal dengan kode kesalahan: {}</translation>
     </string>
     <string>
       <source>Invalid API key.</source>
-      <translation>Zły kod API.</translation>
+      <translation>Kunci API tidak valid.</translation>
     </string>
     <string>
       <source>Your quota has exceeded!</source>
-      <translation>Twój limit został przekroczony!</translation>
+      <translation>Kuota Anda telah terlampaui!</translation>
     </string>
     <string>
       <source>There was a temporary problem with the DeepL Service.</source>
-      <translation>Wystąpił tymczasowy problem z serwisem DeepL.</translation>
+      <translation>Ada masalah sementara dengan Layanan DeepL.</translation>
     </string>
   </context>
   <context name="OptionsDialog">
     <string>
       <source>NOT FOUND</source>
-      <translation>NIE ZNALEZIONO</translation>
+      <translation>TIDAK DITEMUKAN</translation>
     </string>
     <string>
       <source>{} not exist</source>
-      <translation>{} nie istnieje</translation>
+      <translation>{} tidak ada</translation>
     </string>
     <string>
       <source>FOUND</source>
-      <translation>ZNALEZIONO</translation>
+      <translation>DITEMUKAN</translation>
     </string>
     <string>
       <source>BASE GAME</source>
-      <translation>The Sims 4™ (Gra podstawowa)</translation>
+      <translation>GAME DASAR</translation>
     </string>
     <string>
       <source>Expansion packs</source>
-      <translation>DODATKI:</translation>
+      <translation>Paket ekspansi</translation>
     </string>
     <string>
       <source>Game packs</source>
-      <translation>PAKIETY ROZGRYWKI:</translation>
+      <translation>Paket game</translation>
     </string>
     <string>
       <source>Stuff packs</source>
-      <translation>PAKIETY AKCESORIÓW/KOLEKCJE:</translation>
+      <translation>Paket barang</translation>
     </string>
     <string>
       <source>Options and dictionaries</source>
-      <translation>Opcje i słownik</translation>
+      <translation>Opsi dan kamus</translation>
     </string>
     <string>
       <source>Build dictionaries</source>
-      <translation>Utwórz słowniki na podstawie DLC</translation>
+      <translation>Bangun kamus</translation>
     </string>
     <string>
       <source>Languages</source>
-      <translation>Przetłumacz z Języka na Język</translation>
+      <translation>Bahasa</translation>
     </string>
     <string>
       <source>Source</source>
-      <translation>Z języka:</translation>
+      <translation>Sumber</translation>
     </string>
     <string>
       <source>Destination</source>
-      <translation>Na język:</translation>
+      <translation>Tujuan</translation>
     </string>
     <string>
       <source>Game path</source>
-      <translation>Folder z zainstalowaną grą The Sims 4:</translation>
+      <translation>Jalur game</translation>
     </string>
     <string>
       <source>...</source>
-      <translation />
+      <translation>...</translation>
     </string>
     <string>
       <source>Create backup package before finalization</source>
-      <translation>Utwórz kopię zapasową przed finalizacją</translation>
+      <translation>Buat paket cadangan sebelum finalisasi</translation>
     </string>
     <string>
       <source>Saving translation without conflicts (experemental)</source>
-      <translation>Zapisywanie tłumaczenia bez konfliktów (eksperymentalne)</translation>
+      <translation>Menyimpan terjemahan tanpa konflik (eksperimental)</translation>
     </string>
     <string>
       <source>Interface</source>
-      <translation>Interfejs</translation>
+      <translation>Antarmuka</translation>
     </string>
     <string>
       <source>Do not use automatic translation from other dictionaries</source>
-      <translation>Nie używaj automatycznego tłumaczenia z innych słowników.</translation>
+      <translation>Jangan gunakan terjemahan otomatis dari kamus lain</translation>
     </string>
     <string>
       <source>General</source>
-      <translation>OGÓLNE</translation>
+      <translation>Umum</translation>
     </string>
     <string>
       <source>Dictionaries</source>
-      <translation>SŁOWNIK</translation>
+      <translation>Kamus</translation>
     </string>
     <string>
       <source>DeepL API key</source>
-      <translation>Klucz DeepL API</translation>
+      <translation>Kunci API DeepL</translation>
     </string>
     <string>
       <source>Language</source>
-      <translation>Język</translation>
+      <translation>Bahasa</translation>
     </string>
     <string>
       <source>Theme</source>
-      <translation>Motyw</translation>
+      <translation>Tema</translation>
     </string>
     <string>
       <source>Light</source>
-      <translation>Jasny</translation>
+      <translation>Terang</translation>
     </string>
     <string>
       <source>Dark</source>
-      <translation>Ciemny</translation>
+      <translation>Gelap</translation>
     </string>
     <string>
       <source>The application needs to be restarted</source>
-      <translation>Aplikacja musi zostać ponownie uruchomiona</translation>
+      <translation>Aplikasi perlu dimulai ulang</translation>
     </string>
     <string>
       <source>The translation version differs from the application version, so the interface may not be fully translated</source>
-      <translation>Wersja tłumaczenia różni się od wersji aplikacji, więc interfejs może nie być w pełni przetłumaczony</translation>
+      <translation>Versi terjemahan berbeda dari versi aplikasi, sehingga antarmuka mungkin tidak sepenuhnya diterjemahkan</translation>
     </string>
   </context>
   <context name="ReplaceDialog">
     <string>
       <source>Search and replace</source>
-      <translation>Znajdź i zamień</translation>
+      <translation>Cari dan ganti</translation>
     </string>
     <string>
       <source>Case sensitive</source>
-      <translation>Uwzględnij wielkości liter</translation>
+      <translation>Sensitif huruf besar/kecil</translation>
     </string>
     <string>
       <source>Search</source>
-      <translation>Szukaj:</translation>
+      <translation>Cari</translation>
     </string>
     <string>
       <source>Replace</source>
-      <translation>Zamień:</translation>
+      <translation>Ganti</translation>
     </string>
     <string>
       <source>Search and replace in:</source>
-      <translation>Znajdź i zamień w:</translation>
+      <translation>Cari dan ganti di:</translation>
     </string>
     <string>
       <source>All strings</source>
-      <translation>Wszystkie ciągi</translation>
+      <translation>Semua string</translation>
     </string>
     <string>
       <source>Not validated strings</source>
-      <translation>Niezatwierdzone ciągi</translation>
+      <translation>String yang belum divalidasi</translation>
     </string>
     <string>
       <source>Cancel</source>
-      <translation>Anuluj</translation>
+      <translation>Batal</translation>
     </string>
     <string>
       <source>OK</source>
-      <translation />
+      <translation>OK</translation>
     </string>
   </context>
   <context name="System">
     <string>
       <source>Saving package {}...</source>
-      <translation>Zaoustwanie package {}...</translation>
+      <translation>Menyimpan paket {}...</translation>
     </string>
     <string>
       <source>Loading dictionaries...</source>
-      <translation>Ładowanie słowników...</translation>
+      <translation>Memuat kamus...</translation>
     </string>
     <string>
       <source>Build dictionaries...</source>
-      <translation>Utwórz słowniki na podstawie DLC...</translation>
+      <translation>Membangun kamus...</translation>
     </string>
     <string>
       <source>Exporting translate...</source>
-      <translation>Eksport tłumaczenia...</translation>
+      <translation>Mengekspor terjemahan...</translation>
     </string>
     <string>
       <source>Importing translate...</source>
-      <translation>Import tłumaczenia...</translation>
+      <translation>Mengimpor terjemahan...</translation>
     </string>
     <string>
       <source>All files</source>
-      <translation>Wszystkie pliki</translation>
+      <translation>Semua berkas</translation>
     </string>
     <string>
       <source>Packages</source>
-      <translation>Package</translation>
+      <translation>Paket</translation>
     </string>
     <string>
       <source>STBL files</source>
-      <translation>Pliki STBL</translation>
+      <translation>Berkas STBL</translation>
     </string>
     <string>
       <source>XML files</source>
-      <translation>Pliki XML</translation>
+      <translation>Berkas XML</translation>
     </string>
     <string>
       <source>JSON files</source>
-      <translation />
+      <translation>Berkas JSON</translation>
     </string>
     <string>
       <source>Binary files</source>
-      <translation />
+      <translation>Berkas biner</translation>
     </string>
     <string>
       <source>Opening file {}...</source>
-      <translation>Otwieranie pliku {}...</translation>
+      <translation>Membuka berkas {}...</translation>
     </string>
     <string>
       <source>Opening files...</source>
-      <translation>Otwieranie plików...</translation>
+      <translation>Membuka berkas...</translation>
     </string>
     <string>
       <source>Opening file...</source>
-      <translation>Otwieranie plików...</translation>
+      <translation>Membuka berkas...</translation>
     </string>
     <string>
       <source>Translating...</source>
-      <translation>Tłumaczenie...</translation>
+      <translation>Menerjemahkan...</translation>
     </string>
     <string>
       <source>Stopping translate, waiting for the finish of the threads...</source>
-      <translation>Zatrzymuję tłumaczenie, czekając na zakończenie wątków...</translation>
+      <translation>Menghentikan terjemahan, menunggu selesainya thread...</translation>
     </string>
   </context>
   <context name="ToolBar">
     <string>
       <source>-- All files --</source>
-      <translation>-- Wszystkie pliki --</translation>
+      <translation>-- Semua berkas --</translation>
     </string>
     <string>
       <source>Search in translation</source>
-      <translation>Szukaj w tłumaczeniu</translation>
+      <translation>Cari dalam terjemahan</translation>
     </string>
     <string>
       <source>Search in ID</source>
-      <translation>Szukaj po ID</translation>
+      <translation>Cari dalam ID</translation>
     </string>
     <string>
       <source>Search in original</source>
-      <translation>Szukaj w oryginale</translation>
+      <translation>Cari dalam asli</translation>
     </string>
     <string>
       <source>-- All instances --</source>
-      <translation>-- Wszystkie instancje --</translation>
+      <translation>-- Semua instance --</translation>
     </string>
     <string>
       <source>Translated</source>
-      <translation>Przetłumaczone</translation>
+      <translation>Diterjemahkan</translation>
     </string>
     <string>
       <source>Not translated</source>
-      <translation>Nie przetłumaczone</translation>
+      <translation>Belum diterjemahkan</translation>
     </string>
     <string>
       <source>Validated translation</source>
-      <translation>Sprawdzone tłumaczenie</translation>
+      <translation>Terjemahan yang divalidasi</translation>
     </string>
     <string>
       <source>Partial translation</source>
-      <translation>Częściowe tłumaczenie</translation>
+      <translation>Terjemahan parsial</translation>
     </string>
     <string>
       <source>Different strings</source>
-      <translation>Inne ciągi</translation>
+      <translation>String yang berbeda</translation>
     </string>
     <string>
       <source>Search...</source>
-      <translation>Szukaj...</translation>
+      <translation>Cari...</translation>
     </string>
   </context>
   <context name="ImportDialog">
     <string>
       <source>Import translate</source>
-      <translation>Importuj tłumaczenia</translation>
+      <translation>Impor terjemahan</translation>
     </string>
     <string>
       <source>Overwrite</source>
-      <translation>Importowanie tłumaczenia:</translation>
+      <translation>Timpa</translation>
     </string>
     <string>
       <source>Everything</source>
-      <translation>Wszystko</translation>
+      <translation>Semuanya</translation>
     </string>
     <string>
       <source>Everything but already validated strings</source>
-      <translation>Wszystko oprócz już przetłumaczonych tekstów</translation>
+      <translation>Semua kecuali string yang sudah divalidasi</translation>
     </string>
     <string>
       <source>Everything but already validated and partial strings</source>
-      <translation>Wszystkie z wyjątkiem przetłumaczonych i częściowo przetłumaczonych tekstów</translation>
+      <translation>Semua kecuali string yang sudah divalidasi dan parsial</translation>
     </string>
     <string>
       <source>Partial strings</source>
-      <translation>Tylko częściowo przetłumaczone</translation>
+      <translation>String parsial</translation>
     </string>
     <string>
       <source>Selection only</source>
-      <translation>Tylko zaznaczone teksty (linijki)</translation>
+      <translation>Hanya pilihan</translation>
     </string>
     <string>
       <source>Replace existing translation</source>
-      <translation>Nadpisywanie już przetłumaczonych linii</translation>
+      <translation>Ganti terjemahan yang ada</translation>
     </string>
     <string>
       <source>Import</source>
-      <translation>Import</translation>
+      <translation>Impor</translation>
     </string>
     <string>
       <source>Cancel</source>
-      <translation>Anuluj</translation>
+      <translation>Batal</translation>
     </string>
   </context>
   <context name="TranslateDialog">
     <string>
       <source>Translate</source>
-      <translation>Przetłumacz</translation>
+      <translation>Terjemahkan</translation>
     </string>
     <string>
       <source>Cancel</source>
-      <translation>Anuluj</translation>
+      <translation>Batal</translation>
     </string>
     <string>
       <source>Batch translate</source>
-      <translation>Tłumaczenie zbiorcze (automatyczne)</translation>
+      <translation>Terjemahkan batch</translation>
     </string>
     <string>
       <source>Log</source>
-      <translation>Logi</translation>
+      <translation>Log</translation>
     </string>
     <string>
       <source>Line-by-line translation</source>
-      <translation>Tłumaczenie linijka po linijce</translation>
+      <translation>Terjemahan baris per baris</translation>
     </string>
     <string>
       <source>Multiline translation</source>
-      <translation>Tłumaczenie wieloliniowe</translation>
+      <translation>Terjemahan multiline</translation>
     </string>
     <string>
       <source>Slow but more accurate translation.</source>
-      <translation>Wolniejsze, ale dokładniejsze tłumaczenie.</translation>
+      <translation>Terjemahan lambat tetapi lebih akurat.</translation>
     </string>
     <string>
       <source>A faster, but perhaps less accurate translation.</source>
-      <translation>Szybsze, ale być może mniej dokładne tłumaczenie.</translation>
+      <translation>Terjemahan lebih cepat, tetapi mungkin kurang akurat.</translation>
     </string>
     <string>
       <source>Some lines could not be translated.</source>
-      <translation>Niektórych wierszy nie można było przetłumaczyć.</translation>
+      <translation>Beberapa baris tidak dapat diterjemahkan.</translation>
     </string>
     <string>
       <source>Stop translate</source>
-      <translation>Zatrzymaj tłumaczenie</translation>
+      <translation>Hentikan terjemahan</translation>
     </string>
   </context>
   <context name="TextEditor">
     <string>
       <source>Undo</source>
-      <translation>Cofnij</translation>
+      <translation>Urungkan</translation>
     </string>
     <string>
       <source>Redo</source>
-      <translation>Powtórz</translation>
+      <translation>Ulangi</translation>
     </string>
     <string>
       <source>Cut</source>
-      <translation>Wytnij</translation>
+      <translation>Potong</translation>
     </string>
     <string>
       <source>Copy</source>
-      <translation>Kopiuj</translation>
+      <translation>Salin</translation>
     </string>
     <string>
       <source>Paste</source>
-      <translation>Wklej</translation>
+      <translation>Tempel</translation>
     </string>
     <string>
       <source>Select All</source>
-      <translation>Zaznacz wszystko</translation>
+      <translation>Pilih Semua</translation>
     </string>
   </context>
 </ts>

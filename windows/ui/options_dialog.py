@@ -88,8 +88,8 @@ class Ui_OptionsDialog(object):
         layout_theme.addLayout(layout_theme_lbl)
         layout_theme.addLayout(layout_theme_hint)
 
-        self.lbl_language.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-        self.lbl_theme.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
+        self.lbl_language.setAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
+        self.lbl_theme.setAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
 
         self.lbl_language.setMinimumWidth(75)
         self.lbl_theme.setMinimumWidth(75)
@@ -164,18 +164,18 @@ class Ui_OptionsDialog(object):
         vlayout.addWidget(self.gb_path)
 
         self.tableview = QTableView(self.tab_dictionaries)
-        self.tableview.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.tableview.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         self.tableview.setAutoScroll(False)
-        self.tableview.setEditTriggers(QAbstractItemView.NoEditTriggers)
-        self.tableview.setSelectionMode(QAbstractItemView.NoSelection)
-        self.tableview.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.tableview.setEditTriggers(QAbstractItemView.EditTrigger.NoEditTriggers)
+        self.tableview.setSelectionMode(QAbstractItemView.SelectionMode.NoSelection)
+        self.tableview.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
         self.tableview.setShowGrid(False)
-        self.tableview.setGridStyle(Qt.NoPen)
+        self.tableview.setGridStyle(Qt.PenStyle.NoPen)
         self.tableview.setWordWrap(False)
         self.tableview.horizontalHeader().setVisible(False)
 
         header = self.tableview.verticalHeader()
-        header.setSectionResizeMode(QHeaderView.Fixed)
+        header.setSectionResizeMode(QHeaderView.ResizeMode.Fixed)
         header.setDefaultSectionSize(26)
         header.setVisible(False)
         

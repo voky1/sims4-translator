@@ -21,8 +21,11 @@ class Ui_ExportDialog(object):
         self.rb_translated = QRadioButton(self.gb_rec)
         self.rb_translated.setChecked(True)
 
+        self.rb_selection = QRadioButton(self.gb_rec)
+
         layout_rec.addWidget(self.rb_all)
         layout_rec.addWidget(self.rb_translated)
+        layout_rec.addWidget(self.rb_selection)
 
         layout.addWidget(self.gb_rec)
 

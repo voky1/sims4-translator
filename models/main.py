@@ -33,7 +33,7 @@ class Model(AbstractTableModel):
     def columnCount(self, parent=None):
         return 9
 
-    def data(self, index, role=Qt.DisplayRole):
+    def data(self, index, role=Qt.ItemDataRole.DisplayRole):
         if not index.isValid():
             return None
 
@@ -45,17 +45,17 @@ class Model(AbstractTableModel):
 
         item = self.filtered[row]
 
-        if role == Qt.FontRole:
+        if role == Qt.ItemDataRole.FontRole:
             if column in (COLUMN_MAIN_INDEX, COLUMN_MAIN_ID, COLUMN_MAIN_GROUP, COLUMN_MAIN_INSTANCE):
                 return app_state.monospace.font()
 
-        elif role == Qt.ForegroundRole:
+        elif role == Qt.ItemDataRole.ForegroundRole:
             if column in (COLUMN_MAIN_SOURCE, COLUMN_MAIN_TRANSLATE):
                 txt = item.source if column == COLUMN_MAIN_SOURCE else item.translate
                 if not txt or not str(txt).strip(' '):
                     return self.color_null
 
-        elif role == Qt.DisplayRole:
+        elif role == Qt.ItemDataRole.DisplayRole:
             if not column:
                 return None
 
@@ -95,9 +95,9 @@ class Model(AbstractTableModel):
 
         return None
 
-    def sort(self, column, order=Qt.AscendingOrder):
+    def sort(self, column, order=Qt.SortOrder.AscendingOrder):
         self.beginResetModel()
-        reverse = order == Qt.DescendingOrder
+        reverse = order == Qt.SortOrder.DescendingOrder
         idx = self.index_mapping.get(column, RECORD_MAIN_INDEX)
         key = operator.itemgetter(idx,
                                   self.addition_sort) if 0 <= self.addition_sort != idx else operator.itemgetter(idx)
@@ -118,7 +118,7 @@ class ProxyModel(QSortFilterProxyModel):
         self.__different = False
 
         self.__column = COLUMN_MAIN_INDEX
-        self.__order = Qt.AscendingOrder
+        self.__order = Qt.SortOrder.AscendingOrder
 
     def filter(self, package: str, instance: Union[str, int], text: str, mode: int, flags: List[int], different: bool):
         self.__package = package
@@ -178,7 +178,7 @@ class ProxyModel(QSortFilterProxyModel):
         return True
 
     def headerData(self, section, orientation, role=None):
-        if role == Qt.DisplayRole and orientation == Qt.Horizontal:
+        if role == Qt.ItemDataRole.DisplayRole and orientation == Qt.Orientation.Horizontal:
             header_mapping = {
                 COLUMN_MAIN_INDEX: '#',
                 COLUMN_MAIN_ID: interface.text('MainTableView', 'ID'),
@@ -191,7 +191,7 @@ class ProxyModel(QSortFilterProxyModel):
             return header_mapping.get(section, '')
         return None
 
-    def sort(self, column, order=Qt.AscendingOrder):
+    def sort(self, column, order=Qt.SortOrder.AscendingOrder):
         self.__column = column
         self.__order = order
         self.sourceModel().sort(column, order)
