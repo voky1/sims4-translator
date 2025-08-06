@@ -76,9 +76,6 @@ class Ui_MainWindow(object):
         self.action_options = QAction(MainWindow)
         self.action_options.setIcon(QIcon(':/images/options.png'))
 
-        self.action_export_xml = QAction(MainWindow)
-        self.action_export_xml.setIcon(QIcon(':/images/export_xml.png'))
-
         self.action_translate_from_dictionaries = QAction(MainWindow)
         self.action_translate_from_dictionaries.setEnabled(False)
         self.action_translate_from_dictionaries.setIcon(QIcon(':/images/translate.png'))
@@ -105,6 +102,9 @@ class Ui_MainWindow(object):
         self.action_finalize_as = QAction(MainWindow)
         self.action_finalize_as.setEnabled(False)
         self.action_finalize_as.setIcon(QIcon(':/images/dict.png'))
+
+        self.action_export_xml = QAction(MainWindow)
+        self.action_export_xml.setIcon(QIcon(':/images/export_xml.png'))
 
         self.action_export_xml_dp = QAction(MainWindow)
         self.action_export_xml_dp.setIcon(QIcon(':/images/export_xml.png'))
@@ -219,7 +219,7 @@ class Ui_MainWindow(object):
 
         self.colorbar.setVisible(False)
 
-        MainWindow.addToolBar(Qt.TopToolBarArea, self.toolbar)
+        MainWindow.addToolBar(Qt.ToolBarArea.TopToolBarArea, self.toolbar)
 
         layout = QVBoxLayout(centralwidget)
         layout.setSpacing(8)
@@ -241,7 +241,7 @@ class Ui_MainWindow(object):
         layout_progress_percent = QHBoxLayout()
 
         self.progress_label = QLabel(self.progress_widget)
-        self.progress_label.setAlignment(Qt.AlignCenter)
+        self.progress_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.progress_bar = QProgressBar(self.progress_widget)
         self.progress_bar.setTextVisible(False)

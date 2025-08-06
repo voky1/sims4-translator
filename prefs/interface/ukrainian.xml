@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ts language="uk_UA" name="Українська" version="1.3.1" authors="Roman Kozin">
+<ts language="uk_UA" name="Українська (Ukrainian)" version="1.4" authors="Roman Kozin">
   <context name="EditWindow">
     <string>
       <source>Search and Edit</source>
@@ -7,6 +7,7 @@
     </string>
     <string>
       <source>OK (Ctrl+Enter)</source>
+      <translation />
     </string>
     <string>
       <source>Original text</source>
@@ -81,6 +82,10 @@
     <string>
       <source>Cancel</source>
       <translation>Скасувати</translation>
+    </string>
+    <string>
+      <source>Selection only</source>
+      <translation>Тільки обрані</translation>
     </string>
   </context>
   <context name="MainTableView">
@@ -187,14 +192,6 @@
       <translation>В XML</translation>
     </string>
     <string>
-      <source>To JSON (Sims 4 Studio format)...</source>
-      <translation>В JSON (формат Sims 4 Studio)...</translation>
-    </string>
-    <string>
-      <source>To Binary (Sims 4 Studio format)...</source>
-      <translation>В бінарний (формат Sims 4 Studio)...</translation>
-    </string>
-    <string>
       <source>Translate from dictionaries</source>
       <translation>Перекласти зі словників</translation>
     </string>
@@ -209,6 +206,14 @@
     <string>
       <source>To XML (Deaderpool's STBL editor)...</source>
       <translation>В XML (Редактор Deaderpool's STBL)...</translation>
+    </string>
+    <string>
+      <source>To JSON (Sims 4 Studio format)...</source>
+      <translation>В JSON (формат Sims 4 Studio)...</translation>
+    </string>
+    <string>
+      <source>To Binary (Sims 4 Studio format)...</source>
+      <translation>В бінарний (формат Sims 4 Studio)...</translation>
     </string>
     <string>
       <source>Use original group</source>
@@ -319,6 +324,10 @@
     <string>
       <source>Not found text records in this file!</source>
       <translation>Текстових даних не було знайдено в цьому файлі!</translation>
+    </string>
+    <string>
+      <source>Not found text records in this files!</source>
+      <translation />
     </string>
     <string>
       <source>Not found text records in following files:</source>
@@ -447,9 +456,6 @@ Errors:
     <string>
       <source>The translation version differs from the application version, so the interface may not be fully translated</source>
       <translation>Версія перекладу відрізняється від версії програми, Тому інтерфейс може бути не до кінця перекладеним</translation>
-    </string>
-    <string>
-      <source>by {}</source>
     </string>
   </context>
   <context name="Errors">
@@ -600,74 +606,6 @@ Errors:
       <translation>Скасувати</translation>
     </string>
   </context>
-  <context name="TranslateDialog">
-    <string>
-      <source>Translate</source>
-      <translation>Перекласти</translation>
-    </string>
-    <string>
-      <source>Cancel</source>
-      <translation>Скасувати</translation>
-    </string>
-    <string>
-      <source>Batch translate</source>
-      <translation>Batch translate</translation>
-    </string>
-    <string>
-      <source>Log</source>
-      <translation>Лог</translation>
-    </string>
-    <string>
-      <source>Line-by-line translation</source>
-      <translation>Пострічковий переклад</translation>
-    </string>
-    <string>
-      <source>Multiline translation</source>
-      <translation>Багатострічковий переклад</translation>
-    </string>
-    <string>
-      <source>Slow but more accurate translation.</source>
-      <translation>Повільний, але точний переклад.</translation>
-    </string>
-    <string>
-      <source>A faster, but perhaps less accurate translation. It is recommended to use it together with DeepL, because when using Google, some strings may not be translated.</source>
-      <translation>Швидший, але можливо менш точний переклад. Рекомендується використовувати разом з DeepL, тому що під час використання Google, деякі стрічки можуть бути не перекладені коректно або взагалі.</translation>
-    </string>
-    <string>
-      <source>Some lines could not be translated.</source>
-      <translation>Деякі стрічки неможливо переклоасти.</translation>
-    </string>
-    <string>
-      <source>Stop translate</source>
-      <translation>Зупинити переклад</translation>
-    </string>
-  </context>
-  <context name="TextEditor">
-    <string>
-      <source>Undo</source>
-      <translation>Крок назад</translation>
-    </string>
-    <string>
-      <source>Redo</source>
-      <translation>Крок вперед</translation>
-    </string>
-    <string>
-      <source>Cut</source>
-      <translation>Вирізати</translation>
-    </string>
-    <string>
-      <source>Copy</source>
-      <translation>Копіювати</translation>
-    </string>
-    <string>
-      <source>Paste</source>
-      <translation>Вставити</translation>
-    </string>
-    <string>
-      <source>Select All</source>
-      <translation>Обрати все</translation>
-    </string>
-  </context>
   <context name="System">
     <string>
       <source>Saving package {}...</source>
@@ -732,6 +670,74 @@ Errors:
     <string>
       <source>Stopping translate, waiting for the finish of the threads...</source>
       <translation>Зупинка перекладу, очікування завершення потоків...</translation>
+    </string>
+  </context>
+  <context name="TranslateDialog">
+    <string>
+      <source>Translate</source>
+      <translation>Перекласти</translation>
+    </string>
+    <string>
+      <source>Cancel</source>
+      <translation>Скасувати</translation>
+    </string>
+    <string>
+      <source>Batch translate</source>
+      <translation>Batch translate</translation>
+    </string>
+    <string>
+      <source>Log</source>
+      <translation>Лог</translation>
+    </string>
+    <string>
+      <source>Line-by-line translation</source>
+      <translation>Пострічковий переклад</translation>
+    </string>
+    <string>
+      <source>Multiline translation</source>
+      <translation>Багатострічковий переклад</translation>
+    </string>
+    <string>
+      <source>Slow but more accurate translation.</source>
+      <translation>Повільний, але точний переклад.</translation>
+    </string>
+    <string>
+      <source>A faster, but perhaps less accurate translation.</source>
+      <translation>Швидший, але можливо менш точний переклад.</translation>
+    </string>
+    <string>
+      <source>Some lines could not be translated.</source>
+      <translation>Деякі стрічки неможливо переклоасти.</translation>
+    </string>
+    <string>
+      <source>Stop translate</source>
+      <translation>Зупинити переклад</translation>
+    </string>
+  </context>
+  <context name="TextEditor">
+    <string>
+      <source>Undo</source>
+      <translation>Крок назад</translation>
+    </string>
+    <string>
+      <source>Redo</source>
+      <translation>Крок вперед</translation>
+    </string>
+    <string>
+      <source>Cut</source>
+      <translation>Вирізати</translation>
+    </string>
+    <string>
+      <source>Copy</source>
+      <translation>Копіювати</translation>
+    </string>
+    <string>
+      <source>Paste</source>
+      <translation>Вставити</translation>
+    </string>
+    <string>
+      <source>Select All</source>
+      <translation>Обрати все</translation>
     </string>
   </context>
 </ts>

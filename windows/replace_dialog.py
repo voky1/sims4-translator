@@ -40,7 +40,7 @@ class ReplaceDialog(QDialog, Ui_ReplaceDialog):
         self.cb_replace.clearEditText()
 
     def keyPressEvent(self, event):
-        if event.key() == Qt.Key_Escape:
+        if event.key() == Qt.Key.Key_Escape:
             self.close()
         else:
             super().keyPressEvent(event)

@@ -39,7 +39,7 @@ def openfile(f, many=False):
     if openfile.directory is None:
         openfile.directory = config.value('temporary', 'directory')
     dialog = QFileDialog(filter=f, directory=openfile.directory)
-    dialog.setFileMode(QFileDialog.ExistingFiles if many else QFileDialog.ExistingFile)
+    dialog.setFileMode(QFileDialog.FileMode.ExistingFiles if many else QFileDialog.FileMode.ExistingFile)
     if dialog.exec():
         files = dialog.selectedFiles()
         openfile.directory = os.path.dirname(files[0])
@@ -51,9 +51,9 @@ def openfile(f, many=False):
 def savefile(f, suffix, filename='') -> str:
     dialog = QFileDialog(directory=filename)
     dialog.setDefaultSuffix(suffix)
-    dialog.setAcceptMode(QFileDialog.AcceptSave)
+    dialog.setAcceptMode(QFileDialog.AcceptMode.AcceptSave)
     dialog.setNameFilters([f])
-    return dialog.selectedFiles()[0] if dialog.exec() == QFileDialog.Accepted else None
+    return dialog.selectedFiles()[0] if dialog.exec() == QFileDialog.DialogCode.Accepted else None
 
 
 def open_supported(many=False):
@@ -79,20 +79,20 @@ def save_xml(filename: str = '') -> str:
     return savefile(interface.text('System', 'XML files') + ' (*.xml)', 'xml', filename)
 
 
-def save_json(filename: str = '') -> str:
-    return savefile(interface.text('System', 'JSON files') + ' (*.json)', 'json', filename)
-
-
-def save_binary(filename: str = '') -> str:
-    return savefile(interface.text('System', 'Binary files') + ' (*.binary)', 'binary', filename)
-
-
 def save_stbl(filename: str = '') -> str:
     return savefile(interface.text('System', 'STBL files') + ' (*.stbl)', 'STBL', filename)
 
 
 def save_package(filename: str = '') -> str:
     return savefile(interface.text('System', 'Packages') + ' (*.package)', 'package', filename)
+
+
+def save_json(filename: str = '') -> str:
+    return savefile(interface.text('System', 'JSON files') + ' (*.json)', 'json', filename)
+
+
+def save_binary(filename: str = '') -> str:
+    return savefile(interface.text('System', 'Binary files') + ' (*.binary)', 'binary', filename)
 
 
 def create_temporary_copy(path: str) -> str:

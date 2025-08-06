@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ts language="en_US" name="English" version="1.3.1" authors="">
+<ts language="en_US" name="English" version="1.4" authors="">
   <context name="EditWindow">
     <string>
       <source>Search and Edit</source>
@@ -81,6 +81,10 @@
     </string>
     <string>
       <source>Cancel</source>
+      <translation/>
+    </string>
+    <string>
+      <source>Selection only</source>
       <translation/>
     </string>
   </context>
@@ -205,11 +209,11 @@
     </string>
     <string>
       <source>To JSON (Sims 4 Studio format)...</source>
-      <translation>To JSON (Sims 4 Studio format)...</translation>
+      <translation/>
     </string>
     <string>
       <source>To Binary (Sims 4 Studio format)...</source>
-      <translation>To Binary (Sims 4 Studio format)...</translation>
+      <translation/>
     </string>
     <string>
       <source>Use original group</source>
@@ -695,7 +699,7 @@ Errors:
       <translation/>
     </string>
     <string>
-      <source>A faster, but perhaps less accurate translation. It is recommended to use it together with DeepL, because when using Google, some strings may not be translated.</source>
+      <source>A faster, but perhaps less accurate translation.</source>
       <translation/>
     </string>
     <string>

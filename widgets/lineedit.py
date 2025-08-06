@@ -13,7 +13,7 @@ class CustomProxyStyle(QProxyStyle):
         self.theme_name = config.value('interface', 'theme')
 
     def standardIcon(self, standardIcon, option=None, widget=None):
-        if standardIcon == QStyle.SP_LineEditClearButton:
+        if standardIcon == QStyle.StandardPixmap.SP_LineEditClearButton:
             return QIcon(QPixmap(f':/images/{self.theme_name}/backspace.png'))
         return super().standardIcon(standardIcon, option, widget)
 

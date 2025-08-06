@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ts language="da_DK" name="Dansk" version="1.3.1" authors="Marianne Topping">
+<ts language="da_DK" name="Dansk (Danish)" version="1.4" authors="Marianne Topping">
   <context name="EditWindow">
     <string>
       <source>Search and Edit</source>
@@ -7,7 +7,7 @@
     </string>
     <string>
       <source>OK (Ctrl+Enter)</source>
-      <translation/>
+      <translation />
     </string>
     <string>
       <source>Original text</source>
@@ -83,11 +83,15 @@
       <source>Cancel</source>
       <translation>Fortryd</translation>
     </string>
+    <string>
+      <source>Selection only</source>
+      <translation>Kun valgte</translation>
+    </string>
   </context>
   <context name="MainTableView">
     <string>
       <source>Original</source>
-      <translation/>
+      <translation />
     </string>
     <string>
       <source>Translated</source>
@@ -95,7 +99,7 @@
     </string>
     <string>
       <source>LD</source>
-      <translation/>
+      <translation />
     </string>
     <string>
       <source>Instance</source>
@@ -169,7 +173,7 @@
     </string>
     <string>
       <source>Exit</source>
-      <translation/>
+      <translation />
     </string>
     <string>
       <source>Undo</source>
@@ -188,14 +192,6 @@
       <translation>Til XML</translation>
     </string>
     <string>
-      <source>To JSON (Sims 4 Studio format)...</source>
-      <translation>Til JSON (Sims 4 Studio format)...</translation>
-    </string>
-    <string>
-      <source>To Binary (Sims 4 Studio format)...</source>
-      <translation>Til binær (Sims 4 Studio format)...</translation>
-    </string>
-    <string>
       <source>Translate from dictionaries</source>
       <translation>Oversæt fra ordbøger</translation>
     </string>
@@ -210,6 +206,14 @@
     <string>
       <source>To XML (Deaderpool's STBL editor)...</source>
       <translation>Til XML (Deaderpool's STBL editor)...</translation>
+    </string>
+    <string>
+      <source>To JSON (Sims 4 Studio format)...</source>
+      <translation>Til JSON (Sims 4 Studio format)...</translation>
+    </string>
+    <string>
+      <source>To Binary (Sims 4 Studio format)...</source>
+      <translation>Til binær (Sims 4 Studio format)...</translation>
     </string>
     <string>
       <source>Use original group</source>
@@ -400,8 +404,8 @@ Fejl:
       <translation>Indstillinger og ordbøger</translation>
     </string>
     <string>
-      <source>Byg ordbøger</source>
-      <translation/>
+      <source>Build dictionaries</source>
+      <translation />
     </string>
     <string>
       <source>Languages</source>
@@ -421,7 +425,7 @@ Fejl:
     </string>
     <string>
       <source>...</source>
-      <translation/>
+      <translation />
     </string>
     <string>
       <source>Create backup package before finalization</source>
@@ -511,7 +515,7 @@ Fejl:
     </string>
     <string>
       <source>OK</source>
-      <translation/>
+      <translation />
     </string>
   </context>
   <context name="System">
@@ -683,7 +687,7 @@ Fejl:
     </string>
     <string>
       <source>Log</source>
-      <translation/>
+      <translation />
     </string>
     <string>
       <source>Line-by-line translation</source>
@@ -698,8 +702,8 @@ Fejl:
       <translation>Langsom men mere korrekt oversættelse</translation>
     </string>
     <string>
-      <source>A faster, but perhaps less accurate translation. It is recommended to use it together with DeepL, because when using Google, some strings may not be translated.</source>
-      <translation>En hurtigere, men måske mindre korrekt oversættelse. Det er anbefalet at bruge den sammen med DeepL, da nogle strnge måske ikke bliver oversat, når der bruges Google</translation>
+      <source>A faster, but perhaps less accurate translation.</source>
+      <translation>En hurtigere, men måske mindre korrekt oversættelse</translation>
     </string>
     <string>
       <source>Some lines could not be translated.</source>

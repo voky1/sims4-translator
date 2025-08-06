@@ -61,19 +61,19 @@ class Ui_EditDialog(object):
         right_layout.addWidget(self.lbl_translate_diff)
         right_layout.addWidget(self.txt_translate_diff)
 
-        top_splitter = QSplitter(Qt.Horizontal)
+        top_splitter = QSplitter(Qt.Orientation.Horizontal)
         top_splitter.addWidget(self.tableview)
         top_splitter.addWidget(self.txt_search)
         top_splitter.setSizes([500, 300])
         top_splitter.setHandleWidth(8)
 
-        bottom_splitter = QSplitter(Qt.Horizontal)
+        bottom_splitter = QSplitter(Qt.Orientation.Horizontal)
         bottom_splitter.addWidget(left_widget)
         bottom_splitter.addWidget(right_widget)
         bottom_splitter.setSizes([300, 500])
         bottom_splitter.setHandleWidth(8)
 
-        splitter = QSplitter(Qt.Vertical)
+        splitter = QSplitter(Qt.Orientation.Vertical)
         splitter.addWidget(top_splitter)
         splitter.addWidget(bottom_splitter)
         splitter.setSizes([200, 350])

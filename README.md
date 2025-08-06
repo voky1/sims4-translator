@@ -27,6 +27,12 @@ Starting from version 1.2, the translation of the interface has been made into s
 
 To add a new translation, you need to place the XML file with the new translation in this folder.
 
+## Fonts
+
+This project uses the following fonts:
+- **[Roboto](https://fonts.google.com/specimen/Roboto)** — Licensed under [Apache 2.0](fonts/LICENSE-Roboto.txt).
+- **[JetBrains Mono](https://www.jetbrains.com/lp/mono/)** — Licensed under [SIL Open Font License 1.1 (OFL)](fonts/LICENSE-JetBrains.txt).
+
 ## Additional Credits
 
 The idea is taken from the app [xTranslator](https://www.nexusmods.com/skyrimspecialedition/mods/134).

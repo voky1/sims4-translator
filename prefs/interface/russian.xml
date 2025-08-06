@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ts language="ru_RU" name="Русский (Russian)" version="1.3.1" authors="">
+<ts language="ru_RU" name="Русский (Russian)" version="1.4" authors="">
   <context name="EditWindow">
     <string>
       <source>Search and Edit</source>
       <translation>Поиск и редактирование</translation>
+    </string>
+    <string>
+      <source>OK (Ctrl+Enter)</source>
+      <translation />
     </string>
     <string>
       <source>Original text</source>
@@ -32,10 +36,6 @@
     <string>
       <source>Use this translation</source>
       <translation>Использовать этот перевод</translation>
-    </string>
-    <string>
-      <source>OK (Ctrl+Enter)</source>
-      <translation/>
     </string>
     <string>
       <source>Loading...</source>
@@ -83,6 +83,10 @@
       <source>Cancel</source>
       <translation>Отмена</translation>
     </string>
+    <string>
+      <source>Selection only</source>
+      <translation>Только выбранные строки</translation>
+    </string>
   </context>
   <context name="MainTableView">
     <string>
@@ -124,8 +128,16 @@
       <translation>Перевод</translation>
     </string>
     <string>
+      <source>View</source>
+      <translation>Вид</translation>
+    </string>
+    <string>
       <source>Options</source>
       <translation>Параметры</translation>
+    </string>
+    <string>
+      <source>Group</source>
+      <translation>Группа</translation>
     </string>
     <string>
       <source>Help</source>
@@ -176,12 +188,48 @@
       <translation>Настройки...</translation>
     </string>
     <string>
+      <source>To XML...</source>
+      <translation>XML-файл...</translation>
+    </string>
+    <string>
+      <source>Translate from dictionaries</source>
+      <translation>Перевести с использованием других словарей</translation>
+    </string>
+    <string>
       <source>Finalize package</source>
       <translation>Финализировать</translation>
     </string>
     <string>
       <source>Finalize package as...</source>
       <translation>Финализировать как...</translation>
+    </string>
+    <string>
+      <source>To XML (Deaderpool's STBL editor)...</source>
+      <translation>XML-файл (Deaderpool's STBL editor)...</translation>
+    </string>
+    <string>
+      <source>To JSON (Sims 4 Studio format)...</source>
+      <translation>JSON-файл (Sims 4 Studio)...</translation>
+    </string>
+    <string>
+      <source>To Binary (Sims 4 Studio format)...</source>
+      <translation>Двоичный файл (Sims 4 Studio)...</translation>
+    </string>
+    <string>
+      <source>Use original group</source>
+      <translation>Использовать оригинальное значение</translation>
+    </string>
+    <string>
+      <source>Use high-bit</source>
+      <translation>Использовать старший бит</translation>
+    </string>
+    <string>
+      <source>To STBL...</source>
+      <translation>STBL-файл...</translation>
+    </string>
+    <string>
+      <source>Use low-bit</source>
+      <translation>Использовать младший бит</translation>
     </string>
     <string>
       <source>Edit String</source>
@@ -206,50 +254,6 @@
     <string>
       <source>Paste</source>
       <translation>Вставить</translation>
-    </string>
-    <string>
-      <source>View</source>
-      <translation>Вид</translation>
-    </string>
-    <string>
-      <source>Group</source>
-      <translation>Группа</translation>
-    </string>
-    <string>
-      <source>To XML...</source>
-      <translation>XML-файл...</translation>
-    </string>
-    <string>
-      <source>Translate from dictionaries</source>
-      <translation>Перевести с использованием других словарей</translation>
-    </string>
-    <string>
-      <source>To XML (Deaderpool's STBL editor)...</source>
-      <translation>XML-файл (Deaderpool's STBL editor)...</translation>
-    </string>
-    <string>
-      <source>To JSON (Sims 4 Studio format)...</source>
-      <translation>JSON-файл (формат Sims 4 Studio)...</translation>
-    </string>
-    <string>
-      <source>To Binary (Sims 4 Studio format)...</source>
-      <translation>Бинарный файл (формат Sims 4 Studio)...</translation>
-    </string>
-    <string>
-      <source>Use original group</source>
-      <translation>Использовать оригинальное значение</translation>
-    </string>
-    <string>
-      <source>Use high-bit</source>
-      <translation>Использовать старший бит</translation>
-    </string>
-    <string>
-      <source>To STBL...</source>
-      <translation>STBL-файл...</translation>
-    </string>
-    <string>
-      <source>Use low-bit</source>
-      <translation>Использовать младший бит</translation>
     </string>
     <string>
       <source>Load file...</source>
@@ -334,14 +338,11 @@
 
 Errors:
 {}</source>
-      <translation>Перевод завершен с {} успехами.
-
-Ошибки:
-{}</translation>
+      <translation />
     </string>
     <string>
       <source>... and {} other errors</source>
-      <translation>... и {} других ошибок</translation>
+      <translation />
     </string>
   </context>
   <context name="Errors">
@@ -368,6 +369,34 @@ Errors:
   </context>
   <context name="OptionsDialog">
     <string>
+      <source>NOT FOUND</source>
+      <translation>НЕ НАЙДЕНО</translation>
+    </string>
+    <string>
+      <source>{} not exist</source>
+      <translation>{} не найдено</translation>
+    </string>
+    <string>
+      <source>FOUND</source>
+      <translation>НАЙДЕНО</translation>
+    </string>
+    <string>
+      <source>BASE GAME</source>
+      <translation>БАЗОВАЯ ИГРА</translation>
+    </string>
+    <string>
+      <source>Expansion packs</source>
+      <translation>Дополнения</translation>
+    </string>
+    <string>
+      <source>Game packs</source>
+      <translation>Игровые наборы</translation>
+    </string>
+    <string>
+      <source>Stuff packs</source>
+      <translation>Каталоги</translation>
+    </string>
+    <string>
       <source>Options and dictionaries</source>
       <translation>Настройки и словари</translation>
     </string>
@@ -392,6 +421,10 @@ Errors:
       <translation>Путь до The Sims 4</translation>
     </string>
     <string>
+      <source>...</source>
+      <translation />
+    </string>
+    <string>
       <source>Create backup package before finalization</source>
       <translation>Создавать резервную копию пакета перед финализацией</translation>
     </string>
@@ -406,34 +439,6 @@ Errors:
     <string>
       <source>Do not use automatic translation from other dictionaries</source>
       <translation>Не использовать автоматический перевод из других словарей</translation>
-    </string>
-    <string>
-      <source>NOT FOUND</source>
-      <translation>НЕ НАЙДЕНО</translation>
-    </string>
-    <string>
-      <source>FOUND</source>
-      <translation>НАЙДЕНО</translation>
-    </string>
-    <string>
-      <source>BASE GAME</source>
-      <translation>БАЗОВАЯ ИГРА</translation>
-    </string>
-    <string>
-      <source>Expansion packs</source>
-      <translation>Дополнения</translation>
-    </string>
-    <string>
-      <source>Game packs</source>
-      <translation>Игровые наборы</translation>
-    </string>
-    <string>
-      <source>Stuff packs</source>
-      <translation>Каталоги</translation>
-    </string>
-    <string>
-      <source>{} not exist</source>
-      <translation>{} не найдено</translation>
     </string>
     <string>
       <source>General</source>
@@ -490,8 +495,8 @@ Errors:
       <translation>Чем:</translation>
     </string>
     <string>
-      <source>Cancel</source>
-      <translation>Отмена</translation>
+      <source>Search and replace in:</source>
+      <translation>Искать и заменять:</translation>
     </string>
     <string>
       <source>All strings</source>
@@ -502,19 +507,15 @@ Errors:
       <translation>В непереведенных строках</translation>
     </string>
     <string>
-      <source>Search and replace in:</source>
-      <translation>Искать и заменять:</translation>
+      <source>Cancel</source>
+      <translation>Отмена</translation>
     </string>
     <string>
       <source>OK</source>
-      <translation/>
+      <translation />
     </string>
   </context>
   <context name="System">
-    <string>
-      <source>Build dictionaries...</source>
-      <translation>Создание словарей...</translation>
-    </string>
     <string>
       <source>Saving package {}...</source>
       <translation>Сохранение пакета {}...</translation>
@@ -522,6 +523,10 @@ Errors:
     <string>
       <source>Loading dictionaries...</source>
       <translation>Загрузка словарей...</translation>
+    </string>
+    <string>
+      <source>Build dictionaries...</source>
+      <translation>Создание словарей...</translation>
     </string>
     <string>
       <source>Exporting translate...</source>
@@ -553,11 +558,7 @@ Errors:
     </string>
     <string>
       <source>Binary files</source>
-      <translation>Бинарные файлы</translation>
-    </string>
-    <string>
-      <source>TXT files</source>
-      <translation>TXT-файлы</translation>
+      <translation>Двоичные файлы</translation>
     </string>
     <string>
       <source>Opening file {}...</source>
@@ -582,6 +583,10 @@ Errors:
   </context>
   <context name="ToolBar">
     <string>
+      <source>-- All files --</source>
+      <translation>-- Все файлы --</translation>
+    </string>
+    <string>
       <source>Search in translation</source>
       <translation>Искать в переводе</translation>
     </string>
@@ -592,6 +597,10 @@ Errors:
     <string>
       <source>Search in original</source>
       <translation>Искать в оригинале</translation>
+    </string>
+    <string>
+      <source>-- All instances --</source>
+      <translation>-- Все инстансы --</translation>
     </string>
     <string>
       <source>Translated</source>
@@ -612,14 +621,6 @@ Errors:
     <string>
       <source>Different strings</source>
       <translation>Строки, имеющие разницу в тексте</translation>
-    </string>
-    <string>
-      <source>-- All files --</source>
-      <translation>-- Все файлы --</translation>
-    </string>
-    <string>
-      <source>-- All instances --</source>
-      <translation>-- Все инстансы --</translation>
     </string>
     <string>
       <source>Search...</source>
@@ -698,8 +699,8 @@ Errors:
       <translation>Медленный, но более точный перевод.</translation>
     </string>
     <string>
-      <source>A faster, but perhaps less accurate translation. It is recommended to use it together with DeepL, because when using Google, some strings may not be translated.</source>
-      <translation>Более быстрый, но, возможно, менее точный перевод. Рекомендуется использовать вместе с DeepL, поскольку при использовании Google некоторые строки могут быть не переведены.</translation>
+      <source>A faster, but perhaps less accurate translation.</source>
+      <translation>Более быстрый, но, возможно, менее точный перевод.</translation>
     </string>
     <string>
       <source>Some lines could not be translated.</source>
@@ -713,11 +714,11 @@ Errors:
   <context name="TextEditor">
     <string>
       <source>Undo</source>
-      <translation>Отменить действие</translation>
+      <translation>Отменить</translation>
     </string>
     <string>
       <source>Redo</source>
-      <translation>Повторить действие</translation>
+      <translation>Повторить</translation>
     </string>
     <string>
       <source>Cut</source>

@@ -26,10 +26,6 @@
     <file>images/validate_3.png</file>
     <file>images/validate_4.png</file>
 
-    <file>fonts/roboto.ttf</file>
-    <file>fonts/jetbrainsmono.ttf</file>
-    <file>fonts/jetbrainsmono-semibold.ttf</file>
-
     <file>theme.qss</file>
 
     <file>images/light/arrow_down.png</file>

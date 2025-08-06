@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 
-import json
 import os
 import operator
 import pathlib
 import gc
+import json
 import xml.etree.ElementTree as ElementTree
 from json import JSONDecodeError
-
 from PySide6.QtCore import QObject, Signal
 from PySide6.QtWidgets import QApplication
 from typing import Union, Dict, List
@@ -469,7 +468,6 @@ class PackagesStorage:
 
         try:
             with open(path, 'rb') as fp:
-                # Check if it's a valid STBL file
                 header = fp.read(4)
                 if header == b'STBL':
                     return True
@@ -579,18 +577,11 @@ class PackagesStorage:
 
         try:
             with open(path, 'rb') as fp:
-                # Read STBL binary file
-                from packer.resource import ResourceID
-                from packer.stbl import Stbl
-                
-                # Create a dummy ResourceID for the STBL
                 rid = ResourceID(group=0x80000000, instance=0x00000000, type=0x220557DA)
                 stbl = Stbl(rid, fp.read())
-                
                 return stbl.strings
         except (IOError, OSError, Exception):
             return {}
 
-        return {}
 
 packages_storage = PackagesStorage()

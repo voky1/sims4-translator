@@ -16,7 +16,7 @@ from singletons.state import app_state
 from singletons.translator import translator
 from singletons.undo import undo
 from utils.functions import text_to_edit, text_to_stbl
-from utils.constants import COLUMN_DICTIONARIES_TRANSLATE, RECORD_DICTIONARY_TRANSLATE, RECORD_DICTIONARY_SOURCE, FLAG_VALIDATED
+from utils.constants import *
 
 
 class EditDialog(QDialog, Ui_EditDialog):
@@ -25,7 +25,7 @@ class EditDialog(QDialog, Ui_EditDialog):
         super().__init__(parent)
         self.setupUi(self)
 
-        self.setWindowFlags(self.windowFlags() | Qt.WindowMaximizeButtonHint)
+        self.setWindowFlags(self.windowFlags() | Qt.WindowType.WindowMaximizeButtonHint)
 
         self.item = None
 
@@ -64,10 +64,10 @@ class EditDialog(QDialog, Ui_EditDialog):
         self.txt_translate.setFocus()
 
     def keyPressEvent(self, event):
-        if event.key() in [Qt.Key_Enter, Qt.Key_Return]:
-            if event.modifiers() and Qt.ControlModifier:
+        if event.key() in [Qt.Key.Key_Enter, Qt.Key.Key_Return]:
+            if event.modifiers() and Qt.KeyboardModifier.ControlModifier:
                 self.ok_click()
-        elif event.key() == Qt.Key_Escape:
+        elif event.key() == Qt.Key.Key_Escape:
             self.close()
         else:
             super().keyPressEvent(event)

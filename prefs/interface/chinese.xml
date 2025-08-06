@@ -43,7 +43,7 @@
     </string>
     <string>
       <source>Comment...</source>
-      <translation>评论...</translation>
+      <translation />
     </string>
   </context>
   <context name="ExportDialog">
@@ -73,7 +73,7 @@
     </string>
     <string>
       <source>Each package as a separate file</source>
-      <translation>分别保存所有包</translation>
+      <translation />
     </string>
     <string>
       <source>Exported records</source>
@@ -84,66 +84,14 @@
       <translation>取消</translation>
     </string>
     <string>
-      <source>Exported records</source>
-      <translation>导出记录</translation>
+      <source>Selection only</source>
+      <translation>选中词条</translation>
     </string>
   </context>
   <context name="GenerateDialog">
-    <string>
-      <source>Generate hash</source>
-      <translation>生成hash</translation>
-    </string>
-    <string>
-      <source>Enter a string to generate FNV hash</source>
-      <translation>进入词条以生成FNV hash</translation>
-    </string>
-    <string>
-      <source>Cancel</source>
-      <translation>取消</translation>
-    </string>
-    <string>
-      <source>Generate</source>
-      <translation>生成</translation>
-    </string>
-  </context>
+    </context>
   <context name="InsertDialog">
-    <string>
-      <source>Insert new record</source>
-      <translation>插入新记录</translation>
-    </string>
-    <string>
-      <source>Cancel</source>
-      <translation>取消</translation>
-    </string>
-    <string>
-      <source>Insert</source>
-      <translation>插入</translation>
-    </string>
-    <string>
-      <source>Original text</source>
-      <translation>原文</translation>
-    </string>
-    <string>
-      <source>Or enter new instance</source>
-      <translation>或进入进实例</translation>
-    </string>
-    <string>
-      <source>Generate</source>
-      <translation>生成</translation>
-    </string>
-    <string>
-      <source>File</source>
-      <translation>文件</translation>
-    </string>
-    <string>
-      <source>ID</source>
-      <translation>ID</translation>
-    </string>
-    <string>
-      <source>Instance</source>
-      <translation>实例</translation>
-    </string>
-  </context>
+    </context>
   <context name="MainTableView">
     <string>
       <source>Original</source>
@@ -167,7 +115,7 @@
     </string>
     <string>
       <source>Comment</source>
-      <translation>评论</translation>
+      <translation />
     </string>
   </context>
   <context name="MainWindow">
@@ -265,11 +213,11 @@
     </string>
     <string>
       <source>To JSON (Sims 4 Studio format)...</source>
-      <translation>至JSON(Sims 4 Studio格式)...</translation>
+      <translation />
     </string>
     <string>
       <source>To Binary (Sims 4 Studio format)...</source>
-      <translation>至二进制(Sims 4 Studio格式)...</translation>
+      <translation />
     </string>
     <string>
       <source>Use original group</source>
@@ -302,10 +250,6 @@
     <string>
       <source>Cancel translation</source>
       <translation>取消译本</translation>
-    </string>
-    <string>
-      <source>Insert new record</source>
-      <translation>插入新记录</translation>
     </string>
     <string>
       <source>Copy</source>
@@ -345,31 +289,31 @@
     </string>
     <string>
       <source>Standart</source>
-      <translation/>
+      <translation />
     </string>
     <string>
       <source>From the source file</source>
-      <translation/>
+      <translation />
     </string>
     <string>
       <source>XML format</source>
-      <translation/>
+      <translation />
     </string>
     <string>
       <source>XML format (Deaderpool's STBL editor)</source>
-      <translation>XML格式 (Deaderpool's STBL编辑器)</translation>
+      <translation />
     </string>
     <string>
       <source>Batch translate...</source>
-      <translation>批量翻译...</translation>
+      <translation />
     </string>
     <string>
       <source>Translate</source>
-      <translation>翻译</translation>
+      <translation />
     </string>
     <string>
       <source>Color visualization</source>
-      <translation>颜色可视化</translation>
+      <translation />
     </string>
   </context>
   <context name="Messages">
@@ -391,43 +335,40 @@
     </string>
     <string>
       <source>Not found text records in following files:</source>
-      <translation>在以下文件中找不到文本记录：</translation>
+      <translation />
     </string>
     <string>
       <source>Translation completed with {} successes.
 
 Errors:
 {}</source>
-      <translation>翻译完成，成功 {} 个。
-
-错误：
-{}</translation>
+      <translation />
     </string>
     <string>
       <source>... and {} other errors</source>
-      <translation>... 和 {} 个其他错误</translation>
+      <translation />
     </string>
   </context>
   <context name="Errors">
     <string>
       <source>Language code not found!</source>
-      <translation>语言代码未找到！</translation>
+      <translation />
     </string>
     <string>
       <source>Translation failed with error code: {}</source>
-      <translation>翻译失败，错误代码：{}</translation>
+      <translation />
     </string>
     <string>
       <source>Invalid API key.</source>
-      <translation>无效的API密钥。</translation>
+      <translation />
     </string>
     <string>
       <source>Your quota has exceeded!</source>
-      <translation>您的配额已超额！</translation>
+      <translation />
     </string>
     <string>
       <source>There was a temporary problem with the DeepL Service.</source>
-      <translation>DeepL服务出现临时问题。</translation>
+      <translation />
     </string>
   </context>
   <context name="OptionsDialog">
@@ -468,10 +409,6 @@ Errors:
       <translation>建立词库</translation>
     </string>
     <string>
-      <source>Close</source>
-      <translation>关闭</translation>
-    </string>
-    <string>
       <source>Languages</source>
       <translation>语言</translation>
     </string>
@@ -488,6 +425,10 @@ Errors:
       <translation>游戏路径</translation>
     </string>
     <string>
+      <source>...</source>
+      <translation />
+    </string>
+    <string>
       <source>Create backup package before finalization</source>
       <translation>在保存前生成备份package</translation>
     </string>
@@ -501,47 +442,43 @@ Errors:
     </string>
     <string>
       <source>Do not use automatic translation from other dictionaries</source>
-      <translation>不使用其他词典的自动翻译</translation>
-    </string>
-    <string>
-      <source>...</source>
-      <translation>...</translation>
+      <translation />
     </string>
     <string>
       <source>General</source>
-      <translation>常规</translation>
+      <translation />
     </string>
     <string>
       <source>Dictionaries</source>
-      <translation>词典</translation>
+      <translation />
     </string>
     <string>
       <source>DeepL API key</source>
-      <translation>DeepL API密钥</translation>
+      <translation />
     </string>
     <string>
       <source>Language</source>
-      <translation>语言</translation>
+      <translation />
     </string>
     <string>
       <source>Theme</source>
-      <translation>主题</translation>
+      <translation />
     </string>
     <string>
       <source>Light</source>
-      <translation>浅色</translation>
+      <translation />
     </string>
     <string>
       <source>Dark</source>
-      <translation>深色</translation>
+      <translation />
     </string>
     <string>
       <source>The application needs to be restarted</source>
-      <translation>应用程序需要重启</translation>
+      <translation />
     </string>
     <string>
       <source>The translation version differs from the application version, so the interface may not be fully translated</source>
-      <translation>翻译版本与应用程序版本不同，因此界面可能未完全翻译</translation>
+      <translation />
     </string>
   </context>
   <context name="ReplaceDialog">
@@ -600,6 +537,10 @@ Errors:
       <translation>导出译本...</translation>
     </string>
     <string>
+      <source>Importing translate...</source>
+      <translation />
+    </string>
+    <string>
       <source>All files</source>
       <translation>所有文件</translation>
     </string>
@@ -617,11 +558,11 @@ Errors:
     </string>
     <string>
       <source>JSON files</source>
-      <translation>JSON文件</translation>
+      <translation />
     </string>
     <string>
       <source>Binary files</source>
-      <translation>二进制文件</translation>
+      <translation />
     </string>
     <string>
       <source>Opening file {}...</source>
@@ -636,16 +577,12 @@ Errors:
       <translation>打开文件...</translation>
     </string>
     <string>
-      <source>Importing translate...</source>
-      <translation>导入翻译中...</translation>
-    </string>
-    <string>
       <source>Translating...</source>
-      <translation>翻译中...</translation>
+      <translation />
     </string>
     <string>
       <source>Stopping translate, waiting for the finish of the threads...</source>
-      <translation>停止翻译中，等待线程完成...</translation>
+      <translation />
     </string>
   </context>
   <context name="ToolBar">
@@ -691,15 +628,7 @@ Errors:
     </string>
     <string>
       <source>Search...</source>
-      <translation>搜索...</translation>
-    </string>
-    <string>
-      <source>Search and replace</source>
-      <translation>查找与替换</translation>
-    </string>
-    <string>
-      <source>Insert new record</source>
-      <translation>插入新记录</translation>
+      <translation />
     </string>
   </context>
   <context name="ImportDialog">
@@ -736,80 +665,80 @@ Errors:
       <translation>替换已有翻译</translation>
     </string>
     <string>
-      <source>Cancel</source>
-      <translation>取消</translation>
-    </string>
-    <string>
       <source>Import</source>
       <translation>导入</translation>
+    </string>
+    <string>
+      <source>Cancel</source>
+      <translation>取消</translation>
     </string>
   </context>
   <context name="TranslateDialog">
     <string>
       <source>Translate</source>
-      <translation>翻译</translation>
+      <translation />
     </string>
     <string>
       <source>Cancel</source>
-      <translation>取消</translation>
+      <translation />
     </string>
     <string>
       <source>Batch translate</source>
-      <translation>批量翻译</translation>
+      <translation />
     </string>
     <string>
       <source>Log</source>
-      <translation>日志</translation>
+      <translation />
     </string>
     <string>
       <source>Line-by-line translation</source>
-      <translation>逐行翻译</translation>
+      <translation />
     </string>
     <string>
       <source>Multiline translation</source>
-      <translation>多行翻译</translation>
+      <translation />
     </string>
     <string>
       <source>Slow but more accurate translation.</source>
-      <translation>速度较慢但更准确的翻译。</translation>
+      <translation />
     </string>
     <string>
-      <source>A faster, but perhaps less accurate translation. It is recommended to use it together with DeepL, because when using Google, some strings may not be translated.</source>
-      <translation>速度更快但可能不够准确的翻译。建议与DeepL一起使用，因为使用Google时，某些字符串可能无法翻译。</translation>
+      <source>A faster, but perhaps less accurate translation.</source>
+      <translation />
     </string>
     <string>
       <source>Some lines could not be translated.</source>
-      <translation>某些行无法翻译。</translation>
+      <translation />
     </string>
     <string>
       <source>Stop translate</source>
-      <translation>停止翻译</translation>
+      <translation />
     </string>
   </context>
   <context name="TextEditor">
     <string>
       <source>Undo</source>
-      <translation>撤销</translation>
+      <translation />
     </string>
     <string>
       <source>Redo</source>
-      <translation>重做</translation>
+      <translation />
     </string>
     <string>
       <source>Cut</source>
-      <translation>剪切</translation>
+      <translation />
     </string>
     <string>
       <source>Copy</source>
-      <translation>复制</translation>
+      <translation />
     </string>
     <string>
       <source>Paste</source>
-      <translation>粘贴</translation>
+      <translation />
     </string>
     <string>
       <source>Select All</source>
-      <translation>全选</translation>
+      <translation />
     </string>
   </context>
 </ts>

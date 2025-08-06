@@ -15,24 +15,24 @@ class AbstractTableView(QTableView):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        self.setContextMenuPolicy(Qt.CustomContextMenu)
-        self.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
-        self.setSizeAdjustPolicy(QAbstractScrollArea.AdjustIgnored)
+        self.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
+        self.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.setSizeAdjustPolicy(QAbstractScrollArea.SizeAdjustPolicy.AdjustIgnored)
 
-        self.setSelectionBehavior(QAbstractItemView.SelectRows)
+        self.setSelectionBehavior(QAbstractItemView.SelectionBehavior.SelectRows)
         self.setShowGrid(False)
-        self.setGridStyle(Qt.NoPen)
+        self.setGridStyle(Qt.PenStyle.NoPen)
         self.setSortingEnabled(True)
         self.setWordWrap(False)
 
         header = self.verticalHeader()
-        header.setSectionResizeMode(QHeaderView.Fixed)
+        header.setSectionResizeMode(QHeaderView.ResizeMode.Fixed)
         header.setDefaultSectionSize(26)
         header.setVisible(False)
 
         header = self.horizontalHeader()
-        header.setSectionResizeMode(QHeaderView.Interactive)
-        header.setSortIndicator(0, Qt.AscendingOrder)
+        header.setSectionResizeMode(QHeaderView.ResizeMode.Interactive)
+        header.setSortIndicator(0, Qt.SortOrder.AscendingOrder)
         header.setHighlightSections(False)
         header.setStyle(HeaderProxy())
 
@@ -59,7 +59,7 @@ class QMainTableView(AbstractTableView):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        self.setEditTriggers(QAbstractItemView.DoubleClicked)
+        self.setEditTriggers(QAbstractItemView.EditTrigger.DoubleClicked)
 
         self.sortByColumn(COLUMN_MAIN_INDEX, Qt.SortOrder.AscendingOrder)
 
@@ -95,8 +95,8 @@ class QDictionaryTableView(AbstractTableView):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        self.setSelectionMode(QAbstractItemView.SingleSelection)
-        self.setEditTriggers(QAbstractItemView.SelectedClicked)
+        self.setSelectionMode(QAbstractItemView.SelectionMode.SingleSelection)
+        self.setEditTriggers(QAbstractItemView.EditTrigger.SelectedClicked)
 
         self.sortByColumn(COLUMN_DICTIONARIES_LENGTH, Qt.SortOrder.AscendingOrder)
 

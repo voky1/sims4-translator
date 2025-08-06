@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 
-import json
 import os
+import json
 import xml.etree.ElementTree as ElementTree
 from json import JSONDecodeError
+
 from typing import List
 
 from packer.dbpf import DbpfPackage
@@ -163,12 +164,16 @@ class Container:
 
         rid = ResourceID.from_string(self.name)
         self.instances.append(rid.hex_instance)
-        with open(filename, 'rb') as fp:
-            stbl = Stbl(rid, fp.read())
-            line = 0
-            for sid, source in stbl.strings.items():
-                line += 1
-                items.append((rid, sid, source, source, '', line, line))
+
+        try:
+            with open(filename, 'rb') as fp:
+                stbl = Stbl(rid, fp.read())
+                line = 0
+                for sid, source in stbl.strings.items():
+                    line += 1
+                    items.append((rid, sid, source, source, '', line, line))
+        except (IOError, OSError, Exception):
+            return []
 
         return items
 
@@ -254,19 +259,17 @@ class Container:
     def open_binary(self, filename: str) -> List[tuple]:
         items = []
 
+        rid = ResourceID.from_string(self.name)
+        self.instances.append(rid.hex_instance)
+
         try:
             with open(filename, 'rb') as fp:
-                # Read STBL binary file
-                from packer.stbl import Stbl
-                
-                rid = ResourceID.from_string(self.name)
                 stbl = Stbl(rid, fp.read())
-                
-                self.instances.append(rid.hex_instance)
                 line = 0
                 for sid, source in stbl.strings.items():
                     line += 1
                     items.append((rid, sid, source, source, '', line, line))
+
         except (IOError, OSError, Exception):
             return []
 

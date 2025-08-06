@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ts language="it_IT" name="Italiano (Italian)" version="1.3.1" authors="vale93_games">
+<ts language="it_IT" name="Italiano (Italian)" version="1.4" authors="vale93_games">
   <context name="EditWindow">
     <string>
       <source>Search and Edit</source>
@@ -82,6 +82,10 @@
     <string>
       <source>Cancel</source>
       <translation>Annulla</translation>
+    </string>
+    <string>
+      <source>Selection only</source>
+      <translation>Solo Selezione</translation>
     </string>
   </context>
   <context name="MainTableView">
@@ -205,11 +209,11 @@
     </string>
     <string>
       <source>To JSON (Sims 4 Studio format)...</source>
-      <translation>In JSON (formato Sims 4 Studio)...</translation>
+      <translation />
     </string>
     <string>
       <source>To Binary (Sims 4 Studio format)...</source>
-      <translation>In Binario (formato Sims 4 Studio)...</translation>
+      <translation />
     </string>
     <string>
       <source>Use original group</source>
@@ -334,14 +338,11 @@
 
 Errors:
 {}</source>
-      <translation>Traduzione completata con {} successi.
-
-Errori:
-{}</translation>
+      <translation />
     </string>
     <string>
       <source>... and {} other errors</source>
-      <translation>... e {} altri errori</translation>
+      <translation />
     </string>
   </context>
   <context name="Errors">
@@ -475,10 +476,6 @@ Errori:
       <source>The translation version differs from the application version, so the interface may not be fully translated</source>
       <translation>La versione tradotta è differente dalla versione dell'applicazione, quindi l'interfaccia potrebbe non essere completamente tradotta</translation>
     </string>
-    <string>
-      <source>by {}</source>
-      <translation>di {}</translation>
-    </string>
   </context>
   <context name="ReplaceDialog">
     <string>
@@ -557,11 +554,11 @@ Errori:
     </string>
     <string>
       <source>JSON files</source>
-      <translation>File JSON</translation>
+      <translation />
     </string>
     <string>
       <source>Binary files</source>
-      <translation>File Binari</translation>
+      <translation />
     </string>
     <string>
       <source>Opening file {}...</source>
@@ -702,8 +699,8 @@ Errori:
       <translation>Traduzione lenta ma più accurata.</translation>
     </string>
     <string>
-      <source>A faster, but perhaps less accurate translation. It is recommended to use it together with DeepL, because when using Google, some strings may not be translated.</source>
-      <translation>Una traduzione più veloce, ma forse meno accurata. Si consiglia di utilizzarlo insieme a DeepL, perché quando si utilizza Google alcune stringhe potrebbero non essere tradotte.</translation>
+      <source>A faster, but perhaps less accurate translation.</source>
+      <translation>Una traduzione più veloce, ma forse meno accurata.</translation>
     </string>
     <string>
       <source>Some lines could not be translated.</source>
