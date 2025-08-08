@@ -38,7 +38,7 @@ class Translator:
 
         modified_text = re.sub(r'{[A-Za-z]?\d+\.[^{}]+}|<[^>]+>', save_and_replace_pattern, text)
         return modified_text, extracted_items
-
+  
     @staticmethod
     def insert_placeholders(text, placeholders):
         for i, placeholder in enumerate(placeholders):
