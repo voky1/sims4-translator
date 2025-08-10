@@ -1,3 +1,4 @@
 pyperclip
 PySide6
 requests
+cohere

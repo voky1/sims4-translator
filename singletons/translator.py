@@ -4,6 +4,7 @@ import re
 import requests
 import html
 import html.parser
+import cohere
 from collections import namedtuple
 from typing import List
 
@@ -16,12 +17,68 @@ Response = namedtuple('Response', 'status_code text')
 
 
 class Translator:
+    # --- Helpers for Sims 4 placeholder and gender handling ---
+
+    @staticmethod
+    def _to_xml_aware_text(text: str) -> str:
+        def gender_to_xml(match):
+            gid, content = match.group(1), match.group(2)
+            return f'<span id="{gid}">{content}</span>'
+
+        def placeholder_to_xml(match):
+            pid, content = match.group(1), match.group(2)
+            return f'<x id="{pid}.{content}"/>'
+
+        tmp = text.replace('\\ N', '\\N').replace('\\ n', '\\n')
+        tmp = tmp.replace('\\N', '\n').replace('\\n', '\n')
+
+        tmp = re.sub(r'\{([MF]\d+)\.([^{}]+)\}', gender_to_xml, tmp)
+        tmp = re.sub(r'\{(\d+)\.([^{}]+)\}', placeholder_to_xml, tmp)
+
+        # Separate adjacent tags to help engines keep boundaries
+        tmp = tmp.replace('</span><span', '</span> <span')
+        tmp = tmp.replace('</span><x', '</span> <x')
+        tmp = tmp.replace('/><span', '/> <span')
+        tmp = tmp.replace('/><x', '/> <x')
+
+        return tmp
+
+    @staticmethod
+    def _from_xml_aware_text(translated: str) -> str:
+        def xml_to_gender(match):
+            gid = match.group(1).upper()
+            content = match.group(2).strip()
+            content = re.sub(r'^[\s,.;:!?]+', '', content)
+            return f'{{{gid}.{content}}}'
+
+        def xml_to_placeholder(match):
+            pid = match.group(1)
+            pid = pid.replace('string', 'String')
+            return f'{{{pid}}}'
+
+        final = re.sub(
+            r'<span\s+id\s*=\s*"([^"]+)"\s*>(.*?)</span>',
+            xml_to_gender,
+            translated,
+            flags=re.IGNORECASE | re.DOTALL
+        )
+
+        final = re.sub(
+            r'<x\s+id\s*=\s*"([^"]+)"\s*/\s*>',
+            xml_to_placeholder,
+            final,
+            flags=re.IGNORECASE
+        )
+    
+        return final
 
     @property
     def engines(self) -> List[str]:
-        engines = ['Google', 'MyMemory']
+        engines = ['Google', 'MyMemory', 'Cohere']
         if config.value('api', 'deepl_key'):
             engines.append('DeepL')
+        if config.value('api', 'google_key'):
+            engines.append('Google Cloud')
         return engines
 
     @property
@@ -36,13 +93,39 @@ class Translator:
             extracted_items.append(match.group(0))
             return f"({len(extracted_items) - 1})"
 
-        modified_text = re.sub(r'{[A-Za-z]?\d+\.[^{}]+}|<[^>]+>', save_and_replace_pattern, text)
+        def save_and_replace_gender(match):
+            masc_tag = match.group(1)
+            masc_word = match.group(2)
+            fem_tag = match.group(3)
+            fem_word = match.group(4)
+            extracted_items.append((masc_tag, masc_word, fem_tag, fem_word))
+            return f"(G{len(extracted_items) - 1})"
+
+        modified_text = re.sub(
+            r'\{(M\d+)\.([^{}]+)\}\{(F\d+)\.([^{}]+)\}',
+            save_and_replace_gender,
+            text
+        )
+
+        modified_text = re.sub(
+            r'\{[A-Za-z]?\d+\.[^{}]+\}|<[^>]+>',
+            save_and_replace_pattern,
+            modified_text
+        )
+
         return modified_text, extracted_items
-  
+
     @staticmethod
     def insert_placeholders(text, placeholders):
         for i, placeholder in enumerate(placeholders):
-            text = text.replace(f"({i})", placeholder)
+            if isinstance(placeholder, tuple) and len(placeholder) == 4:
+                masc_tag, masc_word, fem_tag, fem_word = placeholder
+                text = text.replace(
+                    f"(G{i})",
+                    f"{{{masc_tag}.{masc_word}}}{{{fem_tag}.{fem_word}}}"
+                )
+            else:
+                text = text.replace(f"({i})", placeholder)
 
         text = re.sub(r'(<[^/][^>]+>)\s+', r'\1', text)
         text = re.sub(r'\s+(</[^>]+>)', r'\1', text)
@@ -55,61 +138,30 @@ class Translator:
         temp = temp.replace('\\N', '\n').replace('\\n', '\n')
 
         # Use different strategies based on the engine
-        if engine.lower() == 'deepl':
-            # DeepL handles XML tags well, use the XML approach
-            def gender_to_xml(match):
-                gid, content = match.group(1), match.group(2)
-                return f'<span id="{gid}">{content}</span>'
+        eng = engine.lower()
+        if eng in ('deepl', 'google cloud'):            
+            # Engines that handle XML/HTML tags well
+            xml_text = self._to_xml_aware_text(prompt_injection + temp)
 
-            def placeholder_to_xml(match):
-                pid, content = match.group(1), match.group(2)
-                return f'<x id="{pid}.{content}"/>'
+            if eng == 'deepl':
+                response = self.__deepl(xml_text)
+            else:  # google cloud
+                response = self.__google_cloud(xml_text)
 
-            temp = re.sub(r'{([MF]\d+)\.([^{}]+)}', gender_to_xml, temp)
-            temp = re.sub(r'{(\d+)\.([^{}]+)}', placeholder_to_xml, temp)
-
-            temp = temp.replace('</span><span', '</span> <span')
-            temp = temp.replace('</span><x', '</span> <x')
-            temp = temp.replace('/><span', '/> <span')
-            temp = temp.replace('/><x', '/> <x')
-
-            response = self.__deepl(temp)
-            
             if response.status_code != 200:
                 return response
 
-            translated = response.text
-
-            def xml_to_gender(match):
-                gid = match.group(1)
-                gid = gid.upper()
-                content = match.group(2).strip()
-                content = re.sub(r'^[\s,.;:!?]+', '', content)
-                return f'{{{gid}.{content}}}'
-
-            def xml_to_placeholder(match):
-                pid = match.group(1)
-                pid = pid.replace('string', 'String')
-                return f'{{{pid}}}'
-
-            final = re.sub(
-                r'<span\s+id\s*=\s*"([^\"]+)"\s*>(.*?)</span>',
-                xml_to_gender,
-                translated,
-                flags=re.IGNORECASE | re.DOTALL
-            )
-
-            final = re.sub(
-                r'<x\s+id\s*=\s*"([^\"]+)"\s*/\s*>',
-                xml_to_placeholder,
-                final,
-                flags=re.IGNORECASE
-            )
+            final = self._from_xml_aware_text(response.text)
+        elif eng == 'cohere':
+            response = self.__cohere(temp)
+            if response.status_code != 200:
+                return response
+            final = response.text
         else:
             # Google and MyMemory: use placeholder extraction approach
             modified_text, placeholders = self.extract_placeholders(temp)
             
-            if engine.lower() == 'mymemory':
+            if eng == 'mymemory':
                 response = self.__mymemory(modified_text)
             else:
                 response = self.__google(modified_text)
@@ -233,5 +285,95 @@ class Translator:
 
         return Response(404, interface.text('Errors', 'Language code not found!'))
 
+    @staticmethod
+    def __google_cloud(text: str) -> Response:
+        api_key = config.value('api', 'google_key')
+
+        src = languages.source
+        dst = languages.destination
+
+        if not api_key:
+            return Response(404, interface.text('Errors', 'API key not found!'))
+
+        if src and src.google and dst and dst.google:
+            try:
+                url = 'https://translation.googleapis.com/language/translate/v2'
+                params = { 'key': api_key }
+                data = {
+                    'q': text,
+                    'source': src.google,
+                    'target': dst.google,
+                    'format': 'html',
+                    'model': 'nmt'
+                }
+                resp = requests.post(url, params=params, data=data, timeout=15)
+                if resp.status_code == 200:
+                    payload = resp.json()
+                    tr = payload.get('data', {}).get('translations', [])
+                    if tr:
+                        return Response(200, tr[0]['translatedText'])
+                    return Response(500, interface.text('Errors', 'Empty translation received.'))
+                elif resp.status_code in (400, 401, 403):
+                    return Response(resp.status_code, interface.text('Errors', 'Invalid API key or parameters.'))
+                else:
+                    return Response(resp.status_code,
+                                    interface.text('Errors', 'Translation failed with error code: {}').format(
+                                        resp.status_code))
+            except Exception as e:
+                return Response(500, str(e))
+        return Response(404, interface.text('Errors', 'Language code not found!'))
+    
+    def __cohere(self, text: str) -> Response:
+        api_key = config.value('api', 'cohere_key')
+        if not api_key:
+            return Response(404, interface.text('Errors', 'Cohere API key not found!'))
+
+        try:
+            client = cohere.Client(api_key)
+            # Prompt complet en anglais avec langues dynamiques
+            prompt = f"""
+You are a professional translator specialized in translating Sims 4 game mods.
+You will translate from {languages.source} to {languages.destination}.
+Preserve all special Sims 4 placeholders and tags exactly as they are in the text.
+
+Special placeholders include:
+- Conditional gender tags in the format {{M0.male_word}}{{F0.female_word}}: translate both words so they make sense in {languages.destination}, respecting masculine/feminine forms and maintaining sentence coherence.
+- Name placeholders such as:
+  {{0.SimFirstName}}, {{0.SimLastName}}, {{0.SimFullName}}, {{0.SimFirstNamePossessive}}, {{0.SimFirstNameCaps}}, {{0.SimLastNameCaps}}, {{0.SimFullNameCaps}}, {{0.SimName}}.
+  These represent character names and must be treated as proper nouns in the sentence structure. Do not translate them.
+- Pronoun placeholders:
+  {{0.He}}, {{0.She}}, {{0.Him}}, {{0.Her}}, {{0.His}}, {{0.Hers}}, {{0.They}}, {{0.Them}}, {{0.Their}}, {{0.SubjectPronoun}}, {{0.ObjectPronoun}}, {{0.PossessivePronoun}}, {{0.PossessivePronounDependent}}, {{0.ReflexivePronoun}}.
+  Translate them appropriately for the target language, following correct grammar and gender agreement.
+- Other tags:
+  {{0.Age}}, {{0.Gender}}, {{0.Pronoun}}, {{0.Occupation}}, {{0.Species}} — translate them according to their meaning in the sentence context.
+
+Translation rules:
+1. Never alter the structure or format of any placeholder.
+2. Adapt grammar and word order to make the sentence natural in {languages.destination}.
+3. For gender placeholders {{M...}}{{F...}}, ensure both forms are properly translated and fit the sentence.
+4. Keep the tone, style, and context consistent with Sims 4 in-game text.
+5. Maintain correct capitalization if the placeholder name suggests it (e.g., {{0.SimFirstNameCaps}}).
+6. Ensure compatibility with all languages, considering pronoun and gender rules.
+
+Do not output explanations or additional text — only return the translated sentence with placeholders intact.
+
+Text to translate:
+{text}
+
+Translation:
+"""
+
+            response = client.chat(
+                model='command-a-03-2025',
+                message=prompt,
+            )
+
+            if response and hasattr(response, "text"):
+                return Response(200, response.text.strip())
+            else:
+                return Response(500, interface.text('Errors', 'No translation returned by Cohere chat API.'))
+
+        except Exception as e:
+            return Response(500, str(e))
 
 translator = Translator()

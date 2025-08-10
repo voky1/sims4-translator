@@ -1,17 +1,33 @@
-# -*- coding: utf-8 -*-
+"""Options dialog UI definition.
+Includes Interface, Game path, Languages, API keys with tutorial buttons, and Dictionaries tab."""
 
 from PySide6.QtCore import QMetaObject, Qt
-from PySide6.QtWidgets import QWidget, QAbstractItemView, QCheckBox, QComboBox, QGroupBox, QHBoxLayout, QLabel, \
-    QLineEdit, QPushButton, QTableView, QVBoxLayout, QTabWidget, QHeaderView
+from PySide6.QtGui import QPalette, QColor
+from PySide6.QtWidgets import (
+    QWidget,
+    QAbstractItemView,
+    QCheckBox,
+    QComboBox,
+    QGroupBox,
+    QHBoxLayout,
+    QLabel,
+    QLineEdit,
+    QPushButton,
+    QTableView,
+    QVBoxLayout,
+    QTabWidget,
+    QHeaderView,
+    QScrollArea,
+    QFrame,
+)
 
 
 class Ui_OptionsDialog(object):
-
     def setupUi(self, OptionsDialog):
         OptionsDialog.resize(545, 490)
         OptionsDialog.setMinimumSize(545, 490)
 
-        layout = QVBoxLayout(OptionsDialog)
+        root = QVBoxLayout(OptionsDialog)
 
         self.tab_general = QWidget()
         self.tab_dictionaries = QWidget()
@@ -19,8 +35,7 @@ class Ui_OptionsDialog(object):
         self.tabs = QTabWidget(OptionsDialog)
         self.tabs.addTab(self.tab_general, '')
         self.tabs.addTab(self.tab_dictionaries, '')
-
-        layout.addWidget(self.tabs)
+        root.addWidget(self.tabs)
 
         self.build_general_tab()
         self.build_dictionaries_tab()
@@ -28,12 +43,28 @@ class Ui_OptionsDialog(object):
         QMetaObject.connectSlotsByName(OptionsDialog)
 
     def build_general_tab(self):
-        vlayout = QVBoxLayout(self.tab_general)
+        # Outer layout holds the scroll area
+        outer = QVBoxLayout(self.tab_general)
+        self.scroll_general = QScrollArea(self.tab_general)
+        self.scroll_general.setWidgetResizable(True)
+        self.scroll_general.setFrameShape(QFrame.NoFrame)
+        self.scroll_general.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.general_container = QWidget()
+        self.scroll_general.setWidget(self.general_container)
+        # Apply white background only to the container so buttons keep their native look
+        self.general_container.setAutoFillBackground(True)
+        pal = self.general_container.palette()
+        pal.setColor(self.general_container.backgroundRole(), Qt.white)
+        self.general_container.setPalette(pal)
+        outer.addWidget(self.scroll_general)
 
-        self.gb_interface = QGroupBox(self.tab_general)
+        # Inner layout hosts all option groups
+        vlayout = QVBoxLayout(self.general_container)
+        vlayout.setSpacing(8)
 
+        # Interface group
+        self.gb_interface = QGroupBox(self.general_container)
         layout_group = QVBoxLayout(self.gb_interface)
-
         layout_lang = QHBoxLayout()
         layout_theme = QHBoxLayout()
 
@@ -99,7 +130,8 @@ class Ui_OptionsDialog(object):
 
         vlayout.addWidget(self.gb_interface)
 
-        gbox = QGroupBox(self.tab_general)
+        # Checkboxes group
+        gbox = QGroupBox(self.general_container)
         layout_group = QVBoxLayout(gbox)
 
         self.cb_backup = QCheckBox(gbox)
@@ -112,16 +144,13 @@ class Ui_OptionsDialog(object):
 
         vlayout.addWidget(gbox)
 
-        self.gb_lang = QGroupBox(self.tab_general)
-
+        # Languages group
+        self.gb_lang = QGroupBox(self.general_container)
         layout_lang = QHBoxLayout(self.gb_lang)
-
         self.label_source = QLabel(self.gb_lang)
         self.label_dest = QLabel(self.gb_lang)
-
         self.cb_source = QComboBox(self.gb_lang)
         self.cb_dest = QComboBox(self.gb_lang)
-
         layout_lang.addStretch()
         layout_lang.addWidget(self.label_source)
         layout_lang.addWidget(self.cb_source)
@@ -129,18 +158,34 @@ class Ui_OptionsDialog(object):
         layout_lang.addWidget(self.label_dest)
         layout_lang.addWidget(self.cb_dest)
         layout_lang.addStretch()
-
         vlayout.addWidget(self.gb_lang)
 
-        self.gb_deepl = QGroupBox(self.tab_general)
-
-        layout_deepl = QHBoxLayout(self.gb_deepl)
-
+        # DeepL group + tutorial button
+        self.gb_deepl = QGroupBox(self.general_container)
+        layout_deepl = QVBoxLayout(self.gb_deepl)
         self.txt_deepl_key = QLineEdit(self.gb_deepl)
-
+        self.btn_deepl_tutorial = QPushButton(self.gb_deepl)
         layout_deepl.addWidget(self.txt_deepl_key)
-
+        layout_deepl.addWidget(self.btn_deepl_tutorial)
         vlayout.addWidget(self.gb_deepl)
+
+        # Google Cloud group
+        self.gb_gcloud = QGroupBox(self.general_container)
+        layout_gcloud = QVBoxLayout(self.gb_gcloud)
+        self.txt_gcloud_key = QLineEdit(self.gb_gcloud)
+        self.btn_gcloud_tutorial = QPushButton(self.gb_gcloud)
+        layout_gcloud.addWidget(self.txt_gcloud_key)
+        layout_gcloud.addWidget(self.btn_gcloud_tutorial)
+        vlayout.addWidget(self.gb_gcloud)
+        
+        # Cohere group
+        self.gb_cohere = QGroupBox(self.general_container)
+        layout_cohere = QVBoxLayout(self.gb_cohere)
+        self.txt_cohere_key = QLineEdit(self.gb_cohere)
+        self.btn_cohere_tutorial = QPushButton(self.gb_cohere)
+        layout_cohere.addWidget(self.txt_cohere_key)
+        layout_cohere.addWidget(self.btn_cohere_tutorial)
+        vlayout.addWidget(self.gb_cohere)
 
         vlayout.addStretch()
 

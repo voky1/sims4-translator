@@ -167,7 +167,8 @@ class TranslateDialog(QDialog, Ui_TranslateDialog):
 
     def check_api(self):
         api = self.cb_api.currentText().lower()
-        if api == 'deepl':
+        xml_aware = {'deepl', 'google cloud', 'cohere'}
+        if api in xml_aware:
             self.rb_fast.setEnabled(True)
         else:
             self.rb_fast.setEnabled(False)

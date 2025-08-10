@@ -2,7 +2,9 @@
 
 from PySide6.QtCore import Qt, QCoreApplication, QObject, QTimer, QAbstractTableModel, \
     Signal, Slot, QThreadPool, QRunnable
-from PySide6.QtWidgets import QHeaderView, QStyledItemDelegate, QDialog
+from PySide6.QtWidgets import QHeaderView, QStyledItemDelegate, QDialog, QVBoxLayout, QTextBrowser, QPushButton, QHBoxLayout
+from PySide6.QtGui import QDesktopServices
+from PySide6.QtCore import QUrl
 from PySide6.QtGui import QColor
 
 from windows.ui.options_dialog import Ui_OptionsDialog
@@ -187,6 +189,10 @@ class OptionsDialog(QDialog, Ui_OptionsDialog):
 
         self.txt_path.setText(config.value('dictionaries', 'gamepath'))
         self.txt_deepl_key.setText(config.value('api', 'deepl_key'))
+        if hasattr(self, 'txt_gcloud_key'):
+            self.txt_gcloud_key.setText(config.value('api', 'google_key'))
+        if hasattr(self, 'txt_cohere_key'):
+            self.txt_cohere_key.setText(config.value('api', 'cohere_key'))
 
         self.cb_language.currentIndexChanged.connect(self.interface_change)
         self.cb_theme.currentIndexChanged.connect(self.theme_change)
@@ -197,6 +203,18 @@ class OptionsDialog(QDialog, Ui_OptionsDialog):
         self.btn_path.clicked.connect(self.select_path)
 
         self.txt_deepl_key.textChanged.connect(self.change_deepl_key)
+        if hasattr(self, 'txt_gcloud_key'):
+            self.txt_gcloud_key.textChanged.connect(self.change_gcloud_key)
+        if hasattr(self, 'txt_cohere_key'):
+            self.txt_cohere_key.textChanged.connect(self.change_cohere_key)
+
+        # Tutorial buttons open in-app QDialogs with steps and links
+        if hasattr(self, 'btn_deepl_tutorial'):
+                self.btn_deepl_tutorial.clicked.connect(self.show_deepl_tutorial)
+        if hasattr(self, 'btn_gcloud_tutorial'):
+            self.btn_gcloud_tutorial.clicked.connect(self.show_gcloud_tutorial)
+        if hasattr(self, 'btn_cohere_tutorial'):
+            self.btn_cohere_tutorial.clicked.connect(self.show_cohere_tutorial)
 
         self.btn_build.clicked.connect(self.build_click)
 
@@ -244,6 +262,22 @@ class OptionsDialog(QDialog, Ui_OptionsDialog):
         self.tabs.setTabText(self.tabs.indexOf(self.tab_general), interface.text('OptionsDialog', 'General'))
         self.tabs.setTabText(self.tabs.indexOf(self.tab_dictionaries), interface.text('OptionsDialog', 'Dictionaries'))
         self.gb_deepl.setTitle(interface.text('OptionsDialog', 'DeepL API key'))
+        if hasattr(self, 'btn_deepl_tutorial'):
+            self.btn_deepl_tutorial.setText(interface.text('OptionsDialog', 'Tutorial: get a DeepL API key'))
+        if hasattr(self, 'gb_gcloud'):
+            self.gb_gcloud.setTitle(interface.text('OptionsDialog', 'Google Cloud Translation API key'))
+            self.txt_gcloud_key.setPlaceholderText(interface.text('OptionsDialog', 'API key'))
+            if hasattr(self, 'btn_gcloud_tutorial'):
+                self.btn_gcloud_tutorial.setText(interface.text('OptionsDialog', 'Tutorial: enable Google Cloud Translation'))
+        if hasattr(self, 'gb_cohere'):
+            self.gb_cohere.setTitle(interface.text('OptionsDialog', 'Cohere API key'))
+            self.txt_cohere_key.setPlaceholderText(interface.text('OptionsDialog', 'API key'))
+            if hasattr(self, 'btn_cohere_tutorial'):
+                self.btn_cohere_tutorial.setText(interface.text('OptionsDialog', 'Tutorial: get a Cohere API key'))
+
+        # Misc labels
+        if hasattr(self, 'btn_path'):
+            self.btn_path.setText(interface.text('OptionsDialog', 'Browse'))
 
         self.lbl_language.setText(interface.text('OptionsDialog', 'Language'))
         self.lbl_theme.setText(interface.text('OptionsDialog', 'Theme'))
@@ -290,6 +324,12 @@ class OptionsDialog(QDialog, Ui_OptionsDialog):
 
     def change_deepl_key(self):
         config.set_value('api', 'deepl_key', self.txt_deepl_key.text())
+
+    def change_gcloud_key(self):
+        config.set_value('api', 'google_key', self.txt_gcloud_key.text())
+        
+    def change_cohere_key(self):
+        config.set_value('api', 'cohere_key', self.txt_cohere_key.text())
 
     def change_path(self):
         config.set_value('dictionaries', 'gamepath', self.txt_path.text())
@@ -342,6 +382,64 @@ class OptionsDialog(QDialog, Ui_OptionsDialog):
                 worker.setAutoDelete(True)
                 worker.signals.finished.connect(self.__finished)
                 self.__pool.start(worker)
+
+    # --- Tutorial Dialog helpers ---
+    def _show_tutorial(self, title: str, html: str):
+        dlg = QDialog(self)
+        dlg.setWindowTitle(title)
+        layout = QVBoxLayout(dlg)
+        view = QTextBrowser(dlg)
+        view.setOpenExternalLinks(True)
+        view.setHtml(html)
+        layout.addWidget(view)
+        btns = QHBoxLayout()
+        btn_close = QPushButton(interface.text('OptionsDialog', 'Close'), dlg)
+        btn_close.clicked.connect(dlg.accept)
+        btns.addStretch()
+        btns.addWidget(btn_close)
+        layout.addLayout(btns)
+        dlg.resize(600, 480)
+        dlg.exec()
+
+    def show_deepl_tutorial(self):
+        html = (
+            '<h3>DeepL API key</h3>'
+            '<ol>'
+            '<li>Create a DeepL account (Free or Pro).</li>'
+            '<li>Subscribe to a plan that includes the DeepL API ("DeepL API Free" is OK).</li>'
+            '<li>Open the Account page and find your API Authentication Key.</li>'
+            '<li>Copy the key here. Keep it secret.</li>'
+            '</ol>'
+            '<p>Links: '
+            '<a href="https://www.deepl.com/pro-api">DeepL API</a> • '
+            '<a href="https://www.deepl.com/account/summary">Account</a></p>'
+        )
+        self._show_tutorial('DeepL API', html)
+
+    def show_gcloud_tutorial(self):
+        html = (
+            '<h3>Google Cloud Translation API</h3>'
+            '<ol>'
+            '<li>Go to <a href="https://console.cloud.google.com/">Google Cloud Console</a> and create/select a project.</li>'
+            '<li>Enable the "Cloud Translation API" (APIs & Services → Library).</li>'
+            '<li>Create credentials: APIs & Services → Credentials → Create credentials → API key.</li>'
+            '<li>(Optional) Restrict the key. Then copy it here.</li>'
+            '</ol>'
+            '<p>Docs: <a href="https://cloud.google.com/translate/docs/setup">Setup guide</a></p>'
+        )
+        self._show_tutorial('Google Cloud Translation', html)
+
+    def show_cohere_tutorial(self):
+        html = (
+            '<h3>Cohere API</h3>'
+            '<ol>'
+            '<li>Sign up for a Cohere account.</li>'
+            '<li>Create a new API key in the dashboard.</li>'
+            '<li>Copy the API key and paste it here.</li>'
+            '</ol>'
+            '<p>Docs: <a href="https://docs.cohere.ai/">Cohere API documentation</a></p>'
+        )
+        self._show_tutorial('Cohere API', html)
 
     @Slot()
     def __finished(self):
