@@ -402,44 +402,16 @@ class OptionsDialog(QDialog, Ui_OptionsDialog):
         dlg.exec()
 
     def show_deepl_tutorial(self):
-        html = (
-            '<h3>DeepL API key</h3>'
-            '<ol>'
-            '<li>Create a DeepL account (Free or Pro).</li>'
-            '<li>Subscribe to a plan that includes the DeepL API ("DeepL API Free" is OK).</li>'
-            '<li>Open the Account page and find your API Authentication Key.</li>'
-            '<li>Copy the key here. Keep it secret.</li>'
-            '</ol>'
-            '<p>Links: '
-            '<a href="https://www.deepl.com/pro-api">DeepL API</a> • '
-            '<a href="https://www.deepl.com/account/summary">Account</a></p>'
-        )
-        self._show_tutorial('DeepL API', html)
+        html = interface.text('OptionsDialog', 'deepl_tutorial_html')
+        self._show_tutorial(interface.text('OptionsDialog', 'DeepL API'), html)
 
     def show_gcloud_tutorial(self):
-        html = (
-            '<h3>Google Cloud Translation API</h3>'
-            '<ol>'
-            '<li>Go to <a href="https://console.cloud.google.com/">Google Cloud Console</a> and create/select a project.</li>'
-            '<li>Enable the "Cloud Translation API" (APIs & Services → Library).</li>'
-            '<li>Create credentials: APIs & Services → Credentials → Create credentials → API key.</li>'
-            '<li>(Optional) Restrict the key. Then copy it here.</li>'
-            '</ol>'
-            '<p>Docs: <a href="https://cloud.google.com/translate/docs/setup">Setup guide</a></p>'
-        )
-        self._show_tutorial('Google Cloud Translation', html)
+        html = interface.text('OptionsDialog', 'gcloud_tutorial_html')
+        self._show_tutorial(interface.text('OptionsDialog', 'Google Cloud Translation'), html)
 
     def show_cohere_tutorial(self):
-        html = (
-            '<h3>Cohere API</h3>'
-            '<ol>'
-            '<li>Sign up for a Cohere account.</li>'
-            '<li>Create a new API key in the dashboard.</li>'
-            '<li>Copy the API key and paste it here.</li>'
-            '</ol>'
-            '<p>Docs: <a href="https://docs.cohere.ai/">Cohere API documentation</a></p>'
-        )
-        self._show_tutorial('Cohere API', html)
+        html = interface.text('OptionsDialog', 'cohere_tutorial_html')
+        self._show_tutorial(interface.text('OptionsDialog', 'Cohere API'), html)
 
     @Slot()
     def __finished(self):

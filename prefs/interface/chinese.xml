@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ts language="zh_TW" name="中文 (Chinese)" version="1.1.2" authors="Tina.">
+<ts language="zh_TW" name="中文 (Chinese)" version="1.4" authors="Tina.">
   <context name="EditWindow">
     <string>
       <source>Search and Edit</source>
@@ -368,7 +368,27 @@ Errors:
     </string>
     <string>
       <source>There was a temporary problem with the DeepL Service.</source>
-      <translation />
+      <translation>DeepL服务出现临时问题。</translation>
+    </string>
+    <string>
+      <source>API key not found!</source>
+      <translation>未找到API密钥！</translation>
+    </string>
+    <string>
+      <source>Invalid API key or parameters.</source>
+      <translation>无效的API密钥或参数。</translation>
+    </string>
+    <string>
+      <source>Empty translation received.</source>
+      <translation>收到空翻译。</translation>
+    </string>
+    <string>
+      <source>Cohere API key not found!</source>
+      <translation>未找到Cohere API密钥！</translation>
+    </string>
+    <string>
+      <source>No translation returned by Cohere chat API.</source>
+      <translation>Cohere聊天API未返回翻译。</translation>
     </string>
   </context>
   <context name="OptionsDialog">
@@ -478,7 +498,67 @@ Errors:
     </string>
     <string>
       <source>The translation version differs from the application version, so the interface may not be fully translated</source>
-      <translation />
+      <translation>翻译版本与应用程序版本不同，因此界面可能未完全翻译</translation>
+    </string>
+    <string>
+      <source>by {}</source>
+      <translation>由 {}</translation>
+    </string>
+    <string>
+      <source>Browse</source>
+      <translation>浏览</translation>
+    </string>
+    <string>
+      <source>API key</source>
+      <translation>API密钥</translation>
+    </string>
+    <string>
+      <source>Tutorial: get a DeepL API key</source>
+      <translation>教程：获取DeepL API密钥</translation>
+    </string>
+    <string>
+      <source>Google Cloud Translation API key</source>
+      <translation>Google Cloud Translation API密钥</translation>
+    </string>
+    <string>
+      <source>Tutorial: enable Google Cloud Translation</source>
+      <translation>教程：启用Google Cloud Translation</translation>
+    </string>
+    <string>
+      <source>Cohere API key</source>
+      <translation>Cohere API密钥</translation>
+    </string>
+    <string>
+      <source>Tutorial: get a Cohere API key</source>
+      <translation>教程：获取Cohere API密钥</translation>
+    </string>
+    <string>
+      <source>deepl_tutorial_html</source>
+      <translation>&lt;h3&gt;DeepL API密钥&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;创建DeepL账户（免费或Pro）。&lt;/li&gt;&lt;li&gt;订阅包含DeepL API的计划（"DeepL API Free"即可）。&lt;/li&gt;&lt;li&gt;打开账户页面，找到您的API认证密钥。&lt;/li&gt;&lt;li&gt;复制密钥到这里。请保密。&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;链接：&lt;a href="https://www.deepl.com/pro-api"&gt;DeepL API&lt;/a&gt; • &lt;a href="https://www.deepl.com/account/summary"&gt;账户&lt;/a&gt;&lt;/p&gt;</translation>
+    </string>
+    <string>
+      <source>gcloud_tutorial_html</source>
+      <translation>&lt;h3&gt;Google Cloud Translation API&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;前往&lt;a href="https://console.cloud.google.com/"&gt;Google Cloud控制台&lt;/a&gt;创建/选择项目。&lt;/li&gt;&lt;li&gt;启用"Cloud Translation API"（APIs &amp; Services → Library）。&lt;/li&gt;&lt;li&gt;创建凭据：APIs &amp; Services → Credentials → Create credentials → API key。&lt;/li&gt;&lt;li&gt;（可选）限制密钥。然后复制到这里。&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;文档：&lt;a href="https://cloud.google.com/translate/docs/setup"&gt;设置指南&lt;/a&gt;&lt;/p&gt;</translation>
+    </string>
+    <string>
+      <source>cohere_tutorial_html</source>
+      <translation>&lt;h3&gt;Cohere API&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;注册Cohere账户。&lt;/li&gt;&lt;li&gt;在仪表板中创建新的API密钥。&lt;/li&gt;&lt;li&gt;复制API密钥并粘贴到这里。&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;文档：&lt;a href="https://docs.cohere.ai/"&gt;Cohere API文档&lt;/a&gt;&lt;/p&gt;</translation>
+    </string>
+    <string>
+      <source>DeepL API</source>
+      <translation>DeepL API</translation>
+    </string>
+    <string>
+      <source>Google Cloud Translation</source>
+      <translation>Google Cloud Translation</translation>
+    </string>
+    <string>
+      <source>Cohere API</source>
+      <translation>Cohere API</translation>
+    </string>
+    <string>
+      <source>Close</source>
+      <translation>关闭</translation>
     </string>
   </context>
   <context name="ReplaceDialog">

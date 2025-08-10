@@ -63,38 +63,46 @@ class BatchTranslateWorker(QRunnable):
         is_fast = not isinstance(chunk, MainRecord)
 
         if is_fast:
+            # Prepare list of normalized lines
             text_strings = []
-
             for item in chunk:
                 text_string = text_to_edit(item.source)
-                hex_replacement_n = r"\x0a"
-                hex_replacement_r = r"\x0d"
-                text_string = text_string.replace("\n", hex_replacement_n)
-                text_string = text_string.replace("\r", hex_replacement_r)
+                # escape literal CR/LF for safe round-trip
+                text_string = text_string.replace("\n", r"\x0a").replace("\r", r"\x0d")
                 text_strings.append(text_string)
 
-            combined_text = '\n'.join(text_strings)
-
+            if self.engine.lower() == 'cohere':
+                # Use single batch request with strict separator
+                separator = '<|#SPLIT#|>'
+                response = translator.translate_cohere_batch(text_strings, separator=separator)
+            else:
+                # Fallback: join by newline and rely on engine returning per-line
+                combined_text = '\n'.join(text_strings)
+                response = translator.translate(self.engine, combined_text)
         else:
             combined_text = text_to_edit(chunk.source)
-
-        response = translator.translate(self.engine, combined_text)
+            response = translator.translate(self.engine, combined_text)
 
         if response.status_code == 200:
             translated_text = response.text
 
             if is_fast:
-                translated_texts = translated_text.split('\n')
+                if self.engine.lower() == 'cohere':
+                    parts = translated_text.split('<|#SPLIT#|>')
+                else:
+                    parts = translated_text.split('\n')
+                # Trim potential stray whitespace
+                parts = [p.strip() for p in parts]
 
-                if len(translated_texts) == len(chunk):
+                if len(parts) == len(chunk):
                     for i, item in enumerate(chunk):
                         undo.wrap(item)
-                        translated_text = translated_texts[i]
+                        line = parts[i]
                         hex_replacement_n = bytes(r"\x0a", 'utf-8').decode('unicode-escape')
                         hex_replacement_r = bytes(r"\x0d", 'utf-8').decode('unicode-escape')
-                        translated_text = translated_text.replace("\\x0a", hex_replacement_n)
-                        translated_text = translated_text.replace("\\x0d", hex_replacement_r)
-                        item.translate = text_to_stbl(translated_text)
+                        line = line.replace("\\x0a", hex_replacement_n)
+                        line = line.replace("\\x0d", hex_replacement_r)
+                        item.translate = text_to_stbl(line)
                         item.flag = FLAG_VALIDATED
                 else:
                     self.signals.warning.emit(interface.text('TranslateDialog', 'Some lines could not be translated.'))
@@ -170,6 +178,9 @@ class TranslateDialog(QDialog, Ui_TranslateDialog):
         xml_aware = {'deepl', 'google cloud', 'cohere'}
         if api in xml_aware:
             self.rb_fast.setEnabled(True)
+            if api == 'cohere':
+                # Prefer fast/batch mode with Cohere to reduce requests per minute
+                self.rb_fast.setChecked(True)
         else:
             self.rb_fast.setEnabled(False)
             self.rb_slow.setChecked(True)
@@ -194,7 +205,11 @@ class TranslateDialog(QDialog, Ui_TranslateDialog):
 
         self.btn_translate.setText(interface.text('TranslateDialog', 'Stop translate'))
 
-        if self.rb_fast.isChecked():
+        api_name = self.cb_api.currentText().lower()
+        if api_name == 'cohere':
+            # Always batch all items in one request for Cohere to avoid RPM limits
+            chunk_items = [items]
+        elif self.rb_fast.isChecked():
             chunk_items = split_by_char_limit(items, 1024)
         else:
             chunk_items = items

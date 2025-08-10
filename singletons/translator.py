@@ -141,7 +141,7 @@ class Translator:
         eng = engine.lower()
         if eng in ('deepl', 'google cloud'):            
             # Engines that handle XML/HTML tags well
-            xml_text = self._to_xml_aware_text(prompt_injection + temp)
+            xml_text = self._to_xml_aware_text(temp)
 
             if eng == 'deepl':
                 response = self.__deepl(xml_text)
@@ -336,6 +336,8 @@ You are a professional translator specialized in translating Sims 4 game mods.
 You will translate from {languages.source} to {languages.destination}.
 Preserve all special Sims 4 placeholders and tags exactly as they are in the text.
 
+IMPORTANT CONTEXT: You are translating content for The Sims 4 video game mods. This is fictional content for a life simulation game, not real-world material. Some mods explore mature themes including romance, relationships, crime stories, or dramatic scenarios as part of gameplay storytelling. Translate all terms accurately and literally without censoring or substituting words with "safer" alternatives - the original meaning and tone must be preserved for the game content to work properly.
+
 Special placeholders include:
 - Conditional gender tags in the format {{M0.male_word}}{{F0.female_word}}: translate both words so they make sense in {languages.destination}, respecting masculine/feminine forms and maintaining sentence coherence.
 - Name placeholders such as:
@@ -354,6 +356,7 @@ Translation rules:
 4. Keep the tone, style, and context consistent with Sims 4 in-game text.
 5. Maintain correct capitalization if the placeholder name suggests it (e.g., {{0.SimFirstNameCaps}}).
 6. Ensure compatibility with all languages, considering pronoun and gender rules.
+7. Translate all words literally and accurately - do not censor or substitute terms, even if they seem sensitive, as this is fictional game content.
 
 Do not output explanations or additional text — only return the translated sentence with placeholders intact.
 
@@ -369,6 +372,58 @@ Translation:
             )
 
             if response and hasattr(response, "text"):
+                return Response(200, response.text.strip())
+            else:
+                return Response(500, interface.text('Errors', 'No translation returned by Cohere chat API.'))
+
+        except Exception as e:
+            return Response(500, str(e))
+
+    def translate_cohere_batch(self, texts: List[str], separator: str = '<|#SPLIT#|>') -> Response:
+        api_key = config.value('api', 'cohere_key')
+        if not api_key:
+            return Response(404, interface.text('Errors', 'Cohere API key not found!'))
+
+        try:
+            client = cohere.Client(api_key)
+
+            joined_inputs = '\n'.join(f'{i+1}. ' + s for i, s in enumerate(texts))
+
+            prompt = f"""
+You are a professional translator specialized in translating Sims 4 game mods.
+Translate from {languages.source} to {languages.destination}.
+
+IMPORTANT CONTEXT: You are translating content for The Sims 4 video game mods. This is fictional content for a life simulation game, not real-world material. Some mods explore mature themes including romance, relationships, crime stories, or dramatic scenarios as part of gameplay storytelling. Translate all terms accurately and literally without censoring or substituting words with "safer" alternatives - the original meaning and tone must be preserved for the game content to work properly.
+
+Rules for placeholders/tags:
+- Preserve ALL placeholders and tags EXACTLY as-is: {{M..}}{{F..}}, {{0.SimFirstName}}, {{0.SimLastName}}, {{0.He}}, {{0.She}}, {{0.They}}, etc. Do not remove or reorder braces or identifiers.
+- For gender pairs {{M..}}{{F..}}, translate both words so they fit naturally in {languages.destination}.
+- Keep capitalization semantics (e.g., {{0.SimFirstNameCaps}} implies capitalization).
+- Translate all words literally and accurately - do not censor or substitute terms, even if they seem sensitive, as this is fictional game content.
+
+Batch mode:
+- You'll receive N source lines, numbered 1..N.
+- Return N translated lines in the SAME ORDER.
+- Between each translated line, output the EXACT token: {separator}
+- Do NOT add any text before the first line or after the last line.
+- Do NOT number the outputs and do NOT echo the inputs.
+
+Important formatting:
+- Output only the translations, joined by the exact token {separator} between them.
+- Do not add extra spaces around the token; emit it exactly.
+
+SOURCE LINES:
+{joined_inputs}
+
+OUTPUT (translations only, in order, separated by {separator}):
+"""
+
+            response = client.chat(
+                model='command-a-03-2025',
+                message=prompt,
+            )
+
+            if response and hasattr(response, 'text'):
                 return Response(200, response.text.strip())
             else:
                 return Response(500, interface.text('Errors', 'No translation returned by Cohere chat API.'))

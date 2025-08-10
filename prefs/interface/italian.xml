@@ -366,6 +366,26 @@ Errors:
       <source>There was a temporary problem with the DeepL Service.</source>
       <translation>Si è verificato un problema temporaneo con il servizio DeepL.</translation>
     </string>
+    <string>
+      <source>API key not found!</source>
+      <translation>Chiave API non trovata!</translation>
+    </string>
+    <string>
+      <source>Invalid API key or parameters.</source>
+      <translation>Chiave API o parametri non validi.</translation>
+    </string>
+    <string>
+      <source>Empty translation received.</source>
+      <translation>Ricevuta traduzione vuota.</translation>
+    </string>
+    <string>
+      <source>Cohere API key not found!</source>
+      <translation>Chiave API Cohere non trovata!</translation>
+    </string>
+    <string>
+      <source>No translation returned by Cohere chat API.</source>
+      <translation>Nessuna traduzione restituita dall'API chat di Cohere.</translation>
+    </string>
   </context>
   <context name="OptionsDialog">
     <string>
@@ -475,6 +495,66 @@ Errors:
     <string>
       <source>The translation version differs from the application version, so the interface may not be fully translated</source>
       <translation>La versione tradotta è differente dalla versione dell'applicazione, quindi l'interfaccia potrebbe non essere completamente tradotta</translation>
+    </string>
+    <string>
+      <source>by {}</source>
+      <translation>di {}</translation>
+    </string>
+    <string>
+      <source>Browse</source>
+      <translation>Sfoglia</translation>
+    </string>
+    <string>
+      <source>API key</source>
+      <translation>Chiave API</translation>
+    </string>
+    <string>
+      <source>Tutorial: get a DeepL API key</source>
+      <translation>Tutorial: ottenere una chiave API DeepL</translation>
+    </string>
+    <string>
+      <source>Google Cloud Translation API key</source>
+      <translation>Chiave API Google Cloud Translation</translation>
+    </string>
+    <string>
+      <source>Tutorial: enable Google Cloud Translation</source>
+      <translation>Tutorial: abilitare Google Cloud Translation</translation>
+    </string>
+    <string>
+      <source>Cohere API key</source>
+      <translation>Chiave API Cohere</translation>
+    </string>
+    <string>
+      <source>Tutorial: get a Cohere API key</source>
+      <translation>Tutorial: ottenere una chiave API Cohere</translation>
+    </string>
+    <string>
+      <source>deepl_tutorial_html</source>
+      <translation>&lt;h3&gt;Chiave API DeepL&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;Crea un account DeepL (Gratuito o Pro).&lt;/li&gt;&lt;li&gt;Sottoscrivi un piano che include l'API DeepL ("DeepL API Free" va bene).&lt;/li&gt;&lt;li&gt;Apri la pagina Account e trova la tua chiave di autenticazione API.&lt;/li&gt;&lt;li&gt;Copia la chiave qui. Tienila segreta.&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;Collegamenti: &lt;a href="https://www.deepl.com/pro-api"&gt;API DeepL&lt;/a&gt; • &lt;a href="https://www.deepl.com/account/summary"&gt;Account&lt;/a&gt;&lt;/p&gt;</translation>
+    </string>
+    <string>
+      <source>gcloud_tutorial_html</source>
+      <translation>&lt;h3&gt;API Google Cloud Translation&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;Vai su &lt;a href="https://console.cloud.google.com/"&gt;Google Cloud Console&lt;/a&gt; e crea/seleziona un progetto.&lt;/li&gt;&lt;li&gt;Abilita l'"API Cloud Translation" (APIs &amp; Services → Library).&lt;/li&gt;&lt;li&gt;Crea credenziali: APIs &amp; Services → Credentials → Create credentials → API key.&lt;/li&gt;&lt;li&gt;(Opzionale) Limita la chiave. Quindi copiala qui.&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;Documentazione: &lt;a href="https://cloud.google.com/translate/docs/setup"&gt;Guida alla configurazione&lt;/a&gt;&lt;/p&gt;</translation>
+    </string>
+    <string>
+      <source>cohere_tutorial_html</source>
+      <translation>&lt;h3&gt;API Cohere&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;Registrati per un account Cohere.&lt;/li&gt;&lt;li&gt;Crea una nuova chiave API nel dashboard.&lt;/li&gt;&lt;li&gt;Copia la chiave API e incollala qui.&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;Documentazione: &lt;a href="https://docs.cohere.ai/"&gt;Documentazione API Cohere&lt;/a&gt;&lt;/p&gt;</translation>
+    </string>
+    <string>
+      <source>DeepL API</source>
+      <translation>API DeepL</translation>
+    </string>
+    <string>
+      <source>Google Cloud Translation</source>
+      <translation>Google Cloud Translation</translation>
+    </string>
+    <string>
+      <source>Cohere API</source>
+      <translation>API Cohere</translation>
+    </string>
+    <string>
+      <source>Close</source>
+      <translation>Chiudi</translation>
     </string>
   </context>
   <context name="ReplaceDialog">

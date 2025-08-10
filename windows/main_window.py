@@ -22,7 +22,7 @@ from singletons.translator import translator
 from singletons.signals import progress_signals, window_signals
 from singletons.state import app_state
 from singletons.undo import undo
-from utils.functions import open_supported, open_xml, save_package, save_xml
+from utils.functions import open_supported, open_xml, save_package, save_xml, text_to_edit
 from utils.constants import *
 
 
@@ -497,43 +497,85 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if items:
             progress_signals.initiate.emit(interface.text('System', 'Translating...'), len(items))
 
+            engine = config.value('api', 'engine')
+            engine_l = engine.lower() if engine else ''
+
             success_count = 0
             error_messages = []
-            retry_delay = 1
-            max_retry_delay = 60
 
-            for i, item in enumerate(items):
-                retry_count = 0
-                max_retries = 3
-                translated = False
+            if engine_l == 'cohere' and len(items) > 1:
+                # Single batch request via Cohere to avoid RPM limits
+                try:
+                    separator = '<|#SPLIT#|>'
+                    prepared = []
+                    for item in items:
+                        s = text_to_edit(item.source)
+                        s = s.replace('\n', r'\x0a').replace('\r', r'\x0d')
+                        prepared.append(s)
 
-                while retry_count <= max_retries and not translated:
-                    response = translator.translate(config.value('api', 'engine'), item.source)
-
-                    if response.status_code == 200:
-                        undo.wrap(item)
-                        item.translate = response.text
-                        item.flag = FLAG_VALIDATED
-                        success_count += 1
-                        translated = True
-                        retry_delay = max(1, retry_delay * 0.8)
-
-                    elif response.status_code == 429:  # Too Many Requests
-                        retry_count += 1
-                        if retry_count <= max_retries:
-                            time.sleep(retry_delay)
-                            retry_delay = min(max_retry_delay, retry_delay * 2)
-                        else:
-                            error_messages.append(f"Rate limit exceeded for '{item.source[:50]}...': {response.text}")
+                    resp = translator.translate_cohere_batch(prepared, separator=separator)
+                    if resp.status_code == 200:
+                        parts = [p.strip() for p in resp.text.split(separator)]
+                        if len(parts) != len(items):
+                            error_messages.append(interface.text('TranslateDialog', 'Some lines could not be translated.'))
+                        count = min(len(parts), len(items))
+                        hex_n = bytes(r"\x0a", 'utf-8').decode('unicode-escape')
+                        hex_r = bytes(r"\x0d", 'utf-8').decode('unicode-escape')
+                        for i in range(count):
+                            undo.wrap(items[i])
+                            line = parts[i].replace('\\x0a', hex_n).replace('\\x0d', hex_r)
+                            items[i].translate = line
+                            items[i].flag = FLAG_VALIDATED
+                            success_count += 1
+                            progress_signals.increment.emit()
+                        # increment progress for any leftover items
+                        for _ in range(len(items) - count):
+                            progress_signals.increment.emit()
                     else:
-                        error_messages.append(f"Error for '{item.source[:50]}...': {response.text}")
-                        break
+                        error_messages.append(resp.text)
+                        # still consume progress bar
+                        for _ in items:
+                            progress_signals.increment.emit()
+                except Exception as e:
+                    error_messages.append(str(e))
+                    for _ in items:
+                        progress_signals.increment.emit()
+            else:
+                # Legacy per-line path for other engines or single item
+                retry_delay = 1
+                max_retry_delay = 60
+                for i, item in enumerate(items):
+                    retry_count = 0
+                    max_retries = 3
+                    translated = False
 
-                progress_signals.increment.emit()
+                    while retry_count <= max_retries and not translated:
+                        response = translator.translate(engine, item.source)
 
-                if i < len(items) - 1:
-                    base_delay = 0.1 if retry_delay <= 1 else 0.2
-                    time.sleep(base_delay)
+                        if response.status_code == 200:
+                            undo.wrap(item)
+                            item.translate = response.text
+                            item.flag = FLAG_VALIDATED
+                            success_count += 1
+                            translated = True
+                            retry_delay = max(1, retry_delay * 0.8)
+
+                        elif response.status_code == 429:  # Too Many Requests
+                            retry_count += 1
+                            if retry_count <= max_retries:
+                                time.sleep(retry_delay)
+                                retry_delay = min(max_retry_delay, retry_delay * 2)
+                            else:
+                                error_messages.append(f"Rate limit exceeded for '{item.source[:50]}...': {response.text}")
+                        else:
+                            error_messages.append(f"Error for '{item.source[:50]}...': {response.text}")
+                            break
+
+                    progress_signals.increment.emit()
+
+                    if i < len(items) - 1:
+                        base_delay = 0.1 if retry_delay <= 1 else 0.2
+                        time.sleep(base_delay)
 
             if success_count > 0:
                 self.colorbar.resfesh()
