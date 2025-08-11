@@ -534,7 +534,7 @@ Errors:
     </string>
     <string>
       <source>gcloud_tutorial_html</source>
-      <translation>&lt;h3&gt;API Google Cloud Translation&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;Перейдите в &lt;a href="https://console.cloud.google.com/"&gt;Google Cloud Console&lt;/a&gt; и создайте/выберите проект.&lt;/li&gt;&lt;li&gt;Включите "Cloud Translation API" (APIs &amp; Services → Library).&lt;/li&gt;&lt;li&gt;Создайте учетные данные: APIs &amp; Services → Credentials → Create credentials → API key.&lt;/li&gt;&lt;li&gt;(Опционально) Ограничьте ключ. Затем скопируйте его сюда.&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;Документация: &lt;a href="https://cloud.google.com/translate/docs/setup"&gt;Руководство по настройке&lt;/a&gt;&lt;/p&gt;</translation>
+      <translation>&lt;h3&gt;API Google Cloud Translation&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;Перейдите в &lt;a href="https://console.cloud.google.com/"&gt;Google Cloud Console&lt;/a&gt; и создайте/выберите проект.&lt;/li&gt;&lt;li&gt;Включите "Cloud Translation API" (API и Сервисы → Библиотека).&lt;/li&gt;&lt;li&gt;Создайте учетные данные: API и Сервисы → Учетные данные → Создать учетные данные → API-ключ.&lt;/li&gt;&lt;li&gt;(Опционально) Ограничьте ключ. Затем скопируйте его сюда.&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;Документация: &lt;a href="https://cloud.google.com/translate/docs/setup"&gt;Руководство по настройке&lt;/a&gt;&lt;/p&gt;</translation>
     </string>
     <string>
       <source>cohere_tutorial_html</source>

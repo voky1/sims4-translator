@@ -4,7 +4,7 @@ import sys
 import pyperclip
 import time
 from PySide6.QtCore import Qt, QTimer, Slot
-from PySide6.QtWidgets import QApplication, QMainWindow, QMenu, QMessageBox
+from PySide6.QtWidgets import QApplication, QMainWindow, QMenu, QMessageBox, QDialog, QVBoxLayout, QLabel, QPushButton, QScrollArea, QTextEdit
 from PySide6.QtGui import QAction, QIcon
 
 from .ui.main_window import Ui_MainWindow
@@ -24,7 +24,6 @@ from singletons.state import app_state
 from singletons.undo import undo
 from utils.functions import open_supported, open_xml, save_package, save_xml, text_to_edit
 from utils.constants import *
-
 
 class ColumnAction(QAction):
 
@@ -182,6 +181,79 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.retranslate()
 
+    def show_scrollable_error(self, title, message):
+        temp_label = QLabel(message)
+        temp_label.setWordWrap(True)
+        temp_label.setMaximumWidth(600)
+        temp_size = temp_label.sizeHint()
+        
+        main_window_height = self.height()
+        max_allowed_height = int(main_window_height * 0.8)
+        
+        if temp_size.height() > max_allowed_height - 150:
+            dialog = QDialog(self)
+            dialog.setWindowTitle(title)
+            dialog.setWindowIcon(self.style().standardIcon(self.style().StandardPixmap.SP_MessageBoxCritical))
+            dialog.setModal(True)
+            dialog.resize(650, max_allowed_height)
+            
+            layout = QVBoxLayout(dialog)
+            layout.setContentsMargins(20, 20, 20, 20)
+            layout.setSpacing(15)
+            
+            header_layout = QVBoxLayout()
+            title_label = QLabel(f"⚠️ {title}")
+            title_label.setStyleSheet("font-weight: bold; font-size: 14px; color: #d32f2f;")
+            title_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            header_layout.addWidget(title_label)
+            layout.addLayout(header_layout)
+            
+            text_area = QTextEdit(dialog)
+            text_area.setPlainText(message)
+            text_area.setReadOnly(True)
+            text_area.setMaximumHeight(max_allowed_height - 150)
+            text_area.setMinimumHeight(300)
+            text_area.setStyleSheet("""
+                QTextEdit {
+                    background-color: #fafafa;
+                    border: 1px solid #ddd;
+                    border-radius: 4px;
+                    padding: 10px;
+                    font-family: 'Consolas', 'Monaco', monospace;
+                    font-size: 10pt;
+                }
+            """)
+            
+            layout.addWidget(text_area)
+            
+            ok_button = QPushButton("OK", dialog)
+            ok_button.setStyleSheet("""
+                QPushButton {
+                    background-color: #d32f2f;
+                    color: white;
+                    border: none;
+                    border-radius: 4px;
+                    padding: 8px 20px;
+                    font-weight: bold;
+                }
+                QPushButton:hover {
+                    background-color: #b71c1c;
+                }
+                QPushButton:pressed {
+                    background-color: #a31818;
+                }
+            """)
+            ok_button.clicked.connect(dialog.accept)
+            ok_button.setFocus()
+            
+            button_layout = QVBoxLayout()
+            button_layout.addWidget(ok_button, 0, Qt.AlignmentFlag.AlignCenter)
+            layout.addLayout(button_layout)
+            
+            dialog.exec()
+        else:
+            QMessageBox.critical(self, title, message)
+            
     def retranslate(self):
         self.action_load_file.setText(interface.text('MainWindow', 'Load file...'))
         self.action_save_as.setText(interface.text('MainWindow', 'Save as...'))
@@ -517,27 +589,76 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     if resp.status_code == 200:
                         parts = [p.strip() for p in resp.text.split(separator)]
                         if len(parts) != len(items):
-                            error_messages.append(interface.text('TranslateDialog', 'Some lines could not be translated.'))
-                        count = min(len(parts), len(items))
-                        hex_n = bytes(r"\x0a", 'utf-8').decode('unicode-escape')
-                        hex_r = bytes(r"\x0d", 'utf-8').decode('unicode-escape')
-                        for i in range(count):
-                            undo.wrap(items[i])
-                            line = parts[i].replace('\\x0a', hex_n).replace('\\x0d', hex_r)
-                            items[i].translate = line
-                            items[i].flag = FLAG_VALIDATED
-                            success_count += 1
-                            progress_signals.increment.emit()
-                        # increment progress for any leftover items
-                        for _ in range(len(items) - count):
-                            progress_signals.increment.emit()
+                            error_messages.append(f"Batch translation returned {len(parts)} results for {len(items)} items. Attempting individual translations...")
+                            
+                            count = min(len(parts), len(items))
+                            hex_n = bytes(r"\x0a", 'utf-8').decode('unicode-escape')
+                            hex_r = bytes(r"\x0d", 'utf-8').decode('unicode-escape')
+                            for i in range(count):
+                                if parts[i]:
+                                    undo.wrap(items[i])
+                                    line = parts[i].replace('\\x0a', hex_n).replace('\\x0d', hex_r)
+                                    items[i].translate = line
+                                    items[i].flag = FLAG_VALIDATED
+                                    success_count += 1
+                                progress_signals.increment.emit()
+                            
+                            remaining_items = items[count:]
+                            if remaining_items:
+                                error_messages.append(f"Processing {len(remaining_items)} items individually...")
+                                retry_delay = 1
+                                max_retry_delay = 60
+                                
+                                for i, item in enumerate(remaining_items):
+                                    retry_count = 0
+                                    max_retries = 3
+                                    translated = False
+
+                                    while retry_count <= max_retries and not translated:
+                                        response = translator.translate('cohere', item.source)
+
+                                        if response.status_code == 200:
+                                            undo.wrap(item)
+                                            item.translate = response.text
+                                            item.flag = FLAG_VALIDATED
+                                            success_count += 1
+                                            translated = True
+                                            retry_delay = max(1, retry_delay * 0.8)
+
+                                        elif response.status_code == 429:
+                                            retry_count += 1
+                                            if retry_count <= max_retries:
+                                                time.sleep(retry_delay)
+                                                retry_delay = min(max_retry_delay, retry_delay * 2)
+                                            else:
+                                                error_messages.append(f"Rate limit exceeded for '{item.source[:50]}...': {response.text}")
+                                        else:
+                                            error_messages.append(f"Error for '{item.source[:50]}...': {response.text}")
+                                            break
+
+                                    progress_signals.increment.emit()
+
+                                    if i < len(remaining_items) - 1:
+                                        base_delay = 0.1 if retry_delay <= 1 else 0.2
+                                        time.sleep(base_delay)
+                        else:
+                            count = len(parts)
+                            hex_n = bytes(r"\x0a", 'utf-8').decode('unicode-escape')
+                            hex_r = bytes(r"\x0d", 'utf-8').decode('unicode-escape')
+                            for i in range(count):
+                                undo.wrap(items[i])
+                                line = parts[i].replace('\\x0a', hex_n).replace('\\x0d', hex_r)
+                                items[i].translate = line
+                                items[i].flag = FLAG_VALIDATED
+                                success_count += 1
+                                progress_signals.increment.emit()
                     else:
-                        error_messages.append(resp.text)
+                        error_messages.append(f"Cohere batch API error: {resp.text}")
                         # still consume progress bar
                         for _ in items:
                             progress_signals.increment.emit()
                 except Exception as e:
-                    error_messages.append(str(e))
+                    error_messages.append(f"Cohere batch translation exception: {str(e)}")
                     for _ in items:
                         progress_signals.increment.emit()
             else:
@@ -590,10 +711,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                     error_text += "\n" + interface.text('Messages', '... and {} other errors').format(
                         len(error_messages) - 5)
 
-                QMessageBox.critical(self, self.windowTitle(),
-                                     interface.text('Messages',
-                                                    'Translation completed with {} successes.\n\nErrors:\n{}').format(
-                                         success_count, error_text))
+                message = interface.text('Messages',
+                                       'Translation completed with {} successes.\n\nErrors:\n{}').format(
+                                           success_count, error_text)
+                self.show_scrollable_error(self.windowTitle(), message)
 
     @staticmethod
     def save_dictionary():

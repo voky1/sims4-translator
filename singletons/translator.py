@@ -336,10 +336,31 @@ You are a professional translator specialized in translating Sims 4 game mods.
 You will translate from {languages.source} to {languages.destination}.
 Preserve all special Sims 4 placeholders and tags exactly as they are in the text.
 
-IMPORTANT CONTEXT: You are translating content for The Sims 4 video game mods. This is fictional content for a life simulation game, not real-world material. Some mods explore mature themes including romance, relationships, crime stories, or dramatic scenarios as part of gameplay storytelling. Translate all terms accurately and literally without censoring or substituting words with "safer" alternatives - the original meaning and tone must be preserved for the game content to work properly.
+IMPORTANT CONTEXT: You are translating content for The Sims 4 video game mods. This is fictional content for a life simulation game, not real-world material. Some mods explore mature themes including romance, relationships, crime stories, or dramatic scenarios as part of gameplay storytelling. 
+
+CRITICAL TRANSLATION REQUIREMENTS:
+- Translate ALL terms with their MOST DIRECT, LITERAL, and COMMONLY USED equivalents in {languages.destination}
+- DO NOT use euphemisms, medical terms, or "polite" substitutions  
+- DO NOT sanitize or soften language - use the actual colloquial terms that native speakers would use
+- Adult/sexual terminology must be translated to the most direct equivalent words that adults actually use in everyday speech
+- Slang and informal language should be translated to equivalent slang/informal terms in the target language
+- The original meaning, tone, and intensity must be preserved exactly - no toning down or making content "more acceptable"
+- Choose the most natural, idiomatic expressions that sound like how native speakers actually talk
+- Pay special attention to grammatical agreements (gender, articles, adjectives) for natural flow
+- This is essential for mod functionality - sanitized translations will break the intended game experience
 
 Special placeholders include:
 - Conditional gender tags in the format {{M0.male_word}}{{F0.female_word}}: translate both words so they make sense in {languages.destination}, respecting masculine/feminine forms and maintaining sentence coherence.
+  IMPORTANT FOR GENDER AGREEMENT: In gendered languages like French, Spanish, Italian, etc., you MUST include ALL necessary words for proper gender agreement within each gender tag, including articles, adjectives, and any other words that must agree with gender.
+  
+  CRITICAL: Pay special attention to gendered articles and prepositions that must change based on the gender of the following word. The entire phrase must flow naturally with correct grammar.
+  
+  Example for French:
+  - "a pretty {{M0.boy}}{{F0.girl}}" should become "{{M0.un joli garçon}}{{F0.une jolie fille}}"  
+  - NOT "un joli {{M0.garçon}}{{F0.fille}}" (incorrect - articles and adjectives outside won't match)
+  - "A good {{M0.boy}}{{F0.girl}}" should become "{{M0.Un bon garçon}}{{F0.Une bonne fille}}"
+  - This ensures proper gender agreement for articles (un/une, le/la, du/de la), adjectives (joli/jolie, bon/bonne), and any other gender-dependent words.
+
 - Name placeholders such as:
   {{0.SimFirstName}}, {{0.SimLastName}}, {{0.SimFullName}}, {{0.SimFirstNamePossessive}}, {{0.SimFirstNameCaps}}, {{0.SimLastNameCaps}}, {{0.SimFullNameCaps}}, {{0.SimName}}.
   These represent character names and must be treated as proper nouns in the sentence structure. Do not translate them.
@@ -351,14 +372,16 @@ Special placeholders include:
 
 Translation rules:
 1. Never alter the structure or format of any placeholder.
-2. Adapt grammar and word order to make the sentence natural in {languages.destination}.
-3. For gender placeholders {{M...}}{{F...}}, ensure both forms are properly translated and fit the sentence.
+2. Adapt grammar and word order to make the sentence natural in {languages.destination}. Choose vocabulary that sounds most natural and idiomatic.
+3. For gender placeholders {{M...}}{{F...}}, ensure both forms are properly translated and fit the sentence. In gendered languages, include ALL gender-dependent words (articles, adjectives, prepositions) within the appropriate gender tags to ensure proper agreement.
 4. Keep the tone, style, and context consistent with Sims 4 in-game text.
 5. Maintain correct capitalization if the placeholder name suggests it (e.g., {{0.SimFirstNameCaps}}).
 6. Ensure compatibility with all languages, considering pronoun and gender rules.
-7. Translate all words literally and accurately - do not censor or substitute terms, even if they seem sensitive, as this is fictional game content.
+7. Use DIRECT, LITERAL translations - never euphemisms or sanitized alternatives. Sexual/adult terms must use the most common, direct words that native speakers actually say, not medical or polite versions. Preserve the exact level of formality/informality of the source. Prioritize natural, idiomatic expressions over word-for-word translations.
 
 Do not output explanations or additional text — only return the translated sentence with placeholders intact.
+
+FINAL REMINDER: Choose the most natural vocabulary and expressions. For example, prefer more appropriate/refined vocabulary choices (like "haleine" instead of "gueule" for "breath") while still maintaining directness for sexual/crude terms. The goal is natural, authentic-sounding translations that natives would actually use.
 
 Text to translate:
 {text}
@@ -379,43 +402,77 @@ Translation:
         except Exception as e:
             return Response(500, str(e))
 
-    def translate_cohere_batch(self, texts: List[str], separator: str = '<|#SPLIT#|>') -> Response:
+    def translate_cohere_batch(self, texts: List[str], separator: str = '<|#SPLIT#|>', max_batch_size: int = 20) -> Response:
         api_key = config.value('api', 'cohere_key')
         if not api_key:
             return Response(404, interface.text('Errors', 'Cohere API key not found!'))
 
+        if len(texts) > max_batch_size:
+            all_results = []
+            for i in range(0, len(texts), max_batch_size):
+                batch = texts[i:i + max_batch_size]
+                batch_response = self.translate_cohere_batch(batch, separator, max_batch_size)
+                if batch_response.status_code != 200:
+                    return batch_response
+                all_results.extend([t.strip() for t in batch_response.text.split(separator)])
+            return Response(200, separator.join(all_results))
+
         try:
             client = cohere.Client(api_key)
 
-            joined_inputs = '\n'.join(f'{i+1}. ' + s for i, s in enumerate(texts))
+            joined_inputs = '\n'.join(f'LINE_{i+1:03d}: {s}' for i, s in enumerate(texts))
+            expected_count = len(texts)
 
             prompt = f"""
 You are a professional translator specialized in translating Sims 4 game mods.
 Translate from {languages.source} to {languages.destination}.
 
-IMPORTANT CONTEXT: You are translating content for The Sims 4 video game mods. This is fictional content for a life simulation game, not real-world material. Some mods explore mature themes including romance, relationships, crime stories, or dramatic scenarios as part of gameplay storytelling. Translate all terms accurately and literally without censoring or substituting words with "safer" alternatives - the original meaning and tone must be preserved for the game content to work properly.
+CRITICAL: You MUST translate ALL {expected_count} lines. Missing any line will break the mod functionality.
+
+IMPORTANT CONTEXT: You are translating content for The Sims 4 video game mods. This is fictional content for a life simulation game, not real-world material. Some mods explore mature themes including romance, relationships, crime stories, or dramatic scenarios as part of gameplay storytelling.
+
+ABSOLUTE TRANSLATION REQUIREMENTS:
+- Use DIRECT, LITERAL, COLLOQUIAL translations - the words that native speakers actually use in real life
+- NEVER use euphemisms, medical terminology, or "cleaned up" versions of words
+- Sexual/adult terms MUST be translated using the most common, direct slang/colloquial equivalents
+- DO NOT sanitize, tone down, or make language more "appropriate" - preserve exact meaning and intensity
+- Informal language should remain informal, crude language should remain crude
+- Choose the most natural, idiomatic expressions that sound like authentic native speech
+- Prioritize grammatical correctness and natural flow - make it sound like how people really talk
+- The mod's intended tone and impact must be preserved exactly - sanitized translations break functionality
 
 Rules for placeholders/tags:
-- Preserve ALL placeholders and tags EXACTLY as-is: {{M..}}{{F..}}, {{0.SimFirstName}}, {{0.SimLastName}}, {{0.He}}, {{0.She}}, {{0.They}}, etc. Do not remove or reorder braces or identifiers.
-- For gender pairs {{M..}}{{F..}}, translate both words so they fit naturally in {languages.destination}.
-- Keep capitalization semantics (e.g., {{0.SimFirstNameCaps}} implies capitalization).
-- Translate all words literally and accurately - do not censor or substitute terms, even if they seem sensitive, as this is fictional game content.
+- Preserve ALL placeholders and tags EXACTLY as-is: {{{{M..}}}}{{{{F..}}}}, {{{{0.SimFirstName}}}}, {{{{0.SimLastName}}}}, {{{{0.He}}}}, {{{{0.She}}}}, {{{{0.They}}}}, etc.
+- For gender pairs {{{{M..}}}}{{{{F..}}}}, translate both words so that they fit naturally into the meaning and coherence of the sentences translated into {languages.destination}.
+  CRITICAL FOR GENDERED LANGUAGES: In languages like French, Spanish, Italian, etc., you MUST include ALL gender-dependent words (articles, adjectives, etc.) within each gender tag to ensure proper grammatical agreement.
+  
+  ESSENTIAL: Consider how articles, prepositions, and other words change based on gender. Ensure the entire sentence flows naturally with perfect grammar.
+  
+  Example for French translation:
+  - "a pretty {{{{M0.boy}}}}{{{{F0.girl}}}}" → "{{{{M0.un joli garçon}}}}{{{{F0.une jolie fille}}}}"
+  - "A good {{{{M0.boy}}}}{{{{F0.girl}}}}" → "{{{{M0.Un bon garçon}}}}{{{{F0.Une bonne fille}}}}"
+  - This ensures proper gender agreement for articles (un/une, le/la, du/de la), adjectives (joli/jolie, bon/bonne), and any other gender-dependent words.
 
-Batch mode:
-- You'll receive N source lines, numbered 1..N.
-- Return N translated lines in the SAME ORDER.
-- Between each translated line, output the EXACT token: {separator}
-- Do NOT add any text before the first line or after the last line.
-- Do NOT number the outputs and do NOT echo the inputs.
+- Keep capitalization semantics (e.g., {{{{0.SimFirstNameCaps}}}} implies capitalization).
+- Use DIRECT, LITERAL, COLLOQUIAL translations for ALL terms - especially adult/sexual content which must use the actual words native speakers say, not euphemisms or medical terms. Preserve exact tone and formality level. Focus on natural, idiomatic expressions that sound authentic.
 
-Important formatting:
-- Output only the translations, joined by the exact token {separator} between them.
-- Do not add extra spaces around the token; emit it exactly.
+STRICT FORMAT REQUIREMENTS:
+- You will receive exactly {expected_count} lines prefixed with LINE_001:, LINE_002:, etc.
+- Return EXACTLY {expected_count} translated lines in the SAME ORDER.
+- Between each translated line, output the EXACT separator token: {separator}
+- Do NOT add any text before the first translation or after the last translation.
+- Do NOT include the LINE_XXX: prefixes in your output.
+- Do NOT add explanations, notes, or any other text.
+
+Example format for your output:
+First translation{separator}Second translation{separator}Third translation
+
+TRANSLATION QUALITY REMINDER: Choose the most natural vocabulary and expressions. Balance directness for sexual/crude terms with appropriate vocabulary choices for other words. Make translations sound like authentic native speech.
 
 SOURCE LINES:
 {joined_inputs}
 
-OUTPUT (translations only, in order, separated by {separator}):
+TRANSLATIONS (exactly {expected_count} lines separated by {separator}):
 """
 
             response = client.chat(
@@ -424,11 +481,49 @@ OUTPUT (translations only, in order, separated by {separator}):
             )
 
             if response and hasattr(response, 'text'):
-                return Response(200, response.text.strip())
+                result_text = response.text.strip()
+                
+                parts = result_text.split(separator)
+                if len(parts) != expected_count:
+                    fallback_patterns = [
+                        f'{separator}\n',
+                        f'\n{separator}',
+                        f'\n{separator}\n',
+                    ]
+                    
+                    for pattern in fallback_patterns:
+                        test_parts = result_text.split(pattern)
+                        if len(test_parts) == expected_count:
+                            parts = [p.strip() for p in test_parts]
+                            result_text = separator.join(parts)
+                            break
+                    
+                    if len(parts) != expected_count:
+                        lines = result_text.split('\n')
+                        clean_lines = []
+                        for line in lines:
+                            line = line.strip()
+                            if line and not line.startswith('LINE_') and line != separator:
+                                if line.startswith(separator):
+                                    line = line[len(separator):].strip()
+                                if line.endswith(separator):
+                                    line = line[:-len(separator)].strip()
+                                if line:
+                                    clean_lines.append(line)
+                        
+                        if len(clean_lines) == expected_count:
+                            result_text = separator.join(clean_lines)
+                        else:
+                            return Response(500, 
+                                f"Cohere returned {len(parts)} translations but expected {expected_count}. "
+                                f"Raw response length: {len(result_text)} chars. "
+                                f"Consider reducing batch size or checking for content filtering.")
+                
+                return Response(200, result_text)
             else:
                 return Response(500, interface.text('Errors', 'No translation returned by Cohere chat API.'))
 
         except Exception as e:
-            return Response(500, str(e))
+            return Response(500, f"Cohere batch translation error: {str(e)}")
 
 translator = Translator()

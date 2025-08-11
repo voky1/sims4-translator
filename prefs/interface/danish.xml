@@ -537,7 +537,7 @@ Fejl:
     </string>
     <string>
       <source>gcloud_tutorial_html</source>
-      <translation>&lt;h3&gt;Google Cloud Translation API&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;Gå til &lt;a href="https://console.cloud.google.com/"&gt;Google Cloud Console&lt;/a&gt; og opret/vælg et projekt.&lt;/li&gt;&lt;li&gt;Aktivér "Cloud Translation API" (APIs &amp; Services → Library).&lt;/li&gt;&lt;li&gt;Opret legitimationsoplysninger: APIs &amp; Services → Credentials → Create credentials → API key.&lt;/li&gt;&lt;li&gt;(Valgfrit) Begræns nøglen. Kopier den derefter her.&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;Dokumentation: &lt;a href="https://cloud.google.com/translate/docs/setup"&gt;Opsætningsvejledning&lt;/a&gt;&lt;/p&gt;</translation>
+      <translation>&lt;h3&gt;Google Cloud Translation API&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;Gå til &lt;a href="https://console.cloud.google.com/"&gt;Google Cloud Console&lt;/a&gt; og opret/vælg et projekt.&lt;/li&gt;&lt;li&gt;Aktivér "Cloud Translation API" (APIs &amp; Tjenester → Bibliotek).&lt;/li&gt;&lt;li&gt;Opret legitimationsoplysninger: APIs &amp; Tjenester → Legitimationsoplysninger → Opret legitimationsoplysninger → API nøgle.&lt;/li&gt;&lt;li&gt;(Valgfrit) Begræns nøglen. Kopier den derefter her.&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;Dokumentation: &lt;a href="https://cloud.google.com/translate/docs/setup"&gt;Opsætningsvejledning&lt;/a&gt;&lt;/p&gt;</translation>
     </string>
     <string>
       <source>cohere_tutorial_html</source>

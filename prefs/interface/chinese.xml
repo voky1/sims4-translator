@@ -538,7 +538,7 @@ Errors:
     </string>
     <string>
       <source>gcloud_tutorial_html</source>
-      <translation>&lt;h3&gt;Google Cloud Translation API&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;前往&lt;a href="https://console.cloud.google.com/"&gt;Google Cloud控制台&lt;/a&gt;创建/选择项目。&lt;/li&gt;&lt;li&gt;启用"Cloud Translation API"（APIs &amp; Services → Library）。&lt;/li&gt;&lt;li&gt;创建凭据：APIs &amp; Services → Credentials → Create credentials → API key。&lt;/li&gt;&lt;li&gt;（可选）限制密钥。然后复制到这里。&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;文档：&lt;a href="https://cloud.google.com/translate/docs/setup"&gt;设置指南&lt;/a&gt;&lt;/p&gt;</translation>
+      <translation>&lt;h3&gt;Google Cloud Translation API&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;前往&lt;a href="https://console.cloud.google.com/"&gt;Google Cloud控制台&lt;/a&gt;创建/选择项目。&lt;/li&gt;&lt;li&gt;启用"Cloud Translation API"（API和服务 → 库）。&lt;/li&gt;&lt;li&gt;创建凭据：API和服务 → 凭据 → 创建凭据 → API密钥。&lt;/li&gt;&lt;li&gt;（可选）限制密钥。然后复制到这里。&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;文档：&lt;a href="https://cloud.google.com/translate/docs/setup"&gt;设置指南&lt;/a&gt;&lt;/p&gt;</translation>
     </string>
     <string>
       <source>cohere_tutorial_html</source>

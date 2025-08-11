@@ -532,7 +532,7 @@
     </string>
     <string>
       <source>gcloud_tutorial_html</source>
-      <translation>&lt;h3&gt;API Google Cloud Translation&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;Vá para &lt;a href="https://console.cloud.google.com/"&gt;Google Cloud Console&lt;/a&gt; e crie/selecione um projeto.&lt;/li&gt;&lt;li&gt;Ative a API "Cloud Translation API" (APIs &amp; Services → Library).&lt;/li&gt;&lt;li&gt;Crie credenciais: APIs &amp; Services → Credentials → Create credentials → API key.&lt;/li&gt;&lt;li&gt;(Opcional) Restringir a chave. Em seguida, copie-a aqui.&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;Documentação: &lt;a href="https://cloud.google.com/translate/docs/setup"&gt;Guia de configuração&lt;/a&gt;&lt;/p&gt;</translation>
+      <translation>&lt;h3&gt;API Google Cloud Translation&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;Vá para &lt;a href="https://console.cloud.google.com/"&gt;Google Cloud Console&lt;/a&gt; e crie/selecione um projeto.&lt;/li&gt;&lt;li&gt;Ative a API "Cloud Translation API" (APIs e Serviços → Biblioteca).&lt;/li&gt;&lt;li&gt;Crie credenciais: APIs e Serviços → Credenciais → Criar credenciais → Chave API.&lt;/li&gt;&lt;li&gt;(Opcional) Restringir a chave. Em seguida, copie-a aqui.&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;Documentação: &lt;a href="https://cloud.google.com/translate/docs/setup"&gt;Guia de configuração&lt;/a&gt;&lt;/p&gt;</translation>
     </string>
     <string>
       <source>cohere_tutorial_html</source>
