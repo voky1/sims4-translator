@@ -64,7 +64,9 @@ class ConfigManager:
         },
         'api': {
             'engine': '',
-            'deepl_key': ''
+            'deepl_key': '',
+            'google_key': '',
+            'cohere_key': ''
         },
         'view': {
             'id': True,

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <lng>
   <language locale="ENG_US" code="0x00" google-code="en" deepl-code="EN"/>
-  <language locale="CHS_CN" code="0x01" google-code="zh-cn" deepl-code=""/>
+  <language locale="CHS_CN" code="0x01" google-code="zh-cn" deepl-code="ZH-HANS"/>
   <language locale="CHT_CN" code="0x02" google-code="zh-tw" deepl-code="ZH"/>
   <language locale="CZE_CZ" code="0x03" google-code="cs" deepl-code="CS"/>
   <language locale="DAN_DK" code="0x04" google-code="da" deepl-code="DA"/>

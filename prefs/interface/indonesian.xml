@@ -369,6 +369,26 @@ Kesalahan:
       <source>There was a temporary problem with the DeepL Service.</source>
       <translation>Ada masalah sementara dengan Layanan DeepL.</translation>
     </string>
+    <string>
+      <source>API key not found!</source>
+      <translation>Kunci API tidak ditemukan!</translation>
+    </string>
+    <string>
+      <source>Invalid API key or parameters.</source>
+      <translation>Kunci API atau parameter tidak valid.</translation>
+    </string>
+    <string>
+      <source>Empty translation received.</source>
+      <translation>Terjemahan kosong diterima.</translation>
+    </string>
+    <string>
+      <source>Cohere API key not found!</source>
+      <translation>Kunci API Cohere tidak ditemukan!</translation>
+    </string>
+    <string>
+      <source>No translation returned by Cohere chat API.</source>
+      <translation>Tidak ada terjemahan yang dikembalikan oleh API chat Cohere.</translation>
+    </string>
   </context>
   <context name="OptionsDialog">
     <string>
@@ -478,6 +498,66 @@ Kesalahan:
     <string>
       <source>The translation version differs from the application version, so the interface may not be fully translated</source>
       <translation>Versi terjemahan berbeda dari versi aplikasi, sehingga antarmuka mungkin tidak sepenuhnya diterjemahkan</translation>
+    </string>
+    <string>
+      <source>by {}</source>
+      <translation>oleh {}</translation>
+    </string>
+    <string>
+      <source>Browse</source>
+      <translation>Jelajah</translation>
+    </string>
+    <string>
+      <source>API key</source>
+      <translation>Kunci API</translation>
+    </string>
+    <string>
+      <source>Tutorial: get a DeepL API key</source>
+      <translation>Tutorial: dapatkan kunci API DeepL</translation>
+    </string>
+    <string>
+      <source>Google Cloud Translation API key</source>
+      <translation>Kunci API Google Cloud Translation</translation>
+    </string>
+    <string>
+      <source>Tutorial: enable Google Cloud Translation</source>
+      <translation>Tutorial: aktifkan Google Cloud Translation</translation>
+    </string>
+    <string>
+      <source>Cohere API key</source>
+      <translation>Kunci API Cohere</translation>
+    </string>
+    <string>
+      <source>Tutorial: get a Cohere API key</source>
+      <translation>Tutorial: dapatkan kunci API Cohere</translation>
+    </string>
+    <string>
+      <source>deepl_tutorial_html</source>
+      <translation>&lt;h3&gt;Kunci API DeepL&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;Buat akun DeepL (Gratis atau Pro).&lt;/li&gt;&lt;li&gt;Berlangganan paket yang mencakup API DeepL ("DeepL API Free" tidak masalah).&lt;/li&gt;&lt;li&gt;Buka halaman Akun dan temukan Kunci Otentikasi API Anda.&lt;/li&gt;&lt;li&gt;Salin kunci di sini. Jaga kerahasiaan.&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;Tautan: &lt;a href="https://www.deepl.com/pro-api"&gt;API DeepL&lt;/a&gt; • &lt;a href="https://www.deepl.com/account/summary"&gt;Akun&lt;/a&gt;&lt;/p&gt;</translation>
+    </string>
+    <string>
+      <source>gcloud_tutorial_html</source>
+      <translation>&lt;h3&gt;API Google Cloud Translation&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;Buka &lt;a href="https://console.cloud.google.com/"&gt;Google Cloud Console&lt;/a&gt; dan buat/pilih proyek.&lt;/li&gt;&lt;li&gt;Aktifkan "Cloud Translation API" (API &amp; Layanan → Perpustakaan).&lt;/li&gt;&lt;li&gt;Buat kredensial: API &amp; Layanan → Kredensial → Buat kredensial → Kunci API.&lt;/li&gt;&lt;li&gt;(Opsional) Batasi kunci. Kemudian salin ke sini.&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;Dokumentasi: &lt;a href="https://cloud.google.com/translate/docs/setup"&gt;Panduan pengaturan&lt;/a&gt;&lt;/p&gt;</translation>
+    </string>
+    <string>
+      <source>cohere_tutorial_html</source>
+      <translation>&lt;h3&gt;API Cohere&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;Daftar untuk akun Cohere.&lt;/li&gt;&lt;li&gt;Buat kunci API baru di dashboard.&lt;/li&gt;&lt;li&gt;Salin kunci API dan tempel di sini.&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;Dokumentasi: &lt;a href="https://docs.cohere.ai/"&gt;Dokumentasi API Cohere&lt;/a&gt;&lt;/p&gt;</translation>
+    </string>
+    <string>
+      <source>DeepL API</source>
+      <translation>API DeepL</translation>
+    </string>
+    <string>
+      <source>Google Cloud Translation</source>
+      <translation>Google Cloud Translation</translation>
+    </string>
+    <string>
+      <source>Cohere API</source>
+      <translation>API Cohere</translation>
+    </string>
+    <string>
+      <source>Close</source>
+      <translation>Tutup</translation>
     </string>
   </context>
   <context name="ReplaceDialog">
